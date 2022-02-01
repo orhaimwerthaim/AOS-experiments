@@ -1,0 +1,31 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "serve_can_to_person",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "std_srvs.srv",
+                    "Import": [
+                        "*"
+                    ]
+                }
+            ],
+            "ServicePath": "/deliver_to_person",
+            "ServiceName": "Trigger",
+            "ServiceParameters": []
+        }
+    },
+    "LocalVariablesInitialization": [
+        {
+            "LocalVariableName": "served_successfully",
+            "FromROSServiceResponse": true,
+            "AssignmentCode": "served_successfully = __input.success"
+        }
+    ]
+}
