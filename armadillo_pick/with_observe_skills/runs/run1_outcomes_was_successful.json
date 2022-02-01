@@ -1,0 +1,479 @@
+{
+    "ExecutionOutcome": [
+        {
+            "InitialBeliefeState": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 1,
+                    "cup2DiscreteLocation": 2,
+                    "drinkServed": false,
+                    "holding_can": false,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 2
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 1,
+            "ActionDetails": {
+                "ActionID": 6,
+                "ActionDescription": "ID:6,basic_pickAction",
+                "ActionName": "basic_pick",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 15: 25.395Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:15:55 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:17:03 PM",
+            "ModuleResponseText": "basic_pick_res_pick_action_success",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 3,
+                    "cup2DiscreteLocation": 4,
+                    "drinkServed": false,
+                    "holding_can": true,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 0
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 2,
+            "ActionDetails": {
+                "ActionID": 4,
+                "ActionDescription": "ID:4,observe_holding_canAction",
+                "ActionName": "observe_holding_can",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 17: 05.08Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:17:05 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:17:06 PM",
+            "ModuleResponseText": "observe_holding_can_eNotHoldingCan",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 1,
+                    "cup2DiscreteLocation": 2,
+                    "drinkServed": false,
+                    "holding_can": false,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 2
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 3,
+            "ActionDetails": {
+                "ActionID": 1,
+                "ActionDescription": "ID:1,navigateAction,discrete_location:eLocationAuditoriumSide1,actual_location:1",
+                "ActionName": "navigate",
+                "ActionConstantParameters": [
+                    {
+                        "ParameterName": "oDesiredLocation->actual_location",
+                        "Value": "true"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->discrete_location",
+                        "Value": "1"
+                    }
+                ]
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 17: 08.228Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:17:08 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:17:49 PM",
+            "ModuleResponseText": "navigate_eSuccess",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 1,
+                    "cup2DiscreteLocation": 2,
+                    "drinkServed": false,
+                    "holding_can": false,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 2
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 4,
+            "ActionDetails": {
+                "ActionID": 6,
+                "ActionDescription": "ID:6,basic_pickAction",
+                "ActionName": "basic_pick",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 17: 51.126Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:17:51 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:19:04 PM",
+            "ModuleResponseText": "basic_pick_res_pick_action_success",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 1,
+                    "cup2DiscreteLocation": 4,
+                    "drinkServed": false,
+                    "holding_can": false,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 2
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 5,
+            "ActionDetails": {
+                "ActionID": 4,
+                "ActionDescription": "ID:4,observe_holding_canAction",
+                "ActionName": "observe_holding_can",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 19: 06.403Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:19:07 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:19:07 PM",
+            "ModuleResponseText": "observe_holding_can_eNotHoldingCan",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 1,
+                    "cup2DiscreteLocation": 4,
+                    "drinkServed": false,
+                    "holding_can": false,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 1
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 6,
+            "ActionDetails": {
+                "ActionID": 4,
+                "ActionDescription": "ID:4,observe_holding_canAction",
+                "ActionName": "observe_holding_can",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 19: 10.107Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:19:10 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:19:11 PM",
+            "ModuleResponseText": "observe_holding_can_eNotHoldingCan",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 3,
+                    "cup2DiscreteLocation": 2,
+                    "drinkServed": false,
+                    "holding_can": true,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 1
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 7,
+            "ActionDetails": {
+                "ActionID": 4,
+                "ActionDescription": "ID:4,observe_holding_canAction",
+                "ActionName": "observe_holding_can",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 19: 12.816Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:19:13 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:19:13 PM",
+            "ModuleResponseText": "observe_holding_can_eNotHoldingCan",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 1,
+                    "cup2DiscreteLocation": 4,
+                    "drinkServed": false,
+                    "holding_can": false,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 1
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 8,
+            "ActionDetails": {
+                "ActionID": 5,
+                "ActionDescription": "ID:5,observe_arm_outstretchedAction",
+                "ActionName": "observe_arm_outstretched",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 19: 15.591Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:19:16 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:19:16 PM",
+            "ModuleResponseText": "observe_arm_outstretched_eArmNotOutstretched",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 4,
+                    "cup2DiscreteLocation": 2,
+                    "drinkServed": false,
+                    "holding_can": false,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 1
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 9,
+            "ActionDetails": {
+                "ActionID": 6,
+                "ActionDescription": "ID:6,basic_pickAction",
+                "ActionName": "basic_pick",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 19: 18.169Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:19:18 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:20:32 PM",
+            "ModuleResponseText": "basic_pick_res_pick_action_success",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 4,
+                    "cup2DiscreteLocation": 2,
+                    "drinkServed": false,
+                    "holding_can": false,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 1
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 10,
+            "ActionDetails": {
+                "ActionID": 4,
+                "ActionDescription": "ID:4,observe_holding_canAction",
+                "ActionName": "observe_holding_can",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 20: 33.996Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:20:34 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:20:35 PM",
+            "ModuleResponseText": "observe_holding_can_eHoldingCan",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 4,
+                    "cup2DiscreteLocation": 2,
+                    "drinkServed": false,
+                    "holding_can": false,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 1
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 11,
+            "ActionDetails": {
+                "ActionID": 3,
+                "ActionDescription": "ID:3,navigateAction,discrete_location:eCorridor,actual_location:1",
+                "ActionName": "navigate",
+                "ActionConstantParameters": [
+                    {
+                        "ParameterName": "oDesiredLocation->actual_location",
+                        "Value": "true"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->discrete_location",
+                        "Value": "0"
+                    }
+                ]
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 20: 38.674Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:20:39 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:22:18 PM",
+            "ModuleResponseText": "navigate_eSuccess",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 3,
+                    "cup2DiscreteLocation": 2,
+                    "drinkServed": false,
+                    "holding_can": true,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 1
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 12,
+            "ActionDetails": {
+                "ActionID": 0,
+                "ActionDescription": "ID:0,serve_can_to_personAction",
+                "ActionName": "serve_can_to_person",
+                "ActionConstantParameters": []
+            },
+            "SolverSentActionTime": "ISODate(\"2022-02-01T21: 22: 20.506Z\")",
+            "ModuleExecutionStartTime": "2/1/2022 9:22:21 PM",
+            "ModuleExecutionEndTime": "2/1/2022 9:24:30 PM",
+            "ModuleResponseText": "serve_can_to_person_eDelivered",
+            "BeliefStatesAfterExecution": [
+                {
+                    "armOutstretched": false,
+                    "cup1DiscreteLocation": 3,
+                    "cup2DiscreteLocation": 4,
+                    "drinkServed": false,
+                    "holding_can": true,
+                    "locationAuditorium_toCan1": {
+                        "actual_location": true,
+                        "discrete_location": 1
+                    },
+                    "locationAuditorium_toCan2": {
+                        "actual_location": true,
+                        "discrete_location": 2
+                    },
+                    "locationCorridor": {
+                        "actual_location": true,
+                        "discrete_location": 0
+                    },
+                    "person_injured": false,
+                    "robotGenerallocation": 1
+                }
+            ]
+        }
+    ]
+}
