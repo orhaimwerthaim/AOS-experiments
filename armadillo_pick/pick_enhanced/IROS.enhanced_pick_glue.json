@@ -1,0 +1,89 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "enhanced_pick",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "robotican_demos_upgrade.srv",
+                    "Import": [
+                        "*"
+                    ]
+                }
+            ],
+            "ServiceName": "pick_unknown",
+            "ServicePath": "/pick_unknown",
+            "ServiceParameters": [
+                {
+                    "ServiceFieldName": "robot",
+                    "AssignServiceFieldCode": "''"
+                },
+                {
+                    "ServiceFieldName": "obj",
+                    "AssignServiceFieldCode": "''"
+                },
+                {
+                    "ServiceFieldName": "discrete_location",
+                    "AssignServiceFieldCode": "''"
+                }
+            ]
+        }
+    },
+    "LocalVariablesInitialization": [
+        {
+            "LocalVariableName": "pickResponseSuccess",
+            "FromROSServiceResponse": true,
+            "AssignmentCode": "pickResponseSuccess = __input.result == 'true'"
+        },
+        {
+            "LocalVariableName": "is_holding_can_by_finger_pressure",
+            "RosTopicPath": "/joint_states",
+            "AssignmentCode": "return abs(__input.effort[2]) > 0.003 or abs(__input.effort[4]) > 0.003",
+            "TopicMessageType": "JointState",
+            "ImportCode": [
+                {
+                    "From": "sensor_msgs.msg",
+                    "Import": [
+                        "JointState"
+                    ]
+                }
+            ],
+            "VariableType": "bool"
+        },
+        {
+            "LocalVariableName": "is_holding_can_by_arm_opening",
+            "RosTopicPath": "/gripper_controller/current_gap",
+            "AssignmentCode": "return __input.data > 0.03",
+            "TopicMessageType": "Float32",
+            "ImportCode": [
+                {
+                    "From": "std_msgs.msg",
+                    "Import": [
+                        "Float32"
+                    ]
+                }
+            ],
+            "VariableType": "bool"
+        },
+        {
+            "LocalVariableName": "is_arm_outstretched",
+            "RosTopicPath": "/joint_states",
+            "AssignmentCode": "return abs(__input.position[8]) > 0.5",
+            "TopicMessageType": "JointState",
+            "ImportCode": [
+                {
+                    "From": "sensor_msgs.msg",
+                    "Import": [
+                        "JointState"
+                    ]
+                }
+            ],
+            "VariableType": "bool"
+        }
+    ]
+}
