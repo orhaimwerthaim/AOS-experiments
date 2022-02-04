@@ -1,0 +1,119 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 10,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "tDiscreteLocation",
+            "Type": "enum",
+            "EnumValues": [
+                "eCorridor",
+                "eLocationAuditoriumSide1",
+                "eLocationAuditoriumSide2",
+                "eRobotHand",
+                "eUnknown"
+            ]
+        },
+        {
+            "TypeName": "tLocation",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "discrete_location",
+                    "Type": "tDiscreteLocation",
+                    "Default": "eUnknown"
+                },
+                {
+                    "Name": "actual_location",
+                    "Type": "anyValue",
+                    "UnderlineLocalVariableType": "ltLocation"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "locationCorridor",
+            "Type": "tLocation",
+            "DefaultCode": "state.locationCorridor.discrete_location = eCorridor; state.locationCorridor.actual_location = ___locationCorridor;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "locationAuditorium_toCan1",
+            "Type": "tLocation",
+            "DefaultCode": "state.locationAuditorium_toCan1.discrete_location = eLocationAuditoriumSide1; state.locationAuditorium_toCan1.actual_location = ___locationAuditorium_toCan1;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "locationAuditorium_toCan2",
+            "Type": "tLocation",
+            "DefaultCode": "state.locationAuditorium_toCan2.discrete_location = eLocationAuditoriumSide2; state.locationAuditorium_toCan2.actual_location = ___locationAuditorium_toCan2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "cup1DiscreteLocation",
+            "Type": "tDiscreteLocation",
+            "Default": "eLocationAuditoriumSide1"
+        },
+        {
+            "Name": "cup2DiscreteLocation",
+            "Type": "tDiscreteLocation",
+            "Default": "eLocationAuditoriumSide2"
+        },
+        {
+            "Name": "robotGenerallocation",
+            "Type": "tDiscreteLocation"
+        },
+        {
+            "Name": "holding_can",
+            "Type": "bool",
+            "DefaultCode": "state.holding_can=false;"
+        },
+        {
+            "Name": "drinkServed",
+            "Type": "bool",
+            "DefaultCode": "state.drinkServed=false;"
+        },
+        {
+            "Name": "armOutstretched",
+            "Type": "bool",
+            "DefaultCode": "state.armOutstretched=false;"
+        },
+        {
+            "Name": "person_injured",
+            "Type": "bool",
+            "DefaultCode": "state.person_injured=false;"
+        }
+    ],
+    "InitialBeliefStateAssignments": [
+        {
+            "AssignmentName": "robotGenerallocation",
+            "AssignmentCode": "state.robotGenerallocation = state.locationAuditorium_toCan2.discrete_location;"
+        }
+    ],
+    "SpecialStates": [
+        {
+            "StateConditionCode": "state.drinkServed == true",
+            "Reward": 30.0,
+            "IsGoalState": true
+        },
+        {
+            "StateConditionCode": "state.person_injured == true",
+            "Reward": -10.0,
+            "IsGoalState": true
+        },
+        {
+            "StateConditionCode": "state.cup1DiscreteLocation == eUnknown && state.cup2DiscreteLocation == eUnknown",
+            "Reward": 0.0,
+            "IsGoalState": true
+        }
+    ],
+    "ExtrinsicChangesDynamicModel": []
+}
