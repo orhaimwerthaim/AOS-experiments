@@ -1,0 +1,89 @@
+std::string Bp_with_int_model::GetCellDesc(int x, int y, const Bp_with_int_modelState& state) const
+{
+	std::string res = "";
+	
+	if(state.agentOneLoc.x == x && state.agentOneLoc.y == y)
+	{
+		res += (state.isAgentOneTurn ? "A1*" : "A1");
+		if(state.JointPushDirection != None)
+		{
+			res += state.JointPushDirection == Up ? "^J" : state.JointPushDirection == Down ? "vJ"
+													  : state.JointPushDirection == Left   ? "<J"
+																						   : ">J";
+		}
+	}
+	
+	if(state.agentTwoLoc.x == x && state.agentTwoLoc.y == y)
+	{
+		res += res.length() > 0 ? "," : "";
+		res += (state.isAgentOneTurn ? "A2" : "A2*");
+	} 
+	if(state.bOneLoc.x == x && state.bOneLoc.y == y)
+	{
+		res += res.length() > 0 ? ",B1" : "B1";
+	}
+	if(state.bTwoLoc.x == x && state.bTwoLoc.y == y)
+	{
+		res += res.length() > 0 ? ",B2" : "B2";
+	}
+	int gapsNeeded = 11 - res.length();
+	std::string start(int(ceil(gapsNeeded / 2)), ' ');
+	std::string end(int(floor(gapsNeeded / 2)), ' ');
+
+	res = start + res + end;
+	return res;
+}
+
+ 
+
+
+void Bp_with_int_model::PrintState(const State& _state, ostream& ostr) const {
+	const Bp_with_int_modelState& state = static_cast<const Bp_with_int_modelState&>(_state);
+	try
+	{
+	if (ostr)
+		{
+		std::string line((12*(state.MaxGridx+1)), '-');
+		for(int y=state.MaxGridx; y >=0; y--)
+		{
+			ostr << line << endl;
+			for (int x = 0; x <= state.MaxGridx; x++)
+			{
+				ostr << "|" << GetCellDesc(x, y, state);
+			}
+			ostr << "|" << endl;
+		}
+		ostr << line << endl;
+		} 
+	}
+	catch(const std::exception& e)
+	{
+
+	}
+}
+
+
+
+
+
+,
+        {
+            "StateConditionCode": "state.bOneLoc.x==1 && state.bOneLoc.y==0",
+            "Reward": 100.0
+        },
+        {
+            "StateConditionCode": "state.bOneLoc.x==1 && state.bOneLoc.y==1",
+            "Reward": 200.0
+        },
+        {
+            "StateConditionCode": "state.bTwoLoc.x==0 && state.bTwoLoc.y==1",
+            "Reward": 200.0
+        },
+        {
+            "StateConditionCode": "state.bTwoLoc.x==1 && state.bTwoLoc.y==1",
+            "Reward": 200.0
+        },
+        {
+            "StateConditionCode": "state.bTwoLoc.x==2 && state.bTwoLoc.y==1",
+            "Reward": 200.0
+        }

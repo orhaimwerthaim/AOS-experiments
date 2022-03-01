@@ -1,0 +1,17 @@
+{
+    "PlpMain": {
+        "Project": "Bp",
+        "Name": "push",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "eSuccess",
+                "ConditionCodeWithLocalVariables": "True"
+            }
+        ]
+    }
+}

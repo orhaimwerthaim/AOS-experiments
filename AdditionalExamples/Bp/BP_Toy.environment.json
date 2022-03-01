@@ -1,0 +1,142 @@
+{
+    "PlpMain": {
+        "Project": "Bp",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Max_concurrent_actions": 3,
+        "Horizon": 22,
+        "Discount": 0.999
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "tPushType",
+            "Type": "enum",
+            "EnumValues": [
+                "SingleAgentPush",
+                "JointPush"
+            ]
+        },
+        {
+            "TypeName": "tDirection",
+            "Type": "enum",
+            "EnumValues": [
+                "Up",
+                "Down",
+                "Left",
+                "Right",
+                "None"
+            ]
+        },
+        {
+            "TypeName": "tCell",
+            "Type": "enum",
+            "EnumValues": [
+                "L00",
+                "L10",
+                "L01",
+                "L11",
+                "OUT"
+            ]
+        },
+        {
+            "TypeName": "tDirectionParam",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "direction",
+                    "Type": "tDirection",
+                    "Default": "Up"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "agentOneLoc",
+            "Type": "tCell",
+            "Default": "L10"
+        },
+        {
+            "Name": "agentTwoLoc",
+            "Type": "tCell",
+            "Default": "L01"
+        },
+        {
+            "Name": "bOneLoc",
+            "Type": "tCell",
+            "Default": "L00"
+        },
+        {
+            "Name": "bTwoLoc",
+            "Type": "tCell",
+            "Default": "L00"
+        },
+        {
+            "Name": "isAgentOneTurn",
+            "Type": "bool",
+            "Default": "true"
+        },
+        {
+            "Name": "ParamUp",
+            "Type": "tDirection",
+            "Default": "Up;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamDown",
+            "Type": "tDirection",
+            "Default": "Down;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamLeft",
+            "Type": "tDirection",
+            "Default": "Left;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamRight",
+            "Type": "tDirection",
+            "Default": "Right;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamSingleAgentPush",
+            "Type": "tPushType",
+            "Default": "SingleAgentPush;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamJointPush",
+            "Type": "tPushType",
+            "Default": "JointPush;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "JointPushDirection",
+            "Type": "tDirection",
+            "Default": "None;"
+        }
+    ],
+    "InitialBeliefStateAssignments": [
+        {
+            "AssignmentName": "bOneLoc",
+            "AssignmentCode": "state.bOneLoc = AOS.SampleDiscrete(tCell,{0.5, 0,0,0});"
+        },
+        {
+            "AssignmentName": "bTwoLoc",
+            "AssignmentCode": "state.bTwoLoc = AOS.SampleDiscrete(tCell,{0.5, 0,0,0});"
+        }
+    ],
+    "SpecialStates": [
+        {
+            "StateConditionCode": "state.bOneLoc == L11 && state.bTwoLoc == L11",
+            "Reward": 1300.0,
+            "IsGoalState": true
+        }
+    ],
+    "ExtrinsicChangesDynamicModel": []
+}
