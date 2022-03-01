@@ -1,0 +1,20 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "observe_holding_can",
+        "Type": "PLP",
+        "Version": 1
+    },  
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "if (state.holding_can == true && AOS.Bernoulli(0.818)) __moduleResponse = eHoldingCan; else __moduleResponse = eNotHoldingCan;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = -1;"
+            }
+        ]
+    }
+}

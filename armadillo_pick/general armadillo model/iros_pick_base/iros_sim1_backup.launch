@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- armadillo2 top-level launch -->
+
+<launch>
+
+    <!-- for other services -->
+     <arg name="start_position" default="cobra_center" /> <!--ninety_deg-->
+    <arg name="end_position" default="to_cheak" />
+    <arg name="give_position" default="give" />
+	
+	<!--common settings-->
+	<arg name="gazebo" default="true" doc="execute armadillo2 inside gazebo sim"/>
+	<arg name="world_name" default="$(find gazebo_worlds)/Building_37/building_37_light_sim_1.world"/>
+	<arg name="x" default="-17.9191"/>
+	<arg name="y" default="20.715"/>
+	<arg name="z" default="2.59773"/>
+	<arg name="Y" default="3.126" />
+    <arg name="amcl_x" default="6.27"/>
+	<arg name="amcl_y" default="4.233"/>
+	<arg name="amcl_Y" default="1.488" />
+	<arg name="moveit" default="true"/>
+	<arg name="intel_cam" default="true"/>
+	<arg name="kinect" default="true"/>
+	<arg name="lidar" default="true"/>
+	<arg name="gmapping" default="false"/>-->
+	<arg name="hector_slam" default="false"/>
+	<arg name="amcl" default="true"/>
+	<arg name="have_map" default="true" doc="set to true to use pre-saved map"/>
+	<arg name="map" default="$(find armadillo_navigation_upgrade)/map/simulation_map_second_floor2.yaml" doc="pre-saved map path"/>
+	<arg name="move_base" default="true"/>
+	<arg name="robot_localization" default="false"/>
+	<arg name="teleop" default="false" doc="allow armadillo2 joy teleop"/>
+	<arg name="espeak_ros" default="false"/>
+
+    <rosparam command="load" file="$(find armadillo_navigation_upgrade)/config_nav_service/nav_service_req.yaml" />
+	<include file="$(find armadillo_navigation_upgrade)/launch/armadillo2_for_navigation_upgrade.launch">
+		<arg name="gazebo" value="$(arg gazebo)"/>
+		<arg name="world_name" value="$(arg world_name)"/>
+		<arg name="x" value="$(arg x)"/>
+		<arg name="y" value="$(arg y)"/>
+		<arg name="z" value="$(arg z)"/>
+		<arg name="Y" value="$(arg Y)"/>
+		<arg name="moveit" value="$(arg moveit)"/>
+		<arg name="intel_cam" value="$(arg intel_cam)"/>
+		<arg name="kinect" value="$(arg kinect)"/>
+		<arg name="lidar" value="$(arg lidar)"/>
+		<arg name="teleop" value="$(arg teleop)"/>
+		<arg name="espeak_ros" value="$(arg espeak_ros)"/>
+	</include>
+
+	<include file="$(find armadillo_navigation_upgrade)/launch/armadillo_navigation_upgrade.launch" launch-prefix="bash -c 'sleep 3; $0 $@' ">
+		<arg name="hector_slam" value="$(arg hector_slam)"/>
+		<arg name="amcl" value="$(arg amcl)"/>
+		<arg name="have_map" value="$(arg have_map)"/>
+		<arg name="map" value="$(arg map)"/>
+		<arg name="move_base" value="$(arg move_base)"/>
+		<arg name="x" value="$(arg amcl_x)"/>
+		<arg name="y" value="$(arg amcl_y)"/>
+		<arg name="z" value="$(arg z)"/>
+		<arg name="Y" value="$(arg amcl_Y)"/>
+		<arg name="armadillo1" value="false"/>
+		<arg name="armadillo2" value="true"/>
+	</include>
+
+
+<!-- other services start -->
+<arg name="node_start_delay" default="11.0" />  
+    <node name="pick" pkg="robotican_demos_upgrade" type="pick_can_with_feedback_color" output="screen" required="true" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+        <param name="~start_position_name" value="$(arg start_position)"/>
+        <param name="~end_position_name" value="$(arg end_position)"/>
+        <param name="~object_name" value="can"/>
+    </node>
+
+
+    <node name="place_table" pkg="robotican_demos_upgrade" type="place_can_table_with_feedback" output="screen" required="true" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+        <param name="~start_position_name" value="$(arg start_position)"/>
+        <param name="~object_name" value="can"/>
+    </node>
+
+    
+    <node name="find_object_node" pkg="object_detection" type="find_objects_node" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+        <param name="~object_id" value="1"/>
+        <param name="~depth_topic1" value="/kinect2/qhd/points"/>   
+
+        <param name="~depth_topic2" value="/kinect2/qhd/points"/>  
+        <rosparam file="$(find robotican_demos_upgrade)/config/red_object.yaml" command="load"/>
+    </node>
+
+ 
+    <node name="find_object_node_table" pkg="object_detection" type="find_objects_node_table" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+        <param name="~object_id" value="0"/>
+        <param name="~depth_topic1" value="/kinect2/qhd/points"/>   
+        <param name="~depth_topic2" value="/kinect2/qhd/points"/>  
+        <rosparam file="$(find robotican_demos_upgrade)/config/table_object.yaml" command="load"/>
+    </node>
+
+    
+    <node name="objects_handler" pkg="object_detection" type="objects_handler" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+        <param name="~db_path" value=""/>
+    </node> 
+
+    
+    <node name="object_view" pkg="rqt_image_view" type="rqt_image_view" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+        <remap from="image" to="find_object_node/result" />
+    </node>
+
+     <node name="navigation_services" pkg="armadillo_navigation_upgrade" type="navigation_services_for_simulation.py" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/>
+
+
+
+
+<!-- other services end-->
+</launch>

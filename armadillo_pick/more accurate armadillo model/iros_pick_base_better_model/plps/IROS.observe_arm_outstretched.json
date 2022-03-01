@@ -1,0 +1,20 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "observe_arm_outstretched",
+        "Type": "PLP",
+        "Version": 1
+    },  
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = state.armOutstretched == true ? eArmOutstretched : eArmNotOutstretched;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = -1;"
+            }
+        ]
+    }
+}

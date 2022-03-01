@@ -1,0 +1,61 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "enhanced_pick",
+        "Type": "PLP",
+        "Version": 1.0
+    }, 
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition=(state.cup1DiscreteLocation == state.robotGenerallocation || state.cup2DiscreteLocation == state.robotGenerallocation) && !state.holding_can;"
+            }
+        ], 
+        "ViolatingPreconditionPenalty": -10
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "realCase",
+                "TempVar": {
+                    "VarName": "realCase",
+                    "Type": "enum",
+                    "EnumName": "enumRealCase",
+                    "EnumValues": [
+                        "actual_pick_action_success",
+                        "actual_arm_outstretched_with_can",
+                        "actual_arm_outstretched_without_can",
+                        "actual_not_holding",
+                        "actual_dropped_the_object"
+                    ]
+                },
+                "AssignmentCode": "realCase = !__meetPrecondition ? actual_not_holding : (state.cup1DiscreteLocation == state.robotGenerallocation ?  AOS.SampleDiscrete(enumRealCase,{0.727, 0.181,0.09,0.0}) :  AOS.SampleDiscrete(enumRealCase,{0.1, 0.0,0.0,0.9}));"
+            },
+            {
+                "AssignmentName": "holding_can",
+                "AssignmentCode": "state__.holding_can = (realCase == actual_pick_action_success || realCase == actual_arm_outstretched_with_can);"
+            },
+            {
+                "AssignmentName": "cup1DiscreteLocation",
+                "AssignmentCode": "if(state.cup1DiscreteLocation == state.robotGenerallocation) {state__.cup1DiscreteLocation = (realCase == actual_pick_action_success || realCase == actual_arm_outstretched_with_can) ? eRobotHand : (realCase == actual_not_holding ? state.cup1DiscreteLocation : eUnknown);}"
+            },
+            {
+                "AssignmentName": "cup2DiscreteLocation",
+                "AssignmentCode": "if(state.cup2DiscreteLocation == state.robotGenerallocation) {state__.cup2DiscreteLocation = (realCase == actual_pick_action_success || realCase == actual_arm_outstretched_with_can) ? eRobotHand : (realCase == actual_not_holding ? state.cup2DiscreteLocation : eUnknown);}"
+            },
+            {
+                "AssignmentName": "state__.armOutstretched",
+                "AssignmentCode": "state__.armOutstretched = realCase == actual_arm_outstretched_with_can || realCase == actual_arm_outstretched_without_can;"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "if (realCase == actual_not_holding || realCase == actual_dropped_the_object) __moduleResponse= res_pick_not_holding; if(realCase == actual_pick_action_success) __moduleResponse=res_pick_holding_can; if(realCase == actual_arm_outstretched_with_can) __moduleResponse= AOS.Bernoulli(0.818)?res_pick_arm_outstretched_holding_can:res_pick_without_can_arm_outstretched; if(realCase == actual_arm_outstretched_without_can) __moduleResponse=res_pick_without_can_arm_outstretched;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = -2;"
+            }
+        ]
+    }
+}
