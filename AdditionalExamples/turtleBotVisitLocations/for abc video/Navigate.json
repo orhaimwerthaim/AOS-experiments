@@ -1,0 +1,101 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotVisitLocations",
+        "Name": "navigate",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oDesiredLocation",
+            "Type": "tLocation"
+        }
+    ],
+    "LocalVariablesInitializationFromGlobalVariables": [
+        {
+            "InputLocalVariable": "nav_to_x",
+            "FromGlobalVariable": "oDesiredLocation.x"
+        },
+        {
+            "InputLocalVariable": "nav_to_y",
+            "FromGlobalVariable": "oDesiredLocation.y"
+        },
+        {
+            "InputLocalVariable": "nav_to_z",
+            "FromGlobalVariable": "oDesiredLocation.z"
+        }
+    ],
+    "ModuleResponse": {
+        "EnumResponse": [
+            "eSuccess"
+        ],
+        "Type": "SingleValue",
+        "ResponseRules": [
+            {
+                "Response": "eSuccess",
+                "ConditionCodeWithLocalVariables": "True",
+                "Comment": ""
+            }
+        ]
+    },
+    "RequiredResources": [
+        {
+            "Name": "robot_wheels",
+            "Exclusive": true
+        }
+    ],
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition set default value",
+                "AssignmentCode": "__meetPrecondition= false;"
+            },
+            {
+                "AssignmentName": "location.visited",
+                "IteratePreviousStateVars": [
+                    {
+                        "Type": "tVisitedLocation",
+                        "ItemName": "loc",
+                        "ConditionCode": "loc.desc== oDesiredLocation.desc",
+                        "WhenConditionTrueCode": "__meetPrecondition= !loc.visited;"
+                    }
+                ]
+            }
+        ],
+        "PlannerAssistancePreconditionsAssignments": [],
+        "ViolatingPreconditionPenalty": -800
+    },
+    "ModuleExecutionTimeDynamicModel": [
+        {
+            "AssignmentName": "__moduleExecutionTime",
+            "AssignmentCode": "__moduleExecutionTime = AOS.SampleNormal(40000,10000);"
+        }
+    ],
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "location.visited",
+                "IterateNextStateVars": [
+                    {
+                        "Type": "tVisitedLocation",
+                        "ItemName": "loc",
+                        "ConditionCode": "loc.desc== oDesiredLocation.desc",
+                        "WhenConditionTrueCode": "loc.visited = true;"
+                    }
+                ]
+            },
+            {
+                "AssignmentName": "state__.robotL",
+                "AssignmentCode": "state__.robotL.x = oDesiredLocation.x;state__.robotL.y = oDesiredLocation.y;state__.robotL.z = oDesiredLocation.z;"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = eSuccess;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward =100 -sqrt(pow(state.robotL.x-oDesiredLocation.x,2.0)+pow(state.robotL.y-oDesiredLocation.y,2.0))*10;"
+            }
+        ]
+    }
+}

@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "cfd46de9-3044-4486-9292-9c57e2c0cb3a",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "initialize Project",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/working examples/ICAPS_Toy\",\n    \"RunWithoutRebuild\":false,\n    \"OnlyGenerateCode\":false,\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    },\n    \"SolverConfiguration\":{ \n        \"NumOfParticles\":5234,\n        \"ActionsToSimulate\":[],\n        \"IsInternalSimulation\":false,\n        \"PlanningTimePerMoveInSeconds\":2\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "initialize Project turtlebot",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/working examples/turtleBotVisitLocations\",\n    \"RunWithoutRebuild\":false,\n    \"OnlyGenerateCode\":false,\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/simple_navigation_goals/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"simple_navigation_goals\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    },\n    \"SolverConfiguration\":{ \n        \"NumOfParticles\":5234,\n        \"ActionsToSimulate\":[],\n        \"IsInternalSimulation\":false,\n        \"PlanningTimePerMoveInSeconds\":2\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "initialize Project turtlebot PO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/working examples/simple_turtleBot3 shortest_path_visit_every_point_twice\",\n    \"RunWithoutRebuild\":false,\n    \"OnlyGenerateCode\":true,\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/simple_navigation_goals/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"simple_navigation_goals\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    },\n    \"SolverConfiguration\":{ \n        \"NumOfParticles\":40234,\n        \"NumOfBeliefStateParticlesToSaveInDB\":1,\n        \"ActionsToSimulate\":[],\n        \"IsInternalSimulation\":false,\n        \"PlanningTimePerMoveInSeconds\":0.55,\n        \"DebugOn\":true\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "initialize Project turtleBot visitEveryPointTwice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/working examples/turtleBotVisitLocationsPO\",\n    \"RunWithoutRebuild\":false,\n    \"OnlyGenerateCode\":true,\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/simple_navigation_goals/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"simple_navigation_goals\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    },\n    \"SolverConfiguration\":{ \n        \"NumOfParticles\":5234,\n        \"ActionsToSimulate\":[],\n        \"IsInternalSimulation\":true,\n        \"PlanningTimePerMoveInSeconds\":0.05,\n        \"DebugOn\":true\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "initialize Project Debug",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/ICAPS_Toy\",\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    },\n    \"SolverConfiguration\":{\n            \"SearchDepth\":45, \n        \"DiscountFactor\":0.988,\n        \"ActionsToSimulate\":[8,9,6,6,11,11,4,4,8,8,7,11,11,5],\n        \"IsInternalSimulation\":false,\n        \"PlanningTimePerMoveInSeconds\":5.5\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Bp integer model Problem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/working examples/Bp model with integers\",\n    \"OnlyGenerateCode\":true,\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    },\n    \"SolverConfiguration\":{  \n        \"Verbosity\":true,\n        \"ActionsToSimulate\":[],\n        \"IsInternalSimulation\":true,\n        \"PlanningTimePerMoveInSeconds\":2\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Bp Problem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/Bp\",\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    },\n    \"SolverConfiguration\":{  \n        \"Verbosity\":true,\n        \"ActionsToSimulate\":[2,3],\n        \"IsInternalSimulation\":true,\n        \"PlanningTimePerMoveInSeconds\":1\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Bp Problem Debug",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/Bp\",\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    },\n    \"SolverConfiguration\":{\n        \"ActionsToSimulate\":[8,9,6,6,11,11,4,4,8,8,7,11,11,5],\n        \"IsInternalSimulation\":true,\n        \"PlanningTimePerMoveInSeconds\":2\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Solver Actions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/ICAPS_Toy\",\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/SolverAction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"SolverAction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Execution Outcome",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/ExecutionOutcome?belief_size=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ExecutionOutcome"
+					],
+					"query": [
+						{
+							"key": "belief_size",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "test2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/ICAPS_Toy\",\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    },\n    \"SolverConfiguration\":{\n            \"SearchDepth\":45, \n        \"DiscountFactor\":0.988,\n        \"ActionsToSimulate\":[0],\n        \"IsInternalSimulation\":false,\n        \"PlanningTimePerMoveInSeconds\":5.5\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update localVariable",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"varName\" : \"observedLocation\",\n    \"value\" : {\n        \"y\" : 2.20000004768372,\n        \"x\" : 2.0,\n        \"z\" : 5.0\n    },\n    \"module\" : \"observe\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/localvariable",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"localvariable"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tornado API activate action",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"serviceName\":\"/turtle1/teleport_absolute\",\n    \"variables\":[{\"variableName\":\"x\", \"value\":1, \"type\":\"int\"},\n    {\"variableName\":\"y\", \"value\":2, \"type\":\"int\"},\n    {\"variableName\":\"theta\", \"value\":0.4, \"type\":\"int\"} ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3021/activate_action",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3021",
+					"path": [
+						"activate_action"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get LocalVariable",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/localvariable/{5}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"localvariable",
+						"{5}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Solvers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/localvariable/{5}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"localvariable",
+						"{5}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

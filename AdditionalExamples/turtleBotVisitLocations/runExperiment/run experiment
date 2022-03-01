@@ -1,0 +1,106 @@
+run test to move turtlebot3 there are two ways:
+A- to run every thing automatically:
+send to http://localhost:5000/InitializeProject
+
+POST /InitializeProject HTTP/1.1
+Host: localhost:5000
+Content-Type: application/json
+Content-Length: 816
+
+{ 
+    "PLPsDirectoryPath":"/home/or/Dropbox/AOS/PLP examples/working examples/turtleBotVisitLocations",
+    "RunWithoutRebuild":false,
+    "OnlyGenerateCode":false,
+    "RosTarget":
+    {
+        "WorkspaceDirectortyPath":"/home/or/catkin_ws",
+        "TargetProjectLaunchFile":"/home/or/catkin_ws/src/simple_navigation_goals/launch/turtleBot3Exp.launch",
+        "RosTargetProjectPackages":["simple_navigation_goals"],
+        "TargetProjectInitializationTimeInSeconds":10
+    },
+    "SolverConfiguration":{ 
+        "NumOfParticles":40234,
+        "NumOfBeliefStateParticlesToSaveInDB":1,
+        "ActionsToSimulate":[],
+        "IsInternalSimulation":false,
+        "PlanningTimePerMoveInSeconds":0.5,
+        "DebugOn":true
+        },
+    "MiddlewareConfiguration":{
+        "DebugOn":true
+         
+    }
+}
+
+
+
+
+
+B- to run it manually:
+
+1. $ roslaunch turtlebot3_gazebo turtlebot3_world.launch
+
+make sure you saved a map at ~/map.yaml  (see https://emanual.robotis.com/docs/en/platform/turtlebot3/slam/#save-map)
+2. $ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml
+
+2.1 localize the robot in Rviz '2D Pose estimate' tool (it is possible to add a localize action to the simulation in the future) 
+use: "$ roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch" to rotate and localize the robot
+
+3. $ rosrun simple_navigation_goals navigate_server.py
+move robot to start location
+
+4. $ rosservice call /navigate_to_point "{goal: {x: -2.01710748672, y: 0.570648550987, z: -0.165466308594}}"
+
+** see that the 'simple_navigation_goals' directory is located in the catkin workspace.
+
+5. send http request:
+http://localhost:5000/InitializeProject
+
+POST /InitializeProject HTTP/1.1
+
+Host: localhost:5000
+Content-Type: application/json
+Content-Length: 736
+
+{ 
+    "PLPsDirectoryPath":"/home/or/Dropbox/AOS/PLP examples/working examples/turtleBotVisitLocations",
+    "RunWithoutRebuild":false,
+    "OnlyGenerateCode":true,
+    "RosTarget":
+    {
+        "WorkspaceDirectortyPath":"/home/or/catkin_ws",
+        "TargetProjectLaunchFile":"/home/or/catkin_ws/src/simple_navigation_goals/launch/servers.launch",
+        "RosTargetProjectPackages":["simple_navigation_goals"],
+        "TargetProjectInitializationTimeInSeconds":10
+    },
+    "SolverConfiguration":{ 
+        "NumOfParticles":5234,
+        "ActionsToSimulate":[],
+        "IsInternalSimulation":false,
+        "PlanningTimePerMoveInSeconds":0.05
+        },
+    "MiddlewareConfiguration":{
+        "DebugOn":true
+         
+    }
+}
+
+
+
+
+
+6. $ rosrun aos_ros_middleware_auto aos_ros_middleware_auto_node.py
+
+7. run solver .
+
+** you can find new points by using thr Rviz 'publish point' tool and view the point in the terminal using "$ rostopic echo /clicked_point"
+
+
+
+
+rosservice call /navigate_to_point "{goal: {x: -1.08613467216, y: 0.0700797885656, z: 0.00454711914062}}
+[INFO] [1634206371.968090, 3762.599000]: Action server is done. State: 4, result: 
+
+
+'TempVar', valid values for field 'Type'
+

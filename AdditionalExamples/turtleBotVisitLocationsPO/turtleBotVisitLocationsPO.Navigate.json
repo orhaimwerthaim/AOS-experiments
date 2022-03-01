@@ -1,0 +1,113 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotVisitLocationsPO",
+        "Name": "navigate",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oDesiredLocation",
+            "Type": "tLocation"
+        }
+    ], 
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition set default value",
+                "AssignmentCode": "__meetPrecondition= true;"
+            },
+            {
+                "AssignmentName": "check if the visit is valid, and if location reachable",
+                "IteratePreviousStateVars": [
+                    {
+                        "Type": "tVisitedLocation",
+                        "ItemName": "loc",
+                        "ConditionCode": "loc.desc== oDesiredLocation.desc",
+                        "WhenConditionTrueCode": "__meetPrecondition= loc.reachable && loc.visitCount == state.numberOfCompletePatrols;"
+                    }
+                ]
+            }
+        ],
+        "PlannerAssistancePreconditionsAssignments": [
+            {
+                "AssignmentName": "__heuristicValue",
+                "AssignmentCode": "__heuristicValue = (state.robotL.x-oDesiredLocation.x + state.robotL.y-oDesiredLocation.y == 0) ? 0 : abs(log(sqrt(pow(state.robotL.x-oDesiredLocation.x,2.0)+pow(state.robotL.y-oDesiredLocation.y,2.0))/5));"
+            }
+        ],
+        "ViolatingPreconditionPenalty": 0
+    },
+    "ModuleExecutionTimeDynamicModel": [
+        {
+            "AssignmentName": "__moduleExecutionTime",
+            "AssignmentCode": "__moduleExecutionTime = AOS.SampleNormal(40000,10000);"
+        }
+    ],
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "define isValidVisit",
+                "TempVar": {
+                    "Type": "bool",
+                    "VarName": "isValidVisit"
+                }
+            },
+            {
+                "AssignmentName": "define location reachable",
+                "TempVar": {
+                    "Type": "bool",
+                    "VarName": "isLocationReachable"
+                }
+            },
+            {
+                "AssignmentName": "check if the visit is valid, and if location reachable",
+                "IteratePreviousStateVars": [
+                    {
+                        "Type": "tVisitedLocation",
+                        "ItemName": "loc",
+                        "ConditionCode": "loc.desc== oDesiredLocation.desc",
+                        "WhenConditionTrueCode": "isValidVisit= loc.reachable && loc.visitCount == state.numberOfCompletePatrols && state__.robotL.desc != oDesiredLocation.desc; isLocationReachable = loc.reachable;"
+                    }
+                ]
+            },
+            {
+                "AssignmentName": "update location visited",
+                "IterateNextStateVars": [
+                    {
+                        "Type": "tVisitedLocation",
+                        "ItemName": "loc",
+                        "ConditionCode": "loc.desc== oDesiredLocation.desc && isLocationReachable && state__.robotL.desc != oDesiredLocation.desc",
+                        "WhenConditionTrueCode": "loc.visitCount++;"
+                    }
+                ]
+            },
+            {
+                "AssignmentName": "update robot location",
+                "AssignmentCode": "if(isLocationReachable){state__.robotL.x = oDesiredLocation.x;state__.robotL.y = oDesiredLocation.y;state__.robotL.z = oDesiredLocation.z;state__.robotL.desc=oDesiredLocation.desc;}"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = isLocationReachable ? eSuccess : eFailed;"
+            },
+            {
+                "AssignmentName": "to find minVisitCountForReachable",
+                "AssignmentCode": "state__.numberOfCompletePatrols = 10;"
+            },
+            {
+                "AssignmentName": "calculate minVisitCountForReachable",
+                "IterateNextStateVars": [
+                    {
+                        "Type": "tVisitedLocation",
+                        "ItemName": "loc",
+                        "ConditionCode": "loc.reachable",
+                        "WhenConditionTrueCode": "if(state__.numberOfCompletePatrols > loc.visitCount){state__.numberOfCompletePatrols=loc.visitCount;}"
+                    }
+                ]
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = !isValidVisit ? -100 : -pow(sqrt(pow(state.robotL.x-oDesiredLocation.x,2.0)+pow(state.robotL.y-oDesiredLocation.y,2.0)),2.0)*3;"
+            }
+        ]
+    }
+}

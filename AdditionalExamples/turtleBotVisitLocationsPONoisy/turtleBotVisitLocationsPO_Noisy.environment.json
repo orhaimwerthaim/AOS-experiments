@@ -1,0 +1,184 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotVisitLocationsPO_Noisy",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 40,
+        "Discount": 0.97
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "tDiscreteLocation",
+            "Type": "enum",
+            "EnumValues": [
+                "eL1",
+                "eL2",
+                "eL3",
+                "eL4",
+                "eL8",
+                "eL9",
+                "eLInitRobLoc"
+            ]
+        },
+        {
+            "TypeName": "tLocation",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "x",
+                    "Type": "float",
+                    "Default": "0.0"
+                },
+                {
+                    "Name": "y",
+                    "Type": "float",
+                    "Default": "0.0"
+                },
+                {
+                    "Name": "z",
+                    "Type": "float",
+                    "Default": "0.0"
+                },
+                {
+                    "Name": "desc",
+                    "Type": "tDiscreteLocation",
+                    "Default": "eL1"
+                }
+            ]
+        },
+        {
+            "TypeName": "tVisitedLocation",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "reachable",
+                    "Type": "bool",
+                    "Default": "true"
+                },
+                {
+                    "Name": "visitCount",
+                    "Type": "int",
+                    "Default": "0"
+                },
+                {
+                    "Name": "desc",
+                    "Type": "tDiscreteLocation",
+                    "Default": "eL1"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "numberOfCompletePatrols",
+            "Type": "int",
+            "DefaultCode": "state.numberOfCompletePatrols = 0;"
+        },
+        {
+            "Name": "v1",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v1.desc = eL1;"
+        },
+        {
+            "Name": "v2",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v2.desc = eL2;"
+        },
+        {
+            "Name": "v3",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v3.desc = eL3"
+        },
+        {
+            "Name": "v4",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v4.desc = eL4;"
+        },
+        {
+            "Name": "v8",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v8.desc = eL8;"
+        },
+        {
+            "Name": "v9",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v9.desc = eL9;"
+        },
+        {
+            "Name": "l1",
+            "Type": "tLocation",
+            "DefaultCode": "state.l1.x = -1.01606154442; state.l1.y = 0.660750925541; state.l1.z =-0.00454711914062; state.l1.desc = eL1;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l2",
+            "Type": "tLocation",
+            "DefaultCode": "state.l2.x = 0.00500533776358; state.l2.y = 0.640727937222; state.l2.z =-0.00143432617188; state.l2.desc = eL2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l3",
+            "Type": "tLocation",
+            "DefaultCode": "state.l3.x = 0.986030161381; state.l3.y = 0.610693752766; state.l3.z =-0.00143432617188; state.l3.desc = eL3;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l4",
+            "Type": "tLocation",
+            "DefaultCode": "state.l4.x = 1.99708676338; state.l4.y = 0.620704889297; state.l4.z =-0.00143432617188; state.l4.desc = eL4;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l8",
+            "Type": "tLocation",
+            "DefaultCode": "state.l8.x = 0.174183383584; state.l8.y = -3.19066166878; state.l8.z =0.00250244140625; state.l8.desc = eL8;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l9",
+            "Type": "tLocation",
+            "DefaultCode": "state.l9.x = 4.76382398605; state.l9.y = 2.90320682526; state.l9.z =0.00247192382812; state.l9.desc = eL9;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "lInitRobLoc",
+            "Type": "tLocation",
+            "DefaultCode": "state.lInitRobLoc.x = -2.01710748672; state.lInitRobLoc.y = 0.570648550987; state.lInitRobLoc.z =-0.165466308594; state.lInitRobLoc.desc = eLInitRobLoc;",
+            "IsActionParameterValue": false
+        },
+        {
+            "Name": "robotL",
+            "Type": "tLocation",
+            "DefaultCode": "state.robotL = state.lInitRobLoc"
+        }
+    ],
+    "InitialBeliefStateAssignments": [
+        {
+            "AssignmentName": "set reachable points",
+            "IteratePreviousStateVars": [
+                {
+                    "Type": "tVisitedLocation",
+                    "ItemName": "loc",
+                    "ConditionCode": "true",
+                    "WhenConditionTrueCode": "loc.reachable = AOS.Bernoulli(0.66)"
+                }
+            ]
+        }
+    ],
+    "SpecialStates": [
+        {
+            "StateConditionCode": "state.numberOfCompletePatrols == 1",
+            "Reward": 4000.0,
+            "IsOneTimeReward": true
+        },
+        {
+            "StateConditionCode": "state.numberOfCompletePatrols == 2",
+            "Reward": 7000.0,
+            "IsGoalState": true
+        }
+    ],
+    "ExtrinsicChangesDynamicModel": []
+}
