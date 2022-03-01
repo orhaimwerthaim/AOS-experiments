@@ -1,0 +1,57 @@
+ std::string Bp::GetCellDesc(tCell cell, const BpState& state) const
+{
+	std::string res = "";
+	
+	if(state.agentOneLoc == cell)
+	{
+		res += (state.isAgentOneTurn ? "A1*" : "A1");
+		if(state.JointPushDirection != None)
+		{
+			res += state.JointPushDirection == Up ? "^J" : state.JointPushDirection == Down ? "vJ"
+													  : state.JointPushDirection == Left   ? "<J"
+																						   : ">J";
+		}
+	}
+	
+	if (state.agentTwoLoc == cell)
+	{
+		res += res.length() > 0 ? "," : "";
+		res += (state.isAgentOneTurn ? "A2" : "A2*");
+	} 
+	if(state.bOneLoc == cell)
+	{
+		res += res.length() > 0 ? ",B1" : "B1";
+	}
+	if(state.bTwoLoc == cell)
+	{
+		res += res.length() > 0 ? ",B2" : "B2";
+	}
+	int gapsNeeded = 11 - res.length();
+	std::string start(int(ceil(gapsNeeded / 2)), ' ');
+	std::string end(int(floor(gapsNeeded / 2)), ' ');
+
+	res = start + res + end;
+	return res;
+}
+
+void Bp::PrintState(const State& _state, ostream& ostr) const {
+	const BpState& state = static_cast<const BpState&>(_state);
+	try
+	{
+		/* code */
+	
+	
+	if (ostr)
+		 
+		ostr << "------------------------" << endl;
+		ostr << "|" << GetCellDesc(L10,state) << "|" << GetCellDesc(L11,state) << "|" << endl;
+		ostr << "------------------------" << endl;
+		ostr << "|" << GetCellDesc(L00,state) << "|" << GetCellDesc(L01,state) << "|" << endl;
+		ostr << "------------------------" << endl;
+		}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+}
+

@@ -1,0 +1,103 @@
+{
+    "PlpMain": {
+        "Project": "Bp",
+        "Name": "navigate",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oDirection",
+            "Type": "tDirection"
+        }
+    ], 
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn&&(state.agentOneLoc==L10|| state.agentOneLoc== L11)&&oDirection==Up)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn&&(state.agentOneLoc==L00|| state.agentOneLoc==L01)&&oDirection==Down)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn&&(state.agentOneLoc==L10||state.agentOneLoc==L00)&&oDirection==Left)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn&&(state.agentOneLoc==L01||state.agentOneLoc==L11)&&oDirection==Right)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn&&(state.agentTwoLoc==L10||state.agentTwoLoc==L11)&&oDirection==Up)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn&&(state.agentTwoLoc==L00||state.agentTwoLoc==L01)&&oDirection==Down)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn&&(state.agentTwoLoc==L10||state.agentTwoLoc==L00)&&oDirection==Left)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn&&(state.agentTwoLoc==L01||state.agentTwoLoc==L11)&&oDirection==Right)__meetPrecondition=false;"
+            }
+        ], 
+        "ViolatingPreconditionPenalty": -1
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "agentLocation",
+                "TempVar": {
+                    "VarName": "agentLocation",
+                    "Type": "tCell"
+                },
+                "AssignmentCode": "agentLocation = state.isAgentOneTurn ? state.agentOneLoc : state.agentTwoLoc;"
+            },
+            {
+                "AssignmentName": "agentNextLocation",
+                "TempVar": {
+                    "VarName": "agentNextLocation",
+                    "Type": "tCell"
+                },
+                "AssignmentCode": "agentNextLocation = agentLocation;"
+            },
+            {
+                "AssignmentName": "Down",
+                "AssignmentCode": "if(oDirection == Down){ agentNextLocation = agentLocation == L10 ? L00 : agentLocation == L11 ? L01 : agentLocation;}"
+            },
+            {
+                "AssignmentName": "Up",
+                "AssignmentCode": "if(oDirection == Up){ agentNextLocation = agentLocation == L00 ? L10 : agentLocation == L01 ? L11 : agentLocation;}"
+            },
+            {
+                "AssignmentName": "Left",
+                "AssignmentCode": "if(oDirection == Left){ agentNextLocation = agentLocation == L01 ? L00 : agentLocation == L11 ? L10 : agentLocation;}"
+            },
+            {
+                "AssignmentName": "Right",
+                "AssignmentCode": "if(oDirection == Right){ agentNextLocation = agentLocation == L10 ? L11 : agentLocation == L00 ? L01 : agentLocation;}"
+            },
+            {
+                "AssignmentName": "Set",
+                "AssignmentCode": "if(state.isAgentOneTurn){ state__.agentOneLoc = agentNextLocation;}else{state__.agentTwoLoc = agentNextLocation;}"
+            },
+            {
+                "AssignmentName": "Set",
+                "AssignmentCode": "state__.isAgentOneTurn = !state.isAgentOneTurn; state__.JointPushDirection = None;"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = eSuccess;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = -1;"
+            }
+        ]
+    }
+}
