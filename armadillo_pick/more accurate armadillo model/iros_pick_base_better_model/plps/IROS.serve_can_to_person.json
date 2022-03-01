@@ -1,0 +1,50 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "serve_can_to_person",
+        "Type": "PLP",
+        "Version": 1
+    },  
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition= state.holding_can == true && state.armOutstretched == false && state.robotGenerallocation == eCorridor;"
+            }
+        ], 
+        "ViolatingPreconditionPenalty": -12
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "realCase",
+                "TempVar": {
+                    "VarName": "realCase",
+                    "Type": "enum",
+                    "EnumValues": [
+                        "action_success",
+                        "failed"
+                    ],
+                    "EnumName": "enumRealCase"
+                },
+                "AssignmentCode": "realCase = __meetPrecondition ? action_success: failed;"
+            },
+            {
+                "AssignmentName": "state.person_injured",
+                "AssignmentCode": "state__.person_injured = state.armOutstretched == true;"
+            },
+            {
+                "AssignmentName": "state.drinkServed",
+                "AssignmentCode": "state__.drinkServed = (realCase == action_success && !state__.person_injured);"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = eDelivered;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = state__.person_injured ? -20 : -8;"
+            }
+        ]
+    }
+}

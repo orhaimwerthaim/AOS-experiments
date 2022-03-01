@@ -1,0 +1,56 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "basic_pick",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS", 
+    "ModuleResponse": { 
+        "ResponseRules": [
+            {
+                "Response": "res_pick_action_success",
+                "ConditionCodeWithLocalVariables": "pickResponseSuccess == True"
+            },
+            {
+                "Response": "res_pick_action_failed", 
+                "ConditionCodeWithLocalVariables": "pickResponseSuccess == False"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "robotican_demos_upgrade.srv",
+                    "Import": [
+                        "*"
+                    ]
+                }
+            ],
+            "ServiceName": "pick_unknown",
+            "ServicePath": "/pick_unknown",
+            "ServiceParameters": [
+                {
+                    "ServiceFieldName": "robot",
+                    "AssignServiceFieldCode": "''"
+                },
+                {
+                    "ServiceFieldName": "obj",
+                    "AssignServiceFieldCode": "''"
+                },
+                {
+                    "ServiceFieldName": "discrete_location",
+                    "AssignServiceFieldCode": "''"
+                }
+            ]
+        }
+    },
+    "LocalVariablesInitialization": [
+        {
+            "LocalVariableName": "pickResponseSuccess",
+            "FromROSServiceResponse": true,
+            "AssignmentCode": "pickResponseSuccess = __input.result == 'true'"
+        }
+    ]
+}

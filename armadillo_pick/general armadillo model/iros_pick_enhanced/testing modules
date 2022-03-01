@@ -1,0 +1,190 @@
+
+when robot facing the hard to pick can (can 2):
+all runs were the same except run 3 that the robot was able to pick the can.
+run 1:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was dropped).
+* call /object_grasp_indicator return response:False (when not holding).
+
+run 2:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was dropped).
+* call /object_grasp_indicator return response:False (when not holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person but hand was empty)
+
+
+
+
+run 3:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was picked).
+* call /object_grasp_indicator return response:True (when holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person with can)
+
+
+
+
+run 4:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was dropped).
+* call /object_grasp_indicator return response:False (when not holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person but hand was empty)
+
+
+run 5:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was dropped).
+* call /object_grasp_indicator return response:False (when not holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person but hand was empty)
+
+
+run 6:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was dropped).
+* call /object_grasp_indicator return response:False (when not holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person but hand was empty)
+
+
+
+run 7:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was dropped).
+* call /object_grasp_indicator return response:False (when not holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person but hand was empty)
+
+
+run 8:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was dropped).
+* call /object_grasp_indicator return response:False (when not holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person but hand was empty)
+
+
+run 9:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was dropped).
+* call /object_grasp_indicator return response:False (when not holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person but hand was empty)
+
+
+
+run 10:
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was dropped).
+* call /object_grasp_indicator return response:False (when not holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person but hand was empty)
+
+
+
+_______________________________________________________________________________________________________________________________
+when robot facing the easy to pick can (can 2):
+run 11:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was picked).
+* call /object_grasp_indicator return response:True (when holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person with the can)
+
+run 12:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was picked).
+* call /object_grasp_indicator return response:True (when holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person with the can)
+
+run 13:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was picked).
+* call /object_grasp_indicator return response:True (when holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person with the can)
+
+
+run 14:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was picked).
+* call /object_grasp_indicator return response:True (when holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person with the can)
+
+
+
+
+run 15:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was picked).
+* call /object_grasp_indicator return response:False (when holding).*******************
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person with the can)
+
+
+
+run 16:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was picked).
+* call /object_grasp_indicator return response:True (when holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person with the can)
+
+
+run 17:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was picked).
+* call /object_grasp_indicator return response:False (when holding).*******************
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person with the can)
+
+
+run 18:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was picked).
+* call /object_grasp_indicator return response:True (when holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (was neer person with the can)
+
+
+
+
+run 18:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'false' (can was picked hand not returned to original location).*************************
+* call /object_grasp_indicator return response:False (when holding).****************************
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (robot collide with person, can was dropped, The shirt was torn ) action did not terminate
+
+
+
+run 19:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'true' (can was not picked).~~~~~~~~~~~~~~~~~~~~~~~~~~
+* call /object_grasp_indicator return response:False (when not holding).~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* call /pick_unknown return resulst:'false' (can was not picked).~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+run 20:
+* call /custom_actions/navigate sending faceCan2Location returns success:True (it was actually a success)
+* call /object_grasp_indicator return response:False (when not holding).
+* call /pick_unknown return resulst:'false' (can was picked hand not returned to original location).*************************
+* call /object_grasp_indicator return response:True (when holding).
+* call /custom_actions/navigate sending corridor location returns success:True (it was actually a success)
+* rosservice call /deliver_to_person resturn success:True (robot collide with person, can was dropped, The shirt was torn ) action did not terminate

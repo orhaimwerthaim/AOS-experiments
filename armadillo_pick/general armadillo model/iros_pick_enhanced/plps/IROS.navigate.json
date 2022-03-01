@@ -1,0 +1,52 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "navigate",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oDesiredLocation",
+            "Type": "tLocation"
+        }
+    ],  
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition= state.robotGenerallocation != eUnknown;"
+            }
+        ], 
+        "ViolatingPreconditionPenalty": -10
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "realCase",
+                "TempVar": {
+                    "VarName": "realCase",
+                    "Type": "enum",
+                    "EnumValues": [
+                        "action_success",
+                        "failed"
+                    ],
+                    "EnumName": "enumRealCase"
+                },
+                "AssignmentCode": "realCase = AOS.SampleDiscrete(enumRealCase,{1.0, 0.0});"
+            },
+            {
+                "AssignmentName": "state.robotGenerallocation_",
+                "AssignmentCode": "if (realCase == action_success) state__.robotGenerallocation = oDesiredLocation.discrete_location;"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "if (realCase == action_success) __moduleResponse = eSuccess; else __moduleResponse = eFailed;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = -6;"
+            }
+        ]
+    }
+}

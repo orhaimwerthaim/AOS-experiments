@@ -1,0 +1,44 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "environment",
+        "Type": "EnvironmentGlue",
+        "Version": 1
+    },
+    "LocalVariableTypes": [
+        {
+            "TypeName": "ltLocation",
+            "Variables": [
+                {
+                    "Name": "x",
+                    "Type": "float"
+                },
+                {
+                    "Name": "y",
+                    "Type": "float"
+                },
+                {
+                    "Name": "yaw",
+                    "Type": "float"
+                }
+            ]
+        }
+    ],
+    "Constants": [
+        {
+            "Name": "___locationAuditorium_toCan1",
+            "Type": "ltLocation",
+            "InitCode": "___locationAuditorium_toCan1.x=7.934\n___locationAuditorium_toCan1.y=-1.874\n___locationAuditorium_toCan1.yaw=-1.675"
+        },
+        {
+            "Name": "___locationAuditorium_toCan2",
+            "Type": "ltLocation",
+            "InitCode": "___locationAuditorium_toCan2.x=9.316\n___locationAuditorium_toCan2.y=-0.45\n___locationAuditorium_toCan2.yaw=1.531"
+        },
+        {
+            "Name": "___locationCorridor",
+            "Type": "ltLocation",
+            "InitCode": "___locationCorridor.x=5.641\n___locationCorridor.y=1.576\n___locationCorridor.yaw=-2.779"
+        }
+    ]
+}

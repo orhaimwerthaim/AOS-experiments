@@ -1,0 +1,44 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "serve_can_to_person",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": { 
+        "ResponseRules": [
+            {
+                "Response": "eDelivered",
+                "ConditionCodeWithLocalVariables": "served_successfully == True",
+                "Comment": ""
+            },
+            {
+                "Response": "eNotDelivered",
+                "ConditionCodeWithLocalVariables": "served_successfully == False"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "std_srvs.srv",
+                    "Import": [
+                        "*"
+                    ]
+                }
+            ],
+            "ServicePath": "/deliver_to_person",
+            "ServiceName": "Trigger",
+            "ServiceParameters": []
+        }
+    },
+    "LocalVariablesInitialization": [
+        {
+            "LocalVariableName": "served_successfully",
+            "FromROSServiceResponse": true,
+            "AssignmentCode": "served_successfully = __input.success"
+        }
+    ]
+}

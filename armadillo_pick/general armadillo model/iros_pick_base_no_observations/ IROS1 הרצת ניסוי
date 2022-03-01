@@ -1,0 +1,20 @@
+בסימולציה:
+1. $ roslaunch armadillo2 armadillo2_navigetion_upgrade.launch lidar:=true gazebo:=true world_name:="`rospack find gazebo_worlds`/Building_37/building_37_light_sim_1.world" amcl:=true have_map:=true move_base:="true" map:="`rospack find armadillo_navigation_upgrade`/map/simulation_map_second_floor2.yaml"  x:=-11.55 y:=22.99 z:=2.597 Y:=0.1 kinect:=true moveit:=true intel_cam:=true
+
+
+
+
+roslaunch robotican_demos_upgrade iros_sim1.launch  lidar:=true gazebo:=true world_name:="`rospack find gazebo_worlds`/Building_37/building_37_light_sim_1.world" amcl:=true have_map:=true move_base:="true" map:="`rospack find armadillo_navigation_upgrade`/map/simulation_map_second_floor2.yaml"  x:=-17.9191 y:=20.715 z:=2.597732 Y:=3.126 kinect:=true moveit:=true intel_cam:=true
+ 
+
+2. טעינת פרמטרים (יש לבטל סימון הערה מכמה פרמטרים)
+rosparam load "`rospack find armadillo_navigation_upgrade`/config_nav_service/nav_service_req.yaml" 
+
+3. הרצת הסרוויסים של הניווט.
+rosrun armadillo_navigation_upgrade navigation_services_for_simulation.py 
+4. סימון מיקום הרובוט ע"י הרצת rviz וסימון המיקום ע"י אפשרות 2D pose estimate
+5. ניתן לנסות את הניווט ע"י הרצת (למשל של):
+rosservice call /open_area "{}"
+
+
+
