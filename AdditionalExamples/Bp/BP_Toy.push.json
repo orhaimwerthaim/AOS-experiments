@@ -69,7 +69,7 @@
         "PlannerAssistancePreconditionsAssignments": [
             {
                 "AssignmentName": "__isPreferredAction",
-                "AssignmentCode": "if(oIsJointPush == JointPush && !state.isAgentOneTurn && oDirection == state.JointPushDirection) __isPreferredAction=true;"
+                "AssignmentCode": "if(oIsJointPush == JointPush && !state.isAgentOneTurn && oDirection == state.JointPushDirection) __heuristicValue=100;"
             }
         ],
         "ViolatingPreconditionPenalty": -1

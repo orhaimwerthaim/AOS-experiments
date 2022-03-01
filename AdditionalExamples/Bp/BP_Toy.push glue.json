@@ -13,5 +13,13 @@
                 "ConditionCodeWithLocalVariables": "True"
             }
         ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ServicePath": "a",
+            "ServiceName": "a",
+            "ServiceParameters": [
+            ]
+        }
     }
 }
