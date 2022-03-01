@@ -1,0 +1,10 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotShortestPath_visitEveryPointTwice",
+        "Name": "environment",
+        "Type": "EnvironmentGlue",
+        "Version": 1
+    },
+    "LocalVariableTypes": [],
+    "Constants": []
+}

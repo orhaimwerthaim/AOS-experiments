@@ -1,0 +1,904 @@
+{
+    "ExecutionOutcome": [
+        {
+            "InitialBeliefeState": [
+                {
+                    "l1": {
+                        "desc": 0,
+                        "x": -1.016061544418335,
+                        "y": 0.66075092554092407,
+                        "z": -0.004547119140625
+                    },
+                    "l2": {
+                        "desc": 1,
+                        "x": 0.0050053377635776997,
+                        "y": 0.6407279372215271,
+                        "z": -0.001434326171875
+                    },
+                    "l3": {
+                        "desc": 2,
+                        "x": 0.98603016138076782,
+                        "y": 0.61069375276565552,
+                        "z": -0.001434326171875
+                    },
+                    "l4": {
+                        "desc": 3,
+                        "x": 1.997086763381958,
+                        "y": 0.62070488929748535,
+                        "z": -0.001434326171875
+                    },
+                    "l5": {
+                        "desc": 4,
+                        "x": 1.9770655632019043,
+                        "y": -0.70079654455184937,
+                        "z": 0.0025634765625
+                    },
+                    "l6": {
+                        "desc": 5,
+                        "x": 1.0060511827468872,
+                        "y": -1.4216153621673584,
+                        "z": 0.0025634765625
+                    },
+                    "l7": {
+                        "desc": 6,
+                        "x": -0.015015819109976292,
+                        "y": -1.4916949272155762,
+                        "z": 0.002532958984375
+                    },
+                    "l8": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "robotL": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "v1": {
+                        "desc": 0,
+                        "visited": false
+                    },
+                    "v2": {
+                        "desc": 1,
+                        "visited": false
+                    },
+                    "v3": {
+                        "desc": 2,
+                        "visited": false
+                    },
+                    "v4": {
+                        "desc": 3,
+                        "visited": false
+                    },
+                    "v5": {
+                        "desc": 4,
+                        "visited": false
+                    },
+                    "v6": {
+                        "desc": 5,
+                        "visited": false
+                    },
+                    "v7": {
+                        "desc": 6,
+                        "visited": false
+                    }
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 1,
+            "ActionDetails": {
+                "ActionID": 0,
+                "ActionDescription": "ID:0,navigateAction,x:-1.01606,y:0.660751,z:-0.00454712,desc:eL1",
+                "ActionName": "navigate",
+                "ActionConstantParameters": [
+                    {
+                        "ParameterName": "oDesiredLocation->desc",
+                        "Value": "0"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->x",
+                        "Value": "-1.016061544418335"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->y",
+                        "Value": "0.66075092554092407"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->z",
+                        "Value": "-0.004547119140625"
+                    }
+                ]
+            },
+            "SolverSentActionTime": "ISODate("2021-10-20T09: 39: 12.287Z")",
+            "ModuleExecutionStartTime": "10/20/2021 9:39:22 AM",
+            "ModuleExecutionEndTime": "10/20/2021 9:39:48 AM",
+            "ModuleResponseText": "navigate_eSuccess",
+            "BeliefStatesAfterExecution": [
+                {
+                    "l1": {
+                        "desc": 0,
+                        "x": -1.016061544418335,
+                        "y": 0.66075092554092407,
+                        "z": -0.004547119140625
+                    },
+                    "l2": {
+                        "desc": 1,
+                        "x": 0.0050053377635776997,
+                        "y": 0.6407279372215271,
+                        "z": -0.001434326171875
+                    },
+                    "l3": {
+                        "desc": 2,
+                        "x": 0.98603016138076782,
+                        "y": 0.61069375276565552,
+                        "z": -0.001434326171875
+                    },
+                    "l4": {
+                        "desc": 3,
+                        "x": 1.997086763381958,
+                        "y": 0.62070488929748535,
+                        "z": -0.001434326171875
+                    },
+                    "l5": {
+                        "desc": 4,
+                        "x": 1.9770655632019043,
+                        "y": -0.70079654455184937,
+                        "z": 0.0025634765625
+                    },
+                    "l6": {
+                        "desc": 5,
+                        "x": 1.0060511827468872,
+                        "y": -1.4216153621673584,
+                        "z": 0.0025634765625
+                    },
+                    "l7": {
+                        "desc": 6,
+                        "x": -0.015015819109976292,
+                        "y": -1.4916949272155762,
+                        "z": 0.002532958984375
+                    },
+                    "l8": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "robotL": {
+                        "desc": 7,
+                        "x": 1.0060511827468872,
+                        "y": -1.4216153621673584,
+                        "z": 0.0025634765625
+                    },
+                    "v1": {
+                        "desc": 0,
+                        "visited": true
+                    },
+                    "v2": {
+                        "desc": 1,
+                        "visited": true
+                    },
+                    "v3": {
+                        "desc": 2,
+                        "visited": true
+                    },
+                    "v4": {
+                        "desc": 3,
+                        "visited": true
+                    },
+                    "v5": {
+                        "desc": 4,
+                        "visited": true
+                    },
+                    "v6": {
+                        "desc": 5,
+                        "visited": true
+                    },
+                    "v7": {
+                        "desc": 6,
+                        "visited": false
+                    }
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 2,
+            "ActionDetails": {
+                "ActionID": 1,
+                "ActionDescription": "ID:1,navigateAction,x:0.00500534,y:0.640728,z:-0.00143433,desc:eL2",
+                "ActionName": "navigate",
+                "ActionConstantParameters": [
+                    {
+                        "ParameterName": "oDesiredLocation->desc",
+                        "Value": "1"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->x",
+                        "Value": "0.0050053377635776997"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->y",
+                        "Value": "0.6407279372215271"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->z",
+                        "Value": "-0.001434326171875"
+                    }
+                ]
+            },
+            "SolverSentActionTime": "ISODate("2021-10-20T09: 39: 50.2Z")",
+            "ModuleExecutionStartTime": "10/20/2021 9:39:50 AM",
+            "ModuleExecutionEndTime": "10/20/2021 9:39:57 AM",
+            "ModuleResponseText": "navigate_eSuccess",
+            "BeliefStatesAfterExecution": [
+                {
+                    "l1": {
+                        "desc": 0,
+                        "x": -1.016061544418335,
+                        "y": 0.66075092554092407,
+                        "z": -0.004547119140625
+                    },
+                    "l2": {
+                        "desc": 1,
+                        "x": 0.0050053377635776997,
+                        "y": 0.6407279372215271,
+                        "z": -0.001434326171875
+                    },
+                    "l3": {
+                        "desc": 2,
+                        "x": 0.98603016138076782,
+                        "y": 0.61069375276565552,
+                        "z": -0.001434326171875
+                    },
+                    "l4": {
+                        "desc": 3,
+                        "x": 1.997086763381958,
+                        "y": 0.62070488929748535,
+                        "z": -0.001434326171875
+                    },
+                    "l5": {
+                        "desc": 4,
+                        "x": 1.9770655632019043,
+                        "y": -0.70079654455184937,
+                        "z": 0.0025634765625
+                    },
+                    "l6": {
+                        "desc": 5,
+                        "x": 1.0060511827468872,
+                        "y": -1.4216153621673584,
+                        "z": 0.0025634765625
+                    },
+                    "l7": {
+                        "desc": 6,
+                        "x": -0.015015819109976292,
+                        "y": -1.4916949272155762,
+                        "z": 0.002532958984375
+                    },
+                    "l8": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "robotL": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "v1": {
+                        "desc": 0,
+                        "visited": false
+                    },
+                    "v2": {
+                        "desc": 1,
+                        "visited": false
+                    },
+                    "v3": {
+                        "desc": 2,
+                        "visited": false
+                    },
+                    "v4": {
+                        "desc": 3,
+                        "visited": false
+                    },
+                    "v5": {
+                        "desc": 4,
+                        "visited": false
+                    },
+                    "v6": {
+                        "desc": 5,
+                        "visited": false
+                    },
+                    "v7": {
+                        "desc": 6,
+                        "visited": false
+                    }
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 3,
+            "ActionDetails": {
+                "ActionID": 2,
+                "ActionDescription": "ID:2,navigateAction,x:0.98603,y:0.610694,z:-0.00143433,desc:eL3",
+                "ActionName": "navigate",
+                "ActionConstantParameters": [
+                    {
+                        "ParameterName": "oDesiredLocation->desc",
+                        "Value": "2"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->x",
+                        "Value": "0.98603016138076782"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->y",
+                        "Value": "0.61069375276565552"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->z",
+                        "Value": "-0.001434326171875"
+                    }
+                ]
+            },
+            "SolverSentActionTime": "ISODate("2021-10-20T09: 39: 58.392Z")",
+            "ModuleExecutionStartTime": "10/20/2021 9:39:58 AM",
+            "ModuleExecutionEndTime": "10/20/2021 9:40:04 AM",
+            "ModuleResponseText": "navigate_eSuccess",
+            "BeliefStatesAfterExecution": [
+                {
+                    "l1": {
+                        "desc": 0,
+                        "x": -1.016061544418335,
+                        "y": 0.66075092554092407,
+                        "z": -0.004547119140625
+                    },
+                    "l2": {
+                        "desc": 1,
+                        "x": 0.0050053377635776997,
+                        "y": 0.6407279372215271,
+                        "z": -0.001434326171875
+                    },
+                    "l3": {
+                        "desc": 2,
+                        "x": 0.98603016138076782,
+                        "y": 0.61069375276565552,
+                        "z": -0.001434326171875
+                    },
+                    "l4": {
+                        "desc": 3,
+                        "x": 1.997086763381958,
+                        "y": 0.62070488929748535,
+                        "z": -0.001434326171875
+                    },
+                    "l5": {
+                        "desc": 4,
+                        "x": 1.9770655632019043,
+                        "y": -0.70079654455184937,
+                        "z": 0.0025634765625
+                    },
+                    "l6": {
+                        "desc": 5,
+                        "x": 1.0060511827468872,
+                        "y": -1.4216153621673584,
+                        "z": 0.0025634765625
+                    },
+                    "l7": {
+                        "desc": 6,
+                        "x": -0.015015819109976292,
+                        "y": -1.4916949272155762,
+                        "z": 0.002532958984375
+                    },
+                    "l8": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "robotL": {
+                        "desc": 7,
+                        "x": -1.016061544418335,
+                        "y": 0.66075092554092407,
+                        "z": -0.004547119140625
+                    },
+                    "v1": {
+                        "desc": 0,
+                        "visited": true
+                    },
+                    "v2": {
+                        "desc": 1,
+                        "visited": false
+                    },
+                    "v3": {
+                        "desc": 2,
+                        "visited": false
+                    },
+                    "v4": {
+                        "desc": 3,
+                        "visited": false
+                    },
+                    "v5": {
+                        "desc": 4,
+                        "visited": false
+                    },
+                    "v6": {
+                        "desc": 5,
+                        "visited": false
+                    },
+                    "v7": {
+                        "desc": 6,
+                        "visited": false
+                    }
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 4,
+            "ActionDetails": {
+                "ActionID": 3,
+                "ActionDescription": "ID:3,navigateAction,x:1.99709,y:0.620705,z:-0.00143433,desc:eL4",
+                "ActionName": "navigate",
+                "ActionConstantParameters": [
+                    {
+                        "ParameterName": "oDesiredLocation->desc",
+                        "Value": "3"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->x",
+                        "Value": "1.997086763381958"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->y",
+                        "Value": "0.62070488929748535"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->z",
+                        "Value": "-0.001434326171875"
+                    }
+                ]
+            },
+            "SolverSentActionTime": "ISODate("2021-10-20T09: 40: 06.23Z")",
+            "ModuleExecutionStartTime": "10/20/2021 9:40:06 AM",
+            "ModuleExecutionEndTime": "10/20/2021 9:40:12 AM",
+            "ModuleResponseText": "navigate_eSuccess",
+            "BeliefStatesAfterExecution": [
+                {
+                    "l1": {
+                        "desc": 0,
+                        "x": -1.016061544418335,
+                        "y": 0.66075092554092407,
+                        "z": -0.004547119140625
+                    },
+                    "l2": {
+                        "desc": 1,
+                        "x": 0.0050053377635776997,
+                        "y": 0.6407279372215271,
+                        "z": -0.001434326171875
+                    },
+                    "l3": {
+                        "desc": 2,
+                        "x": 0.98603016138076782,
+                        "y": 0.61069375276565552,
+                        "z": -0.001434326171875
+                    },
+                    "l4": {
+                        "desc": 3,
+                        "x": 1.997086763381958,
+                        "y": 0.62070488929748535,
+                        "z": -0.001434326171875
+                    },
+                    "l5": {
+                        "desc": 4,
+                        "x": 1.9770655632019043,
+                        "y": -0.70079654455184937,
+                        "z": 0.0025634765625
+                    },
+                    "l6": {
+                        "desc": 5,
+                        "x": 1.0060511827468872,
+                        "y": -1.4216153621673584,
+                        "z": 0.0025634765625
+                    },
+                    "l7": {
+                        "desc": 6,
+                        "x": -0.015015819109976292,
+                        "y": -1.4916949272155762,
+                        "z": 0.002532958984375
+                    },
+                    "l8": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "robotL": {
+                        "desc": 7,
+                        "x": 0.0050053377635776997,
+                        "y": 0.6407279372215271,
+                        "z": -0.001434326171875
+                    },
+                    "v1": {
+                        "desc": 0,
+                        "visited": true
+                    },
+                    "v2": {
+                        "desc": 1,
+                        "visited": true
+                    },
+                    "v3": {
+                        "desc": 2,
+                        "visited": false
+                    },
+                    "v4": {
+                        "desc": 3,
+                        "visited": false
+                    },
+                    "v5": {
+                        "desc": 4,
+                        "visited": false
+                    },
+                    "v6": {
+                        "desc": 5,
+                        "visited": false
+                    },
+                    "v7": {
+                        "desc": 6,
+                        "visited": false
+                    }
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 5,
+            "ActionDetails": {
+                "ActionID": 4,
+                "ActionDescription": "ID:4,navigateAction,x:1.97707,y:-0.700797,z:0.00256348,desc:eL5",
+                "ActionName": "navigate",
+                "ActionConstantParameters": [
+                    {
+                        "ParameterName": "oDesiredLocation->desc",
+                        "Value": "4"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->x",
+                        "Value": "1.9770655632019043"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->y",
+                        "Value": "-0.70079654455184937"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->z",
+                        "Value": "0.0025634765625"
+                    }
+                ]
+            },
+            "SolverSentActionTime": "ISODate("2021-10-20T09: 40: 13.94Z")",
+            "ModuleExecutionStartTime": "10/20/2021 9:40:14 AM",
+            "ModuleExecutionEndTime": "10/20/2021 9:40:25 AM",
+            "ModuleResponseText": "navigate_eSuccess",
+            "BeliefStatesAfterExecution": [
+                {
+                    "l1": {
+                        "desc": 0,
+                        "x": -1.016061544418335,
+                        "y": 0.66075092554092407,
+                        "z": -0.004547119140625
+                    },
+                    "l2": {
+                        "desc": 1,
+                        "x": 0.0050053377635776997,
+                        "y": 0.6407279372215271,
+                        "z": -0.001434326171875
+                    },
+                    "l3": {
+                        "desc": 2,
+                        "x": 0.98603016138076782,
+                        "y": 0.61069375276565552,
+                        "z": -0.001434326171875
+                    },
+                    "l4": {
+                        "desc": 3,
+                        "x": 1.997086763381958,
+                        "y": 0.62070488929748535,
+                        "z": -0.001434326171875
+                    },
+                    "l5": {
+                        "desc": 4,
+                        "x": 1.9770655632019043,
+                        "y": -0.70079654455184937,
+                        "z": 0.0025634765625
+                    },
+                    "l6": {
+                        "desc": 5,
+                        "x": 1.0060511827468872,
+                        "y": -1.4216153621673584,
+                        "z": 0.0025634765625
+                    },
+                    "l7": {
+                        "desc": 6,
+                        "x": -0.015015819109976292,
+                        "y": -1.4916949272155762,
+                        "z": 0.002532958984375
+                    },
+                    "l8": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "robotL": {
+                        "desc": 7,
+                        "x": 0.98603016138076782,
+                        "y": 0.61069375276565552,
+                        "z": -0.001434326171875
+                    },
+                    "v1": {
+                        "desc": 0,
+                        "visited": true
+                    },
+                    "v2": {
+                        "desc": 1,
+                        "visited": true
+                    },
+                    "v3": {
+                        "desc": 2,
+                        "visited": true
+                    },
+                    "v4": {
+                        "desc": 3,
+                        "visited": false
+                    },
+                    "v5": {
+                        "desc": 4,
+                        "visited": false
+                    },
+                    "v6": {
+                        "desc": 5,
+                        "visited": false
+                    },
+                    "v7": {
+                        "desc": 6,
+                        "visited": false
+                    }
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 6,
+            "ActionDetails": {
+                "ActionID": 5,
+                "ActionDescription": "ID:5,navigateAction,x:1.00605,y:-1.42162,z:0.00256348,desc:eL6",
+                "ActionName": "navigate",
+                "ActionConstantParameters": [
+                    {
+                        "ParameterName": "oDesiredLocation->desc",
+                        "Value": "5"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->x",
+                        "Value": "1.0060511827468872"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->y",
+                        "Value": "-1.4216153621673584"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->z",
+                        "Value": "0.0025634765625"
+                    }
+                ]
+            },
+            "SolverSentActionTime": "ISODate("2021-10-20T09: 40: 26.36Z")",
+            "ModuleExecutionStartTime": "10/20/2021 9:40:26 AM",
+            "ModuleExecutionEndTime": "10/20/2021 9:40:52 AM",
+            "ModuleResponseText": "navigate_eSuccess",
+            "BeliefStatesAfterExecution": [
+                {
+                    "l1": {
+                        "desc": 0,
+                        "x": -1.016061544418335,
+                        "y": 0.66075092554092407,
+                        "z": -0.004547119140625
+                    },
+                    "l2": {
+                        "desc": 1,
+                        "x": 0.0050053377635776997,
+                        "y": 0.6407279372215271,
+                        "z": -0.001434326171875
+                    },
+                    "l3": {
+                        "desc": 2,
+                        "x": 0.98603016138076782,
+                        "y": 0.61069375276565552,
+                        "z": -0.001434326171875
+                    },
+                    "l4": {
+                        "desc": 3,
+                        "x": 1.997086763381958,
+                        "y": 0.62070488929748535,
+                        "z": -0.001434326171875
+                    },
+                    "l5": {
+                        "desc": 4,
+                        "x": 1.9770655632019043,
+                        "y": -0.70079654455184937,
+                        "z": 0.0025634765625
+                    },
+                    "l6": {
+                        "desc": 5,
+                        "x": 1.0060511827468872,
+                        "y": -1.4216153621673584,
+                        "z": 0.0025634765625
+                    },
+                    "l7": {
+                        "desc": 6,
+                        "x": -0.015015819109976292,
+                        "y": -1.4916949272155762,
+                        "z": 0.002532958984375
+                    },
+                    "l8": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "robotL": {
+                        "desc": 7,
+                        "x": 1.997086763381958,
+                        "y": 0.62070488929748535,
+                        "z": -0.001434326171875
+                    },
+                    "v1": {
+                        "desc": 0,
+                        "visited": true
+                    },
+                    "v2": {
+                        "desc": 1,
+                        "visited": true
+                    },
+                    "v3": {
+                        "desc": 2,
+                        "visited": true
+                    },
+                    "v4": {
+                        "desc": 3,
+                        "visited": true
+                    },
+                    "v5": {
+                        "desc": 4,
+                        "visited": false
+                    },
+                    "v6": {
+                        "desc": 5,
+                        "visited": false
+                    },
+                    "v7": {
+                        "desc": 6,
+                        "visited": false
+                    }
+                }
+            ]
+        },
+        {
+            "ActionSequenceId": 7,
+            "ActionDetails": {
+                "ActionID": 6,
+                "ActionDescription": "ID:6,navigateAction,x:-0.0150158,y:-1.49169,z:0.00253296,desc:eL7",
+                "ActionName": "navigate",
+                "ActionConstantParameters": [
+                    {
+                        "ParameterName": "oDesiredLocation->desc",
+                        "Value": "6"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->x",
+                        "Value": "-0.015015819109976292"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->y",
+                        "Value": "-1.4916949272155762"
+                    },
+                    {
+                        "ParameterName": "oDesiredLocation->z",
+                        "Value": "0.002532958984375"
+                    }
+                ]
+            },
+            "SolverSentActionTime": "ISODate("2021-10-20T09: 40: 53.407Z")",
+            "ModuleExecutionStartTime": "10/20/2021 9:40:53 AM",
+            "ModuleExecutionEndTime": "10/20/2021 9:41:03 AM",
+            "ModuleResponseText": "navigate_eSuccess",
+            "BeliefStatesAfterExecution": [
+                {
+                    "l1": {
+                        "desc": 0,
+                        "x": -1.016061544418335,
+                        "y": 0.66075092554092407,
+                        "z": -0.004547119140625
+                    },
+                    "l2": {
+                        "desc": 1,
+                        "x": 0.0050053377635776997,
+                        "y": 0.6407279372215271,
+                        "z": -0.001434326171875
+                    },
+                    "l3": {
+                        "desc": 2,
+                        "x": 0.98603016138076782,
+                        "y": 0.61069375276565552,
+                        "z": -0.001434326171875
+                    },
+                    "l4": {
+                        "desc": 3,
+                        "x": 1.997086763381958,
+                        "y": 0.62070488929748535,
+                        "z": -0.001434326171875
+                    },
+                    "l5": {
+                        "desc": 4,
+                        "x": 1.9770655632019043,
+                        "y": -0.70079654455184937,
+                        "z": 0.0025634765625
+                    },
+                    "l6": {
+                        "desc": 5,
+                        "x": 1.0060511827468872,
+                        "y": -1.4216153621673584,
+                        "z": 0.0025634765625
+                    },
+                    "l7": {
+                        "desc": 6,
+                        "x": -0.015015819109976292,
+                        "y": -1.4916949272155762,
+                        "z": 0.002532958984375
+                    },
+                    "l8": {
+                        "desc": 7,
+                        "x": -2.0171074867248535,
+                        "y": 0.57064855098724365,
+                        "z": -0.16546630859375
+                    },
+                    "robotL": {
+                        "desc": 7,
+                        "x": 1.9770655632019043,
+                        "y": -0.70079654455184937,
+                        "z": 0.0025634765625
+                    },
+                    "v1": {
+                        "desc": 0,
+                        "visited": true
+                    },
+                    "v2": {
+                        "desc": 1,
+                        "visited": true
+                    },
+                    "v3": {
+                        "desc": 2,
+                        "visited": true
+                    },
+                    "v4": {
+                        "desc": 3,
+                        "visited": true
+                    },
+                    "v5": {
+                        "desc": 4,
+                        "visited": true
+                    },
+                    "v6": {
+                        "desc": 5,
+                        "visited": false
+                    },
+                    "v7": {
+                        "desc": 6,
+                        "visited": false
+                    }
+                }
+            ]
+        }
+    ]
+}
