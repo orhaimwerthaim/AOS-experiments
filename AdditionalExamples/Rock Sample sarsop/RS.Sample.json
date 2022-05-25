@@ -1,0 +1,33 @@
+{
+    "PlpMain": {
+        "Project": "RockSample",
+        "Name": "Sample",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [ 
+    ], 
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [],
+        "ViolatingPreconditionPenalty": 0
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "location.visited",
+                "IterateNextStateVars": [
+                    {
+                        "Type": "tRock",
+                        "ItemName": "rock",
+                        "ConditionCode": "rock.location.x == state.robotLoc.x && rock.location.y == state.robotLoc.y",
+                        "WhenConditionTrueCode": "if(rock.type == Good){rock.type = Bad; __reward=10;}else{__reward=-10;}"
+                    }
+                ]
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = eSuccess;"
+            }
+        ]
+    }
+}

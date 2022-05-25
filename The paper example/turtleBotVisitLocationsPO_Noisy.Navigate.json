@@ -21,7 +21,7 @@
                     {
                         "Type": "tVisitedLocation",
                         "ItemName": "loc",
-                        "ConditionCode": "loc.location == oDesiredLocation.location",
+                        "ConditionCode": "loc.discrete == oDesiredLocation.discrete",
                         "WhenConditionTrueCode": "__meetPrecondition= !loc.visited;"
                     }
                 ]
@@ -32,7 +32,7 @@
     "DynamicModel": {
         "NextStateAssignments": [
             { 
-                "AssignmentCode": " state__.robotLocation.discrete = !__meetPrecondition || AOS.Bernoulli(0.1) ? -1: oDesiredLocation.location;}"
+                "AssignmentCode": " state__.robotLocation.discrete = !__meetPrecondition || AOS.Bernoulli(0.1) ? -1: oDesiredLocation.discrete;}"
             },
             { 
                 "AssignmentCode": " if(state__.robotLocation.discrete == oDesiredLocation.discrete) state__.robotLocation.x = oDesiredLocation.x; state__.robotLocation.y = oDesiredLocation.y; state__.robotLocation.z = oDesiredLocation.z;}"
@@ -42,7 +42,7 @@
                     {
                         "Type": "tVisitedLocation",
                         "ItemName": "loc",
-                        "ConditionCode": "loc.location == state__.robotLocation",
+                        "ConditionCode": "loc.discrete == state__.robotLocation",
                         "WhenConditionTrueCode": "loc.visited=true;"
                     }
                 ]

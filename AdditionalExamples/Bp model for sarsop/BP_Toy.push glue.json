@@ -1,0 +1,25 @@
+{
+    "PlpMain": {
+        "Project": "Bp_with_int_model",
+        "Name": "push",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "eSuccess",
+                "ConditionCodeWithLocalVariables": "True"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ServicePath": "a",
+            "ServiceName": "a",
+            "ServiceParameters": [
+            ]
+        }
+    }
+}

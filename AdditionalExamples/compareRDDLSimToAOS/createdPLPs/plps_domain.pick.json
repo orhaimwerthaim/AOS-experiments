@@ -1,0 +1,50 @@
+{
+    "PlpMain": {
+        "Project": "plps_domain",
+        "Name": "pick",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [],
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition= false"
+            },
+            {
+                "IteratePrevStateVars": [
+                    {
+                        "Type": "obj",
+                        "ItemName": "aCan",
+                        "ConditionCode": "aCan.object_at == state.o_robot.near && aCan.pickable",
+                        "WhenConditionTrueCode": "__meetPrecondition = o_robot.hand_empty;"
+                    }
+                ]
+            }
+        ],
+        "ViolatingPreconditionPenalty": -250
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = !__meetPrecondition ? eNotAbleToPick : eFailure;"
+            },
+            {
+                "IterateNextStateVars": [
+                    {
+                        "Type": "obj",
+                        "ItemName": "aCan",
+                        "ConditionCode": "__meetPrecondition && aCan.object_at == state.o_robot.near && aCan.pickable",
+                        "WhenConditionTrueCode": "aCan.object_at = robot_hand; __moduleResponse = eSuccess;"
+                    }
+                ]
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = __meetPrecondition ? 200 : 0;"
+            }
+        ]
+    }
+}

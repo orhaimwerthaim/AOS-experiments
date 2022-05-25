@@ -1,0 +1,32 @@
+{
+    "PlpMain": {
+        "Project": "plps_domain",
+        "Name": "pick",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "eSuccess",
+                "ConditionCodeWithLocalVariables": "True"
+            },
+            {
+                "Response": "eFailure",
+                "ConditionCodeWithLocalVariables": "True"
+            },
+            {
+                "Response": "eNotAbleToPick",
+                "ConditionCodeWithLocalVariables": "True"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ServicePath": "a",
+            "ServiceName": "a",
+            "ServiceParameters": []
+        }
+    }
+}

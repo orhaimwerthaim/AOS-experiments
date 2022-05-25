@@ -1,0 +1,50 @@
+{
+    "PlpMain": {
+        "Project": "plps_domain",
+        "Name": "observe_can",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [ 
+    ],  
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+        ], 
+        "ViolatingPreconditionPenalty": -10
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "was able to perform observation",
+                "TempVar": {
+                    "VarName": "success_observe_can",
+                    "Type": "bool"
+                },
+                "AssignmentCode": "success_observe_can = AOS.Bernoulli(0.95);"
+            },
+            {
+                "AssignmentName": "set default",
+                "AssignmentCode": "__moduleResponse = eNotObserved;"
+            },
+            { 
+                "AssignmentName": "if I was able to observe what was my (possibly noisy) observation ",
+                "IterateNextStateVars": [
+                    {
+                        "Type": "obj",
+                        "ItemName": "aCan",
+                        "ConditionCode": "aCan.object_at == state.o_robot.near",
+                        "WhenConditionTrueCode": "__moduleResponse = AOS.Bernoulli(0.95) ? eCanObserved : eNotObserved;"
+                    }
+                ]
+            }, 
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = success_observe_can ? __moduleResponse : eNotAbleToObserve;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = -3;"
+            }
+        ]
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "PlpMain": {
+        "Project": "plps_domain",
+        "Name": "observe_can",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "eCanObserved",
+                "ConditionCodeWithLocalVariables": "True"
+            },
+            {
+                "Response": "eNotObserved",
+                "ConditionCodeWithLocalVariables": "False"
+            },
+            {
+                "Response": "eNotAbleToObserve",
+                "ConditionCodeWithLocalVariables": "False"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ServicePath": "a",
+            "ServiceName": "a",
+            "ServiceParameters": []
+        }
+    }
+}

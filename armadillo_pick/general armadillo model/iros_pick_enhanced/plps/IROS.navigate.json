@@ -17,6 +17,7 @@
                 "AssignmentName": "__meetPrecondition",
                 "AssignmentCode": "__meetPrecondition= state.robotGenerallocation != eUnknown;"
             }
+
         ], 
         "ViolatingPreconditionPenalty": -10
     },

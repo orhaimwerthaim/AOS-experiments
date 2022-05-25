@@ -1,0 +1,62 @@
+{
+    "PlpMain": {
+        "Project": "RockSample",
+        "Name": "Check",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oRockName",
+            "Type": "tRockName",
+            "s":"Bernoulli"
+        }
+    ], 
+    
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "distance",
+                "TempVar": {
+                    "VarName": "distance",
+                    "Type": "double"
+                },
+                "AssignmentCode": "distance = 0;"
+            },
+            {
+                "AssignmentName": "realRockType",
+                "TempVar": {
+                    "VarName": "realRockType",
+                    "Type": "bool"
+                }
+            },
+            {
+                "AssignmentName": "calc distance and get real rock type",
+                "IterateNextStateVars": [
+                    {
+                        "Type": "tRock",
+                        "ItemName": "rock",
+                        "ConditionCode": "rock.name == oRockName",
+                        "WhenConditionTrueCode": "realRockType=rock.type == Good; distance=sqrt(pow(state.robotLoc.x-rock.location.x,2.0)+pow(state.robotLoc.y-rock.location.y,2.0));"
+                    }
+                ]
+            },
+            {
+                "AssignmentName": "efficiency",
+                "TempVar": {
+                    "VarName": "efficiency",
+                    "Type": "double"
+                },
+                "AssignmentCode": "efficiency = (1+ pow(2, -distance)) * 0.5;"
+            }, 
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = AOS.Bernoulli(efficiency) ? (realRockType ? oGood : oBad) : (realRockType ? oBad : oGood);"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = 0;"
+            }
+        ]
+    }
+}
