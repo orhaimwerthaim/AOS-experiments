@@ -1,0 +1,29 @@
+{
+    "PlpMain": {
+        "Project": "RockSample",
+        "Name": "Check",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "oGood",
+                "ConditionCodeWithLocalVariables": "True"
+            },
+            {
+                "Response": "oBad",
+                "ConditionCodeWithLocalVariables": "True"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ServicePath": "a",
+            "ServiceName": "a",
+            "ServiceParameters": [
+            ]
+        }
+    }
+}

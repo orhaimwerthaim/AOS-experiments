@@ -1,0 +1,158 @@
+{
+    "PlpMain": {
+        "Project": "RockSample",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Max_concurrent_actions": 3,
+        "Horizon": 22,
+        "Discount": 0.999999
+    },
+    "GlobalVariableTypes": [ 
+        {
+            "TypeName": "tDirection",
+            "Type": "enum",
+            "EnumValues": [
+                "Up",
+                "Down",
+                "Left",
+                "Right",
+                "None"
+            ]
+        },
+        {
+            "TypeName": "tRockName",
+            "Type": "enum",
+            "EnumValues": [
+                "r1"
+            ]
+        },
+        {
+            "TypeName": "tRockType",
+            "Type": "enum",
+            "EnumValues": [
+                "Good",
+                "Bad"
+            ]
+        },
+        {
+            "TypeName": "tLocation",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "x",
+                    "Type": "int",
+                    "Default": "-1"
+                },
+                {
+                    "Name": "y",
+                    "Type": "int",
+                    "Default": "-1"
+                }
+            ]
+        },
+        {
+            "TypeName": "tRock",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "location",
+                    "Type": "tLocation"
+                },
+                {
+                    "Name": "type",
+                    "Type": "tRockType"
+                },
+                {
+                    "Name":"name",
+                    "Type":"tRockName"
+                }
+            ]
+        },
+        {
+            "TypeName": "tDirectionParam",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "direction",
+                    "Type": "tDirection",
+                    "Default": "Up"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "rock1",
+            "Type": "tRock",
+            "DefaultCode": "state.rock1.name = r1; state.rock1.location.x = 0; state.rock1.location.y = 0;"
+        },
+        {
+            "Name": "ParamUp",
+            "Type": "tDirection",
+            "Default": "Up;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamDown",
+            "Type": "tDirection",
+            "Default": "Down;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamLeft",
+            "Type": "tDirection",
+            "Default": "Left;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamRight",
+            "Type": "tDirection",
+            "Default": "Right;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamRock1",
+            "Type": "tRockName",
+            "Default": "r1;",
+            "IsActionParameterValue": true
+        }, 
+        {
+            "Name": "MaxGridx",
+            "Type": "int",
+            "Default": "3;"
+        },
+        {
+            "Name": "MaxGridy",
+            "Type": "int",
+            "Default": "3;"
+        },
+        {
+            "Name": "robotLoc",
+            "Type": "tLocation",
+            "DefaultCode": "state.robotLoc.x=0;state.robotLoc.y=0;"
+        }
+        
+    ],
+    "ExtrinsicChangesDynamicModel":[],
+    "InitialBeliefStateAssignments": [
+        {
+            "AssignmentName": "rockTypes",
+            "AssignmentCode": "state.rock1.type = AOS.Bernoulli(0.5) ? Good : Bad; "
+        },
+        {
+            "AssignmentName": "rockTypes",
+            "AssignmentCode": "state.rock1.type = Good ;"
+        }
+    ],
+    "SpecialStates": [
+        {
+            "StateConditionCode": "state.robotLoc.x >= state.MaxGridx",
+            "Reward": 10.0,
+            "IsGoalState": true
+        }
+    ]
+    
+}

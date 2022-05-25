@@ -1,0 +1,32 @@
+{
+    "PlpMain": {
+        "Project": "plps_domain",
+        "Name": "move_to_point",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "eSuccess",
+                "ConditionCodeWithLocalVariables": "True"
+            },
+            {
+                "Response": "eFailure",
+                "ConditionCodeWithLocalVariables": "True"
+            },
+            {
+                "Response": "eNotAbleToNavigate",
+                "ConditionCodeWithLocalVariables": "True"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ServicePath": "a",
+            "ServiceName": "a",
+            "ServiceParameters": []
+        }
+    }
+}

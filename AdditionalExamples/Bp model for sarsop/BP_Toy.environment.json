@@ -1,0 +1,163 @@
+{
+    "PlpMain": {
+        "Project": "Bp_with_int_model",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Max_concurrent_actions": 3,
+        "Horizon": 22,
+        "Discount": 0.95
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "tPushType",
+            "Type": "enum",
+            "EnumValues": [
+                "SingleAgentPush",
+                "JointPush"
+            ]
+        },
+        {
+            "TypeName": "tDirection",
+            "Type": "enum",
+            "EnumValues": [
+                "Up",
+                "Down",
+                "Left",
+                "Right",
+                "None"
+            ]
+        },
+        {
+            "TypeName": "tLocation",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "x",
+                    "Type": "int",
+                    "Default": "-1"
+                },
+                {
+                    "Name": "y",
+                    "Type": "int",
+                    "Default": "-1"
+                }
+            ]
+        },
+        {
+            "TypeName": "tDirectionParam",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "direction",
+                    "Type": "tDirection",
+                    "Default": "Up"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "bTwoLocGoal",
+            "Type": "tLocation",
+            "DefaultCode": "state.bTwoLocGoal.x=1;state.bTwoLocGoal.y=1;"
+        },
+        {
+            "Name": "bOneLocGoal",
+            "Type": "tLocation",
+            "DefaultCode": "state.bOneLocGoal.x=1;state.bOneLocGoal.y=1;"
+        },
+        {
+            "Name": "agentOneLoc",
+            "Type": "tLocation",
+            "DefaultCode": "state.agentOneLoc.x=0;state.agentOneLoc.y=1;"
+        },
+        {
+            "Name": "agentTwoLoc",
+            "Type": "tLocation",
+            "DefaultCode": "state.agentTwoLoc.x=1;state.agentTwoLoc.y=1;"
+        },
+        {
+            "Name": "bOneLoc",
+            "Type": "tLocation",
+            "DefaultCode": "state.bOneLoc.x=0;state.bOneLoc.y=0;"
+        },
+        {
+            "Name": "bTwoLoc",
+            "Type": "tLocation",
+            "DefaultCode": "state.bTwoLoc.x=0;state.bTwoLoc.y=0;"
+        },
+        {
+            "Name": "isAgentOneTurn",
+            "Type": "bool",
+            "Default": "true"
+        },
+        {
+            "Name": "ParamUp",
+            "Type": "tDirection",
+            "Default": "Up;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamDown",
+            "Type": "tDirection",
+            "Default": "Down;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamLeft",
+            "Type": "tDirection",
+            "Default": "Left;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamRight",
+            "Type": "tDirection",
+            "Default": "Right;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamSingleAgentPush",
+            "Type": "tPushType",
+            "Default": "SingleAgentPush;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "ParamJointPush",
+            "Type": "tPushType",
+            "Default": "JointPush;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "JointPushDirection",
+            "Type": "tDirection",
+            "Default": "None;"
+        },
+        {
+            "Name": "MaxGridx",
+            "Type": "int",
+            "Default": "2;"
+        },
+        {
+            "Name": "MaxGridy",
+            "Type": "int",
+            "Default": "2;"
+        }
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [
+        {
+            "StateConditionCode": "state.bOneLoc.x==state.bOneLocGoal.x && state.bOneLoc.y==state.bOneLocGoal.y && state.bTwoLoc.x==state.bTwoLocGoal.x && state.bTwoLoc.y==state.bTwoLocGoal.y",
+            "Reward": 8300.0,
+            "IsGoalState": true
+        }
+    ],
+    "ExtrinsicChangesDynamicModel": [
+        {
+            "AssignmentName": "Set",
+            "AssignmentCode": "state_.isAgentOneTurn = !state.isAgentOneTurn; "
+        }
+    ]
+}

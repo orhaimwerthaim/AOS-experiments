@@ -1,0 +1,149 @@
+{
+    "PlpMain": {
+        "Project": "Bp_with_int_model",
+        "Name": "navigate",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oDirection",
+            "Type": "tDirection"
+        }
+    ], 
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn && state.agentOneLoc.y >= state.MaxGridy && oDirection==Up)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn && state.agentOneLoc.y <= 0 && oDirection==Down)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn && state.agentOneLoc.x <= 0 && oDirection==Left)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn && state.agentOneLoc.x >= state.MaxGridx && oDirection==Right)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn && state.agentTwoLoc.y >= state.MaxGridy && oDirection==Up)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn && state.agentTwoLoc.y <= 0 && oDirection==Down)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn && state.agentTwoLoc.x <= 0 && oDirection==Left)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn && state.agentTwoLoc.x >= state.MaxGridx && oDirection==Right)__meetPrecondition=false;"
+            }
+        ],
+        "PlannerAssistancePreconditionsAssignments": [
+            {
+                "AssignmentName": "temp agent x location",
+                "TempVar": {
+                    "VarName": "agentX",
+                    "Type": "int"
+                },
+                "AssignmentCode": "agentX = state.isAgentOneTurn ? state.agentOneLoc.x : state.agentTwoLoc.x"
+            },
+            {
+                "AssignmentName": "temp agent y location",
+                "TempVar": {
+                    "VarName": "agentY",
+                    "Type": "int"
+                },
+                "AssignmentCode": "agentY = state.isAgentOneTurn ? state.agentOneLoc.y : state.agentTwoLoc.y"
+            },
+            {
+                "AssignmentName": "temp agent x location after step",
+                "TempVar": {
+                    "VarName": "nextAgentX",
+                    "Type": "int"
+                },
+                "AssignmentCode": "nextAgentX = agentX+(oDirection==Left ? -1 : (oDirection==Right ? 1 : 0));"
+            },
+            {
+                "AssignmentName": "temp agent y location after step",
+                "TempVar": {
+                    "VarName": "nextAgentY",
+                    "Type": "int"
+                },
+                "AssignmentCode": "nextAgentY = agentY + ( oDirection==Down ? -1 : (oDirection==Up ? 1 : 0));"
+            },
+            {
+                "AssignmentName": "Manhattan distance to box one if it is not at goal",
+                "TempVar": {
+                    "VarName": "bOneManhattanDistance",
+                    "Type": "float"
+                },
+                "AssignmentCode": "bOneManhattanDistance =  std::abs(nextAgentX - state.bOneLoc.x) + std::abs(nextAgentY - state.bOneLoc.y)"
+            },
+            {
+                "AssignmentName": "Manhattan distance to box two if it is not at goal ",
+                "TempVar": {
+                    "VarName": "bTwoManhattanDistance",
+                    "Type": "float"
+                },
+                "AssignmentCode": "bTwoManhattanDistance = (state.bTwoLoc.x == state.bTwoLocGoal.x && state.bTwoLoc.y == state.bTwoLocGoal.y) ? 0 :  std::abs(nextAgentX - state.bTwoLoc.x) + std::abs(nextAgentY - state.bTwoLoc.y)"
+            },
+            {
+                "AssignmentName": "if agent after navigate at box set distance to almost zero so we can divide",
+                "AssignmentCode": "bTwoManhattanDistance = bTwoManhattanDistance == 0 ? 0.1 : bTwoManhattanDistance;  bOneManhattanDistance = bOneManhattanDistance == 0 ? 0.1 : bOneManhattanDistance;"
+            },
+            {
+                "AssignmentName": "if agent at box (one) and or box at goal then action is not preferred (negative value)",
+                "AssignmentCode": "if((state.bOneLoc.x == state.bOneLocGoal.x && state.bOneLoc.y == state.bOneLocGoal.y) || (state.bOneLoc.x == agentX && state.bOneLoc.y == agentY)) bOneManhattanDistance = -1;"
+            },
+            {
+                "AssignmentName": "if agent at box (two) and or box at goal then action is not preferred (negative value)",
+                "AssignmentCode": "if((state.bTwoLoc.x == state.bTwoLocGoal.x && state.bTwoLoc.y == state.bTwoLocGoal.y) || (state.bTwoLoc.x == agentX && state.bTwoLoc.y == agentY)) bTwoManhattanDistance = -1;"
+            },
+            {
+                "AssignmentName": "__heuristicValue  agent one navigate to box",
+                "AssignmentCode": "__heuristicValue=  std::max(1/bTwoManhattanDistance , 1/bOneManhattanDistance);"
+            }
+        ],
+        "ViolatingPreconditionPenalty": 0
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "Down",
+                "AssignmentCode": "if(oDirection == Down && __meetPrecondition){if(state.isAgentOneTurn) state__.agentOneLoc.y--;else state__.agentTwoLoc.y--;}"
+            },
+            {
+                "AssignmentName": "Up",
+                "AssignmentCode": "if(oDirection == Up && __meetPrecondition){if(state.isAgentOneTurn) state__.agentOneLoc.y++;else state__.agentTwoLoc.y++;}"
+            },
+            {
+                "AssignmentName": "Left",
+                "AssignmentCode": "if(oDirection == Left && __meetPrecondition){if(state.isAgentOneTurn) state__.agentOneLoc.x--;else state__.agentTwoLoc.x--;}"
+            },
+            {
+                "AssignmentName": "Right",
+                "AssignmentCode": "if(oDirection == Right && __meetPrecondition){if(state.isAgentOneTurn) state__.agentOneLoc.x++;else state__.agentTwoLoc.x++;}"
+            },
+            {
+                "AssignmentName": "Set",
+                "AssignmentCode": "state__.JointPushDirection = None;"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = eSuccess;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = -1;"
+            }
+        ]
+    }
+}

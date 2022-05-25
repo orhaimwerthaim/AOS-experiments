@@ -1,0 +1,117 @@
+{
+    "PlpMain": {
+        "Project": "Bp_with_int_model",
+        "Name": "push",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oDirection",
+            "Type": "tDirection"
+        },
+        {
+            "Name": "oIsJointPush",
+            "Type": "tPushType"
+        }
+    ], 
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(oIsJointPush == JointPush && !state.isAgentOneTurn && oDirection != state.JointPushDirection) __meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(oIsJointPush == JointPush && state.agentOneLoc != state.bTwoLoc) __meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(oIsJointPush == SingleAgentPush && ((state.isAgentOneTurn && state.agentOneLoc != state.bOneLoc) || (!state.isAgentOneTurn && state.agentTwoLoc != state.bOneLoc))) __meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(oIsJointPush == JointPush && state.agentOneLoc != state.agentTwoLoc) __meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn && state.agentOneLoc.y >= state.MaxGridy && oDirection==Up)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn && state.agentOneLoc.y <= 0 && oDirection==Down)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn && state.agentOneLoc.x <= 0 && oDirection==Left)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(state.isAgentOneTurn && state.agentOneLoc.x >= state.MaxGridx && oDirection==Right)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn && state.agentTwoLoc.y >= state.MaxGridy && oDirection==Up)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn && state.agentTwoLoc.y <= 0 && oDirection==Down)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn && state.agentTwoLoc.x <= 0 && oDirection==Left)__meetPrecondition=false;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "if(!state.isAgentOneTurn && state.agentTwoLoc.x >= state.MaxGridx && oDirection==Right)__meetPrecondition=false;"
+            }
+        ],
+        "PlannerAssistancePreconditionsAssignments": [
+            {
+                "AssignmentName": "__heuristicValue for second agent joint push with first agent",
+                "AssignmentCode": "if(oIsJointPush == JointPush && !state.isAgentOneTurn && oDirection == state.JointPushDirection) __heuristicValue=100;"
+            },
+            {
+                "AssignmentName": "__heuristicValue push box when possible (don't ovverride first rule)",
+                "AssignmentCode": "if(__heuristicValue == 0) __heuristicValue=1;"
+            }
+        ],
+        "ViolatingPreconditionPenalty": 0
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "Down",
+                "AssignmentCode": "if(oDirection == Down && __meetPrecondition){if(oIsJointPush == SingleAgentPush) state__.bOneLoc.y--;else if(!state.isAgentOneTurn) state__.bTwoLoc.y--;}"
+            },
+            {
+                "AssignmentName": "Up",
+                "AssignmentCode": "if(oDirection == Up && __meetPrecondition){if(oIsJointPush == SingleAgentPush) state__.bOneLoc.y++;else if(!state.isAgentOneTurn) state__.bTwoLoc.y++;}"
+            },
+            {
+                "AssignmentName": "Left",
+                "AssignmentCode": "if(oDirection == Left && __meetPrecondition){if(oIsJointPush == SingleAgentPush) state__.bOneLoc.x--;else if(!state.isAgentOneTurn) state__.bTwoLoc.x--;}"
+            },
+            {
+                "AssignmentName": "Right",
+                "AssignmentCode": "if(oDirection == Right && __meetPrecondition){if(oIsJointPush == SingleAgentPush) state__.bOneLoc.x++;else if(!state.isAgentOneTurn) state__.bTwoLoc.x++;}"
+            },
+            {
+                "AssignmentName": "Set boxTwo",
+                "AssignmentCode": "if(__meetPrecondition && oIsJointPush == JointPush){if(state.isAgentOneTurn) state__.JointPushDirection = oDirection;}"
+            },
+            {
+                "AssignmentName": "Set",
+                "AssignmentCode": "if(!(state.isAgentOneTurn && oIsJointPush == JointPush)) state__.JointPushDirection = None;"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = eSuccess;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = -1;"
+            }
+        ]
+    }
+}

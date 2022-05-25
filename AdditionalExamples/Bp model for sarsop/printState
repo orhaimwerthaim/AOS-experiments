@@ -1,0 +1,77 @@
+std::string Bp_with_int_model::GetCellDesc(int x, int y, const Bp_with_int_modelState& state) const
+{
+	std::string res = "";
+	
+	if(state.agentOneLoc.x == x && state.agentOneLoc.y == y)
+	{
+		res += (state.isAgentOneTurn ? "A1*" : "A1");
+		if(state.JointPushDirection != None)
+		{
+			res += state.JointPushDirection == Up ? "^J" : state.JointPushDirection == Down ? "vJ"
+													  : state.JointPushDirection == Left   ? "<J"
+																						   : ">J";
+		}
+	}
+	
+	if(state.agentTwoLoc.x == x && state.agentTwoLoc.y == y)
+	{
+		res += res.length() > 0 ? "," : "";
+		res += (state.isAgentOneTurn ? "A2" : "A2*");
+	} 
+	if(state.bOneLoc.x == x && state.bOneLoc.y == y)
+	{
+		res += res.length() > 0 ? ",B1" : "B1";
+	}
+	if(state.bTwoLoc.x == x && state.bTwoLoc.y == y)
+	{
+		res += res.length() > 0 ? ",B2" : "B2";
+	}
+	int gapsNeeded = 11 - res.length();
+	std::string start(int(ceil(gapsNeeded / 2)), ' ');
+	std::string end(int(floor(gapsNeeded / 2)), ' ');
+
+	res = start + res + end;
+	return res;
+}
+
+ 
+
+
+void Bp_with_int_model::PrintState(const State& _state, ostream& ostr) const {
+	const Bp_with_int_modelState& state = static_cast<const Bp_with_int_modelState&>(_state);
+	try
+	{
+	if (ostr)
+		{
+		std::string line((12*(state.MaxGridx+1)), '-');
+		for(int y=state.MaxGridx; y >=0; y--)
+		{
+			ostr << line << endl;
+			for (int x = 0; x <= state.MaxGridx; x++)
+			{
+				ostr << "|" << GetCellDesc(x, y, state);
+			}
+			ostr << "|" << endl;
+		}
+		ostr << line << endl;
+		} 
+	}
+	catch(const std::exception& e)
+	{
+
+	}
+}
+
+
+
+belief=1XS
+Tran=SxS=from_s1_to_s1 ...  from_s1_to_sn
+         ...			...
+	from_sn_to_s1 ...  from_sn_to_sn 
+
+belief X Tran = NexB 1 X S
+Obs[Act]= 1 X S
+
+nextBeliefState = NexB X Obs[Act] = 1 X S
+
+https://www.google.com/url?q=https://teams.microsoft.com/l/meetup-join/19%253Ameeting_YzhmMWJmNTEtNmMyMy00MzgzLTkyN2ItMDE4ZWJjMDg5MGQ0%2540thread.v2/0?context%3D%257B%2522Tid%2522%253A%25228d281d1d-9c4d-4bf7-b16e-032d15de9f6c%2522%252C%2522Oid%2522%253A%2522dc97f81c-01f9-43b1-971f-f199812b078e%2522%252C%2522MessageId%2522%253A%25220%2522%257D&sa=D&source=editors&ust=1652021404801525&usg=AOvVaw1XAe8kuTHYqzw1Gq0fX8Kl

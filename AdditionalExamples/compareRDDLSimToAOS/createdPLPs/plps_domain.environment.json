@@ -1,0 +1,162 @@
+{
+    "PlpMain": {
+        "Project": "plps_domain",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 10,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "robotName",
+            "Type": "enum",
+            "EnumValues": [
+                "armadillo"
+            ]
+        },
+        {
+            "TypeName": "objName",
+            "Type": "enum",
+            "EnumValues": [
+                "can",
+                "can2"
+            ]
+        },
+        {
+            "TypeName": "discrete_location",
+            "Type": "enum",
+            "EnumValues": [
+                "robot_lab",
+                "hallway",
+                "office",
+                "out_of_reach_warehouse",
+                "robot_hand"
+            ]
+        },
+        {
+            "TypeName": "floor",
+            "Type": "enum",
+            "EnumValues": [
+                "f1",
+                "f2",
+                "f3"
+            ]
+        },
+        {
+            "TypeName": "robot",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "name",
+                    "Type": "robotName",
+                    "Default": "armadillo"
+                },
+                {
+                    "Name": "near",
+                    "Type": "discrete_location",
+                    "Default": "hallway"
+                },
+                {
+                    "Name": "hand_empty",
+                    "Type": "bool",
+                    "Default": "true"
+                }
+            ]
+        },
+        {
+            "TypeName": "obj",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "name",
+                    "Type": "objName",
+                    "Default": "can"
+                },
+                {
+                    "Name": "pickable",
+                    "Type": "bool",
+                    "Default": "false"
+                },
+                {
+                    "Name": "object_at",
+                    "Type": "discrete_location",
+                    "Default": "hallway"
+                }
+            ]
+        },
+        {
+            "TypeName": "location",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "name",
+                    "Type": "discrete_location",
+                    "Default": "hallway"
+                },
+                {
+                    "Name": "floorName",
+                    "Type": "floor",
+                    "Default": "f1"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "o_robot",
+            "Type": "robot"   
+        },
+        {
+            "Name": "o_robot_lab",
+            "Type": "location",
+            "DefaultCode": "state.o_robot_lab.name = robot_lab; state.o_robot_lab.floorName = f2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "o_office",
+            "Type": "location",
+            "DefaultCode": "state.o_office.name = office; state.o_office.floorName = f2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "o_hallway",
+            "Type": "location",
+            "DefaultCode": "state.o_hallway.name = hallway; state.o_hallway.floorName = f2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "o_out_of_reach_warehouse",
+            "Type": "location",
+            "DefaultCode": "state.o_out_of_reach_warehouse.name = out_of_reach_warehouse; state.o_out_of_reach_warehouse.floorName = f3;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "o_can",
+            "Type": "obj",
+            "DefaultCode": "state.o_can.name = can; state.o_can.pickable = true; state.o_can.object_at = office;"
+        },
+        {
+            "Name": "o_can2",
+            "Type": "obj",
+            "DefaultCode": "state.o_can2.name = can2; state.o_can2.pickable = false; state.o_can2.object_at = out_of_reach_warehouse;"
+        },
+        {
+            "Name": "goal_reached",
+            "Type": "bool",
+            "Default": "false"
+        }
+    ],
+    "InitialBeliefStateAssignments": [
+    ],
+    "SpecialStates": [
+        {
+            "StateConditionCode": "state.goal_reached == true",
+            "Reward": 400.0,
+            "IsGoalState": true
+        }
+    ],
+    "ExtrinsicChangesDynamicModel": []
+}

@@ -55,6 +55,7 @@
     ],
     "GlobalVariablesDeclaration": [
         {
+            "Name": "robotLocation",
             "Type": "tLocation",
             "DefaultCode": "state.robotLocation.discrete = -1;"
         },

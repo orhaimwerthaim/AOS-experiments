@@ -1,0 +1,10 @@
+{
+    "PlpMain": {
+        "Project": "plps_domain",
+        "Name": "environment",
+        "Type": "EnvironmentGlue",
+        "Version": 1
+    },
+    "LocalVariableTypes":[],
+    "Constants":[]
+}
