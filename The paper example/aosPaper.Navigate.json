@@ -1,6 +1,6 @@
 {
     "PlpMain": {
-        "Project": "turtleBotVisitLocationsPO_Noisy",
+        "Project": "aosPaper",
         "Name": "navigate",
         "Type": "PLP",
         "Version": 1
@@ -13,10 +13,10 @@
     ],
     "Preconditions": {
         "GlobalVariablePreconditionAssignments": [
-            { 
+            {
                 "AssignmentCode": "__meetPrecondition= oDesiredLocation.discrete != state.robotLocation.discrete;"
             },
-            { 
+            {
                 "IteratePreviousStateVars": [
                     {
                         "Type": "tVisitedLocation",
@@ -28,34 +28,34 @@
             }
         ],
         "ViolatingPreconditionPenalty": -10
-    }, 
+    },
     "DynamicModel": {
         "NextStateAssignments": [
-            { 
-                "AssignmentCode": " state__.robotLocation.discrete = !__meetPrecondition || AOS.Bernoulli(0.1) ? -1: oDesiredLocation.discrete;}"
+            {
+                "AssignmentCode": " state__.robotLocation.discrete = !__meetPrecondition || AOS.Bernoulli(0.01) ? -1: oDesiredLocation.discrete;"
             },
-            { 
-                "AssignmentCode": " if(state__.robotLocation.discrete == oDesiredLocation.discrete) state__.robotLocation.x = oDesiredLocation.x; state__.robotLocation.y = oDesiredLocation.y; state__.robotLocation.z = oDesiredLocation.z;}"
+            {
+                "AssignmentCode": " if(state__.robotLocation.discrete == oDesiredLocation.discrete){ state__.robotLocation.x = oDesiredLocation.x; state__.robotLocation.y = oDesiredLocation.y; state__.robotLocation.z = oDesiredLocation.z;}"
             },
-            { 
+            {
                 "IterateNextStateVars": [
                     {
                         "Type": "tVisitedLocation",
                         "ItemName": "loc",
-                        "ConditionCode": "loc.discrete == state__.robotLocation",
+                        "ConditionCode": "loc.discrete == state__.robotLocation.discrete",
                         "WhenConditionTrueCode": "loc.visited=true;"
                     }
                 ]
             },
-            { 
+            {
                 "AssignmentCode": "__moduleResponse = (state__.robotLocation.discrete == -1 && AOS.Bernoulli(0.8)) ? eFailed : eSuccess;"
             },
-            { 
+            {
                 "AssignmentCode": "__reward = state_.robotLocation.discrete == -1 ? -5 : -pow(sqrt(pow(state.robotLocation.x-oDesiredLocation.x,2.0)+pow(state.robotLocation.y-oDesiredLocation.y,2.0)),2.0);"
             },
-            { 
+            {
                 "AssignmentCode": "if (state__.robotLocation.discrete == -1) __reward =  -10;"
-            } 
+            }
         ]
     }
 }
