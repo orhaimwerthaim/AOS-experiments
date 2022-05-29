@@ -1,16 +1,16 @@
 {
     "PlpMain": {
-        "Project": "turtleBotVisitLocationsPO_Noisy",
+        "Project": "aosPaper",
         "Name": "navigate",
         "Type": "Glue",
         "Version": 1.0
     },
-    "GlueFramework": "ROS", 
+    "GlueFramework": "ROS",
     "ModuleResponse": {
         "ResponseRules": [
             {
                 "Response": "eSuccess",
-                "ConditionCodeWithLocalVariables": "skillSuccess and planSuccess"
+                "ConditionCodeWithLocalVariables": "skillSuccess and goal_reached"
             },
             {
                 "Response": "eFailed",
@@ -23,17 +23,25 @@
             "ImportCode": [
                 {
                     "From": "geometry_msgs.msg",
-                    "Import": ["Point"]
+                    "Import": [
+                        "Point"
+                    ]
                 },
                 {
                     "From": "simple_navigation_goals.srv",
-                    "Import": ["navigate","navigateResponse"]
-                }],
+                    "Import": [
+                        "navigate",
+                        "navigateResponse"
+                    ]
+                }
+            ],
             "ServicePath": "/navigate_to_point",
             "ServiceName": "navigate",
             "ServiceParameters": [
-                { "ServiceFieldName": "goal",
-                   "AssignServiceFieldCode": "Point(x= nav_to_x +nav_to_y, y= nav_to_y, z= nav_to_z)"}
+                {
+                    "ServiceFieldName": "goal",
+                    "AssignServiceFieldCode": "Point(x= nav_to_x, y= nav_to_y, z= nav_to_z)"
+                }
             ]
         }
     },
@@ -41,7 +49,7 @@
         {
             "LocalVariableName": "skillSuccess",
             "FromROSServiceResponse": true,
-            "AssignmentCode": "navigateSuccess=__input.success",
+            "AssignmentCode": "skillSuccess=__input.success",
             "ImportCode": [
                 {
                     "From": "std_msgs.msg",
@@ -52,20 +60,20 @@
             ]
         },
         {
-            "LocalVariableName": "planSuccess",
-            "RosTopicPath": "/navigation/planner_output",
+            "LocalVariableName": "goal_reached",
+            "RosTopicPath": "/rosout",
             "VariableType": "bool",
             "InitialValue": "False",
-            "TopicMessageType": "String",
+            "TopicMessageType": "Log",
             "ImportCode": [
                 {
-                    "From": "std_msgs.msg",
+                    "From": "rosgraph_msgs.msg",
                     "Import": [
-                        "String"
+                        "Log"
                     ]
                 }
             ],
-            "AssignmentCode": "if planSuccess == True:\n\treturn True\nelse:\n\treturn __input.data.find('success') > -1"
+            "AssignmentCode": "if goal_reached == True:\n\treturn True\nelse:\n\treturn __input.msg.find('Goal reached') > -1"
         },
         {
             "InputLocalVariable": "nav_to_x",
