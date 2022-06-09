@@ -1,1 +1,16 @@
 
+running RDDLSim: created_plps_instance on RDDLSim cam simulate 12,500 per second
+to redo the experiment run (you will need to edit the runRddlSimExperiment.bash for jars in java pahs):
+./runRddlSimExperiment.bash <path to current directory> created_plps_instance
+
+for example:
+./runRddlSimExperiment.bash ~/Projects/AOS-experiments/Additional Examples/compareRDDLSimToAOS created_plps_instance
+
+
+running AOS: created_plps_instance domain as described in the createdPLPs folder was executed 452052 per second
+to redo the experiment run:
+./AOS-Solver/build/examples/cpp_models/plps_domain/despot_plps_domain
+
+
+running RDDLSim: wildfire_inst_mdp__1_v2 on RDDLSim cam simulate 25,300 per second
+
