@@ -1,0 +1,88 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotVisitLocations",
+        "Name": "navigate",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oDesiredLocation",
+            "Type": "tLocation"
+        }
+    ],
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition set default value",
+                "AssignmentCode": "__meetPrecondition= false;"
+            },
+            {
+                "AssignmentName": "location.visited",
+                "IteratePreviousStateVars": [
+                    {
+                        "Type": "tVisitedLocation",
+                        "ItemName": "loc",
+                        "ConditionCode": "loc.desc== oDesiredLocation.desc",
+                        "WhenConditionTrueCode": "__meetPrecondition= !loc.visited;"
+                    }
+                ]
+            }
+        ],
+        "ViolatingPreconditionPenalty": -800
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "realCase",
+                "TempVar": {
+                    "VarName": "realCase",
+                    "Type": "enum",
+                    "EnumName": "enumRealCase",
+                    "EnumValues": [
+                        "actual_pick_action_success",
+                        "actual_arm_outstretched",
+                        "actual_not_holding",
+                        "actual_dropped_the_object"
+                    ]
+                },
+                "AssignmentCode": "realCase = !__meetPrecondition ? actual_not_holding : AOS.SampleDiscrete(enumRealCase,{0.5238, 0.0952,0.0476,0.4285});"
+            },
+            {
+                "AssignmentName": "state__.robotL",
+                "AssignmentCode": "bool success = AOS.Bernoulli(0.7); float test= AOS.SampleNormal(40000,10000);"
+            },
+            {
+                "AssignmentName": "location.visited",
+                "IterateNextStateVars": [
+                    {
+                        "Type": "tVisitedLocation",
+                        "ItemName": "loc",
+                        "ConditionCode": "loc.desc== oDesiredLocation.desc",
+                        "WhenConditionTrueCode": "loc.visited = true && success;"
+                    }
+                ]
+            },
+            {
+                "AssignmentName": "state__.robotL",
+                "AssignmentCode": "if(success){state__.robotL.x = oDesiredLocation.x;state__.robotL.y = oDesiredLocation.y;state__.robotL.z = oDesiredLocation.z;}"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = eSuccess;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward =100 -sqrt(pow(state.robotL.x-oDesiredLocation.x,2.0)+pow(state.robotL.y-oDesiredLocation.y,2.0))*10;"
+            }
+        ]
+    },
+    "StateGivenObservationModel": {
+        "Assignments": [
+            {
+                "AssignmentName": "setLocation",
+                "AssignmentCode": "if(goal_reached){state___.robotL.x = oDesiredLocation.x;state___.robotL.y = oDesiredLocation.y;state___.robotL.z = oDesiredLocation.z;}"
+            }
+        ]
+    }
+}

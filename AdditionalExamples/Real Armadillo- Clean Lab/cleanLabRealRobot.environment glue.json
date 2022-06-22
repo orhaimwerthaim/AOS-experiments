@@ -1,0 +1,10 @@
+{
+    "PlpMain": {
+        "Project": "cleanLabRealRobot",
+        "Name": "environment",
+        "Type": "EnvironmentGlue",
+        "Version": 1
+    },
+    "LocalVariableTypes": [],
+    "Constants": []
+}

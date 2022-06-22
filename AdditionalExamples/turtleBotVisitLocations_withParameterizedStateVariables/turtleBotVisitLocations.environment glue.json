@@ -1,0 +1,49 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotVisitLocations",
+        "Name": "environment",
+        "Type": "EnvironmentGlue",
+        "Version": 1
+    },
+    "LocalVariableTypes": [
+        {
+            "TypeName": "ltLocation",
+            "Variables": [
+                {
+                    "Name": "x",
+                    "Type": "float"
+                },
+                {
+                    "Name": "y",
+                    "Type": "float"
+                },
+                {
+                    "Name": "z",
+                    "Type": "float"
+                }
+            ]
+        }
+    ],
+    "Constants": [
+        {
+            "Name": "___locationOutside_lab211",
+            "Type": "ltLocation",
+            "InitCode": "___locationOutside_lab211.x=11.0\n___locationOutside_lab211.y=12.0\n___locationOutside_lab211.z=13.0"
+        },
+        {
+            "Name": "___locationAuditorium",
+            "Type": "ltLocation",
+            "InitCode": "___locationAuditorium.x=21.0\n___locationAuditorium.y=22.0\n___locationAuditorium.z=23.0"
+        },
+        {
+            "Name": "___locationNear_elevator1",
+            "Type": "ltLocation",
+            "InitCode": "___locationNear_elevator1.x=31.0\n___locationNear_elevator1.y=32.0\n___locationNear_elevator1.z=33.0"
+        },
+        {
+            "Name": "___locationCorridor",
+            "Type": "ltLocation",
+            "InitCode": "___locationCorridor.x=41.0\n___locationCorridor.y=42.0\n___locationCorridor.z=43.0"
+        }
+    ]
+}

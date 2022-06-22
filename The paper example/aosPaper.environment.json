@@ -106,7 +106,7 @@
     ],
     "SpecialStates": [
         {
-            "StateConditionCode": "state.v1.visited && !state.v2.visited",
+            "StateConditionCode": "!state.v1.visited && state.v2.visited",
             "Reward": -50.0,
             "IsOneTimeReward": true
         },

@@ -1,0 +1,179 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotVisitLocations",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 15,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "tDiscreteLocation",
+            "Type": "enum",
+            "EnumValues": [
+                "eL1",
+                "eL2",
+                "eL3",
+                "eL4",
+                "eL5",
+                "eL6",
+                "eL7",
+                "eL8"
+            ]
+        },
+        {
+            "TypeName": "tLocation",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "x",
+                    "Type": "float",
+                    "Default": "0.0"
+                },
+                {
+                    "Name": "y",
+                    "Type": "float",
+                    "Default": "0.0"
+                },
+                {
+                    "Name": "z",
+                    "Type": "float",
+                    "Default": "0.0"
+                },
+                {
+                    "Name": "desc",
+                    "Type": "tDiscreteLocation",
+                    "Default": "eL1"
+                }
+            ]
+        },
+        {
+            "TypeName": "tVisitedLocation",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "visited",
+                    "Type": "bool",
+                    "Default": "false"
+                },
+                {
+                    "Name": "desc",
+                    "Type": "tDiscreteLocation",
+                    "Default": "eL1"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "grid",
+            "Type": "int",
+            "Parameters": [
+                "tDiscreteLocation",
+                "(1,10,1)"
+            ],
+            "IncludeParametersCode": "par1 != eLocationAuditoriumSide2 || par2 < 5",
+            "DefaultCode": "state.grid[make_tuple(par1,par2)] = par2;"
+        },
+        {
+            "Name": "v1",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v1.desc = eL1;"
+        },
+        {
+            "Name": "v2",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v2.desc = eL2;"
+        },
+        {
+            "Name": "v3",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v3.desc = eL3"
+        },
+        {
+            "Name": "v4",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v4.desc = eL4;"
+        },
+        {
+            "Name": "v5",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v5.desc = eL5;"
+        },
+        {
+            "Name": "v6",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v6.desc = eL6;"
+        },
+        {
+            "Name": "v7",
+            "Type": "tVisitedLocation",
+            "DefaultCode": "state.v7.desc = eL7;"
+        },
+        {
+            "Name": "l1",
+            "Type": "tLocation",
+            "DefaultCode": "state.l1.x = -1.01606154442; state.l1.y = 0.660750925541; state.l1.z =-0.00454711914062; state.l1.desc = eL1;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l2",
+            "Type": "tLocation",
+            "DefaultCode": "state.l2.x = 0.00500533776358; state.l2.y = 0.640727937222; state.l2.z =-0.00143432617188; state.l2.desc = eL2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l3",
+            "Type": "tLocation",
+            "DefaultCode": "state.l3.x = 0.986030161381; state.l3.y = 0.610693752766; state.l3.z =-0.00143432617188; state.l3.desc = eL3;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l4",
+            "Type": "tLocation",
+            "DefaultCode": "state.l4.x = 1.99708676338; state.l4.y = 0.620704889297; state.l4.z =-0.00143432617188; state.l4.desc = eL4;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l5",
+            "Type": "tLocation",
+            "DefaultCode": "state.l5.x = 1.9770655632; state.l5.y = -0.700796544552; state.l5.z =0.0025634765625; state.l5.desc = eL5;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l6",
+            "Type": "tLocation",
+            "DefaultCode": "state.l6.x = 0.989744365215; state.l6.y = -1.67847764492; state.l6.z =-0.00347900390625; state.l6.desc = eL6;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l7",
+            "Type": "tLocation",
+            "DefaultCode": "state.l7.x = -0.01501581911; state.l7.y = -1.49169492722; state.l7.z =0.00253295898438; state.l7.desc = eL7;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l8",
+            "Type": "tLocation",
+            "DefaultCode": "state.l8.x = -2.01710748672; state.l8.y = 0.570648550987; state.l8.z =-0.165466308594; state.l8.desc = eL8;",
+            "IsActionParameterValue": false
+        },
+        {
+            "Name": "robotL",
+            "Type": "tLocation",
+            "DefaultCode": "state.robotL = state.l8"
+        }
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [
+        {
+            "StateConditionCode": "state.v1.visited && state.v2.visited && state.v3.visited && state.v4.visited && state.v5.visited && state.v6.visited && state.v7.visited",
+            "Reward": 8000.0,
+            "IsGoalState": true
+        }
+    ],
+    "ExtrinsicChangesDynamicModel": []
+}
