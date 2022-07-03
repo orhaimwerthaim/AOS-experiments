@@ -1,0 +1,217 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotExplore",
+        "Name": "navigate",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "eSuccess",
+                "ConditionCodeWithLocalVariables": "True"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Point"
+                    ]
+                },
+                {
+                    "From": "simple_navigation_goals.srv",
+                    "Import": [
+                        "navigate",
+                        "navigateResponse"
+                    ]
+                }
+            ],
+            "ServicePath": "/move",
+            "ServiceName": "move",
+            "ServiceParameters": [
+                {
+                    "ServiceFieldName": "goal",
+                    "AssignServiceFieldCode": "Move(linear= 1.0, angular= direction)"
+                }
+            ]
+        }
+    },
+    "LocalVariablesInitialization": [
+        {
+            "InputLocalVariable": "direction",
+            "FromGlobalVariable": "oDirection"
+        },
+        {
+            "LocalVariableName": "goal_reached",
+            "RosTopicPath": "/rosout",
+            "VariableType": "bool",
+            "InitialValue": "False",
+            "TopicMessageType": "Log",
+            "ImportCode": [
+                {
+                    "From": "rosgraph_msgs.msg",
+                    "Import": [
+                        "Log"
+                    ]
+                }
+            ],
+            "AssignmentCode": "if goal_reached == True:\n\treturn True\nelse:\n\treturn __input.msg.find('Goal reached') > -1"
+        },
+        {
+            "LocalVariableName": "occupancyGrid",
+            "UpdateDB_OnceAtEnd": true,
+            "RosTopicPath": "/map",
+            "VariableType": "int[]",
+            "TopicMessageType": "OccupancyGrid",
+            "ImportCode": [
+                {
+                    "From": "nav_msgs.msg",
+                    "Import": [
+                        "OccupancyGrid"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.data"
+        },
+        {
+            "LocalVariableName": "orientation",
+            "RosTopicPath": "/robot_location/real",
+            "VariableType": "float",
+            "TopicMessageType": "Pose",
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Pose"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.orientation.w"
+        },
+        {
+            "LocalVariableName": "robotRealLocY",
+            "RosTopicPath": "/robot_location/real",
+            "VariableType": "float",
+            "TopicMessageType": "Pose",
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Pose"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.position.y"
+        },
+        {
+            "LocalVariableName": "robotRealLocX",
+            "RosTopicPath": "/robot_location/real",
+            "VariableType": "float",
+            "TopicMessageType": "Pose",
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Pose"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.position.x"
+        },
+        {
+            "LocalVariableName": "robotGridLocX",
+            "RosTopicPath": "/robot_location/occupancy_map",
+            "VariableType": "int",
+            "TopicMessageType": "Pose",
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Pose"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.position.x"
+        },
+        {
+            "LocalVariableName": "robotGridLocY",
+            "RosTopicPath": "/robot_location/occupancy_map",
+            "VariableType": "int",
+            "TopicMessageType": "Pose",
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Pose"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.position.y"
+        },
+        {
+            "LocalVariableName": "map_position_x",
+            "RosTopicPath": "/robot_location/occupancy_map",
+            "VariableType": "float",
+            "TopicMessageType": "Pose",
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Pose"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.info.origin.position.x"
+        },
+        {
+            "LocalVariableName": "map_position_y",
+            "RosTopicPath": "/robot_location/occupancy_map",
+            "VariableType": "float",
+            "TopicMessageType": "Pose",
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Pose"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.info.origin.position.y"
+        },
+        {
+            "LocalVariableName": "map_resolution",
+            "RosTopicPath": "/robot_location/occupancy_map",
+            "VariableType": "float",
+            "TopicMessageType": "Pose",
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Pose"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.info.resolution"
+        },
+        {
+            "LocalVariableName": "map_width",
+            "RosTopicPath": "/robot_location/occupancy_map",
+            "VariableType": "int",
+            "TopicMessageType": "Pose",
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Pose"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.info.width"
+        }
+    ]
+}

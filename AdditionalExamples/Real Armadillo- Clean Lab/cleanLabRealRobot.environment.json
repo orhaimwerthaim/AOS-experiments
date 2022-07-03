@@ -23,6 +23,7 @@
                 "trashCan1",
                 "trashCan2",
                 "robotStartL",
+                "eRobotHand",
                 "eUnknown"
             ]
         },
@@ -103,6 +104,16 @@
             "IsActionParameterValue": true
         },
         {
+            "Name": "spaceLeftInTrashCan1",
+            "Type": "int",
+            "DefaultCode": "state.spaceLeftInTrashCan1 = 2;" 
+        },
+        {
+            "Name": "spaceLeftInTrashCan2",
+            "Type": "int",
+            "DefaultCode": "state.spaceLeftInTrashCan2 = 2;" 
+        },
+        {
             "Name": "robotL",
             "Type": "tLocation",
             "DefaultCode": "state.robotL.discrete = robotStartL; state.robotL.x=0.0; state.robotL.y=0.0; state.robotL.z=0.0;" 
@@ -126,6 +137,11 @@
             "Name": "canLocation4",
             "Type": "tDiscreteLocation",
             "DefaultCode": "state.canLocation4 = workStation6;" 
+        },
+        {
+            "Name": "holding_can",
+            "Type": "bool",
+            "DefaultCode": "state.holding_can = false;" 
         }
     ],
     "InitialBeliefStateAssignments": [

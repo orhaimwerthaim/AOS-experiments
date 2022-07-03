@@ -37,7 +37,7 @@
             },
             {
                 "AssignmentName": "state.robotGenerallocation_",
-                "AssignmentCode": "if (realCase == action_success) {state.robotL.discrete = oDesiredLocation.discrete; state.robotL.x = oDesiredLocation.x; state.robotL.y = oDesiredLocation.y; state.robotL.z = oDesiredLocation.z;}"
+                "AssignmentCode": "if (realCase == action_success) {state__.robotL.discrete = oDesiredLocation.discrete; state__.robotL.x = oDesiredLocation.x; state__.robotL.y = oDesiredLocation.y; state__.robotL.z = oDesiredLocation.z;}"
             },
             {
                 "AssignmentName": "__moduleResponse",

@@ -1,0 +1,31 @@
+{
+    "PlpMain": {
+        "Project": "cleanLabRealRobot",
+        "Name": "release_can",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {},
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Point,Pose,Quaternion"
+                    ]
+                },
+                {
+                    "From": "std_srvs.srv",
+                    "Import": [
+                        "*"
+                    ]
+                }
+            ],
+            "ServicePath": "/release_can",
+            "ServiceName": "Trigger",
+            "ServiceParameters": []
+        }
+    }
+}

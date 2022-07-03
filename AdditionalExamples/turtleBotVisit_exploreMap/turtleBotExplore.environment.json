@@ -1,0 +1,113 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotExplore",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 15,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "map_width",
+            "Type": "int",
+            "DefaultCode": "-1"
+        },
+        {
+            "Name": "map_position_y",
+            "Type": "float",
+            "DefaultCode": "-1"
+        },
+        {
+            "Name": "map_position_x",
+            "Type": "float",
+            "DefaultCode": "-1"
+        },
+        {
+            "Name": "map_resolution",
+            "Type": "float",
+            "DefaultCode": "-1"
+        },
+        {
+            "Name": "occupancyGrid",
+            "Type": "array",
+            "BaseType":"int",
+            "DefaultCode": ""
+        },
+        {
+            "Name": "robotGridLocX",
+            "Type": "int",
+            "DefaultCode": "state.robotGridLocX = -1"
+        },
+        {
+            "Name": "robotGridLocY",
+            "Type": "int",
+            "DefaultCode": "state.robotGridLocY = -1"
+        },
+        {
+            "Name": "robotRealLocX",
+            "Type": "int",
+            "DefaultCode": "state.robotRealLocX = -1"
+        },
+        {
+            "Name": "robotRealLocY",
+            "Type": "int",
+            "DefaultCode": "state.robotRealLocY = -1"
+        },
+        {
+            "Name": "orientation",
+            "Type": "float",
+            "DefaultCode": "state.orientation = -1;"
+        },
+        {
+            "Name": "forward",
+            "Type": "float",
+            "DefaultCode": "state.forward = 0;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "backwards",
+            "Type": "float",
+            "DefaultCode": "state.backwards = 3;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "right",
+            "Type": "float",
+            "DefaultCode": "state.right = -1.5;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "top_right",
+            "Type": "float",
+            "DefaultCode": "state.top_right = -0.75;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "back_right",
+            "Type": "float",
+            "DefaultCode": "state.back_right = -2.25;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "top_left",
+            "Type": "float",
+            "DefaultCode": "state.top_left = 0.75;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "back_left",
+            "Type": "float",
+            "DefaultCode": "state.back_left = 2.25;",
+            "IsActionParameterValue": true
+        }
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [
+         
+    ],
+    "ExtrinsicChangesDynamicModel": []
+}

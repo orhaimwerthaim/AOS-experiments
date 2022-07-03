@@ -1,0 +1,105 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotExplore",
+        "Name": "navigate",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oDirection",
+            "Type": "float"
+        }
+    ],
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition set default value",
+                "AssignmentCode": "__meetPrecondition= false;"
+            },
+            {
+                "AssignmentName": "location.visited",
+                "IteratePreviousStateVars": [
+                    {
+                        "Type": "tVisitedLocation",
+                        "ItemName": "loc",
+                        "ConditionCode": "loc.desc== oDesiredLocation.desc",
+                        "WhenConditionTrueCode": "__meetPrecondition= !loc.visited;"
+                    }
+                ]
+            }
+        ],
+        "ViolatingPreconditionPenalty": -800
+    },
+    "DynamicModel": [
+        {
+            "AssignmentName": "Step 1: the new robot orientation in degrees. the range is (-180,180]",
+            "AssignmentCode": "state__.orientation= (state.orientation + oDirection*(1.5/90.0)) % 360;"
+        },
+        {
+            "AssignmentName": "Step 2: the new robot orientation in degrees. the range is (-180,180]",
+            "AssignmentCode": "state__.orientation= abs(state__.orientation) <= 180 ? state__.orientation : (state__.orientation > 0 ? -180 + (state__.orientation % 180) : 180 + (state__.orientation % 180));"
+        },
+        {
+            "AssignmentName": "move X if no obstacles on the way",
+            "AssignmentCode": "state__.robotRealLocX= state.robotRealLocX + cos(state__.orientation) * 0.86;"
+        },
+        {
+            "AssignmentName": "move Y if no obstacles on the way",
+            "AssignmentCode": "state__.robotRealLocY= state.robotRealLocY + sin(state__.orientation) * 0.86;"
+        }, 
+        {
+            "AssignmentName": "find the occupancy grid cell by real location and map metadata",
+            "AssignmentCode": "state__.robotGridLocX = int((state__.robotRealLocX - state__.map_position_x) / state__.map_resolution);"
+        }, 
+        {
+            "AssignmentName": "find the occupancy grid cell by real location and map metadata",
+            "AssignmentCode": "state__.robotGridLocY = int((state__.robotRealLocY - state__.map_position_y) / state__.map_resolution);"
+        }, 
+        {
+            "AssignmentName": "should we iterate up or down in x",
+            "AssignmentCode": "float signX = (state__.robotRealLocX-state.robotRealLocX)/abs(state__.robotRealLocX-state.robotRealLocX);"
+        },
+        {
+            "AssignmentName": "should we iterate up or down in y",
+            "AssignmentCode": "float signY = (state__.robotRealLocY-state.robotRealLocY)/abs(state__.robotRealLocY-state.robotRealLocY);"
+        },
+        {
+            "AssignmentName": "go until hitting an obstacle",
+            "AssignmentCode": "for(float curX= state.robotRealLocX; (signX > 0 && curX <= state__.robotRealLocX) || (signX < 0 && curX >= state__.robotRealLocX); curX+= signX *state.map_resolution){for(float curY= state.robotRealLocY; (signY > 0 && curY <= state__.robotRealLocY) || (signY < 0 && curY >= state__.robotRealLocY); curY+= signY *state.map_resolution){int occupancyIndX = (int)((curX - state.map_position_x) / state.map_resolution);int occupancyIndY = (int)((curY - state.map_position_y) / state.map_resolution);int cellValue = state.occupancyGrid[occupancyIndX + map_width*occupancyIndY];if(cellValue > 50){state__.robotRealLocX = curX- signX *state.map_resolution;state__.robotRealLocY = curY- signY *state.map_resolution;state__.robotGridLocX = int((state__.robotRealLocX - state__.map_position_x) / state__.map_resolution);state__.robotGridLocY = int((state__.robotRealLocY - state__.map_position_x) / state__.map_resolution);break;}}}"
+        },
+        {
+            "AssignmentName": "points to mark unknown cells around them",
+            "AssignmentCode": "int coordinatesX [] = {state__.robotRealLocX, (state__.robotRealLocX - (state__.robotRealLocX - state.robotRealLocX)/2)};"
+        },
+        {
+            "AssignmentName": "points to mark unknown cells around them",
+            "AssignmentCode": "int coordinatesY [] = {state__.robotRealLocY, (state__.robotRealLocY - (state__.robotRealLocY - state.robotRealLocY)/2)};"
+        },
+        {
+            "AssignmentName": "count unknouwn marked cells",
+            "AssignmentCode": "int countUnknownCells=0;"
+        },
+        {
+            "AssignmentName": "set laser Range",
+            "AssignmentCode": "float laserRange=2.0;"
+        },
+        {
+            "AssignmentName": "iterate and mark cells",
+            "AssignmentCode": "for(int pointId = 0; pointId < 2; pointId++){for(int degree = 0; degree < 360; degree+=2){bool obstacleFound=false;float untilX = coordinatesX[pointId] + cos(degree)*laserRange; float untilY = coordinatesY[pointId] + cos(degree)*laserRange;float signX = (untilX-coordinatesX[pointId])/abs(untilX-coordinatesX[pointId]);float signY = (untilY-coordinatesY[pointId])/abs(untilY-coordinatesY[pointId]);for(curY= coordinatesY[pointId]; (signY > 0 && curY <= untilY) || (signY < 0 && curY >= untilY); curY+= signY *state.map_resolution){for(curX= coordinatesX[pointId]; (signX > 0 && curX <= untilX) || (signY < 0 && curX >= untilX); curX+= signX *state.map_resolution){int occupancyIndX = (int)((curX - state.map_position_x) / state.map_resolution);int occupancyIndY = (int)((curY - state.map_position_y) / state.map_resolution);int cellValue = state.occupancyGrid[occupancyIndX + map_width*occupancyIndY];if(cellValue > 50){obstacleFound=true;break;}if(cellValue == -1 && state__.occupancyGrid[occupancyIndX + map_width*occupancyIndY] == -1){countUnknownCells++;state__.occupancyGrid[occupancyIndX + map_width*occupancyIndY] =0;}}if(obstacleFound){break;}}}}"
+        }
+        {
+            "AssignmentName": "iterate and mark cells",
+            "AssignmentCode": "__reward = countUnknownCells;"
+        }
+    ]
+},
+"StateGivenObservationModel": {
+    "Assignments": [
+        {
+            "AssignmentName": "setLocation",
+            "AssignmentCode": "if(goal_reached){state___.robotL.x = oDesiredLocation.x;state___.robotL.y = oDesiredLocation.y;state___.robotL.z = oDesiredLocation.z;}"
+        }
+    ]
+}
+}
