@@ -7,7 +7,7 @@
     },
     "EnvironmentGeneral": {
         "Horizon": 15,
-        "Discount": 0.99
+        "Discount": 0.95
     },
     "GlobalVariableTypes": [],
     "GlobalVariablesDeclaration": [
@@ -29,12 +29,12 @@
         {
             "Name": "map_resolution",
             "Type": "float",
-            "DefaultCode": "-1"
+            "DefaultCode": "0"
         },
         {
             "Name": "occupancyGrid",
-            "Type": "array",
-            "BaseType":"int",
+            "Type": "int",
+            "IsArray": true,
             "DefaultCode": ""
         },
         {
@@ -61,6 +61,11 @@
             "Name": "orientation",
             "Type": "float",
             "DefaultCode": "state.orientation = -1;"
+        },
+        {
+            "Name": "robotWasInitialized",
+            "Type": "bool",
+            "DefaultCode": "state.robotWasInitialized = false;"
         },
         {
             "Name": "forward",
@@ -103,11 +108,21 @@
             "Type": "float",
             "DefaultCode": "state.back_left = 2.25;",
             "IsActionParameterValue": true
+        },
+        {
+            "Name": "onlyListen",
+            "Type": "bool",
+            "DefaultCode": "state.onlyListen = false;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "executeAction",
+            "Type": "bool",
+            "DefaultCode": "state.executeAction = true;",
+            "IsActionParameterValue": true
         }
     ],
     "InitialBeliefStateAssignments": [],
-    "SpecialStates": [
-         
-    ],
+    "SpecialStates": [],
     "ExtrinsicChangesDynamicModel": []
 }

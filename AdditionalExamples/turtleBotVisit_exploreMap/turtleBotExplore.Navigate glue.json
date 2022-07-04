@@ -26,8 +26,8 @@
                 {
                     "From": "simple_navigation_goals.srv",
                     "Import": [
-                        "navigate",
-                        "navigateResponse"
+                        "move",
+                        "moveResponse"
                     ]
                 }
             ],
@@ -35,8 +35,12 @@
             "ServiceName": "move",
             "ServiceParameters": [
                 {
-                    "ServiceFieldName": "goal",
-                    "AssignServiceFieldCode": "Move(linear= 1.0, angular= direction)"
+                    "ServiceFieldName": "linear",
+                    "AssignServiceFieldCode": "float(execute)"
+                },
+                {
+                    "ServiceFieldName": "angular",
+                    "AssignServiceFieldCode": "direction"
                 }
             ]
         }
@@ -47,24 +51,12 @@
             "FromGlobalVariable": "oDirection"
         },
         {
-            "LocalVariableName": "goal_reached",
-            "RosTopicPath": "/rosout",
-            "VariableType": "bool",
-            "InitialValue": "False",
-            "TopicMessageType": "Log",
-            "ImportCode": [
-                {
-                    "From": "rosgraph_msgs.msg",
-                    "Import": [
-                        "Log"
-                    ]
-                }
-            ],
-            "AssignmentCode": "if goal_reached == True:\n\treturn True\nelse:\n\treturn __input.msg.find('Goal reached') > -1"
+            "InputLocalVariable": "execute",
+            "FromGlobalVariable": "oExecuteAction"
         },
         {
             "LocalVariableName": "occupancyGrid",
-            "UpdateDB_OnceAtEnd": true,
+            "IsHeavyVariable": true,
             "RosTopicPath": "/map",
             "VariableType": "int[]",
             "TopicMessageType": "OccupancyGrid",
@@ -166,7 +158,7 @@
                     ]
                 }
             ],
-            "AssignmentCode": "return __input.info.origin.position.x"
+            "AssignmentCode": "return __input.position.x"
         },
         {
             "LocalVariableName": "map_position_y",
@@ -181,18 +173,18 @@
                     ]
                 }
             ],
-            "AssignmentCode": "return __input.info.origin.position.y"
+            "AssignmentCode": "return __input.position.y"
         },
         {
             "LocalVariableName": "map_resolution",
-            "RosTopicPath": "/robot_location/occupancy_map",
+            "RosTopicPath": "/map",
             "VariableType": "float",
-            "TopicMessageType": "Pose",
+            "TopicMessageType": "OccupancyGrid",
             "ImportCode": [
                 {
-                    "From": "geometry_msgs.msg",
+                    "From": "nav_msgs.msg",
                     "Import": [
-                        "Pose"
+                        "OccupancyGrid"
                     ]
                 }
             ],
@@ -200,14 +192,14 @@
         },
         {
             "LocalVariableName": "map_width",
-            "RosTopicPath": "/robot_location/occupancy_map",
+            "RosTopicPath": "/map",
             "VariableType": "int",
-            "TopicMessageType": "Pose",
+            "TopicMessageType": "OccupancyGrid",
             "ImportCode": [
                 {
-                    "From": "geometry_msgs.msg",
+                    "From": "nav_msgs.msg",
                     "Import": [
-                        "Pose"
+                        "OccupancyGrid"
                     ]
                 }
             ],
