@@ -49,7 +49,7 @@ if __name__ == '__main__':
     global map_width
     global map_height
     pub_real = rospy.Publisher('robot_location/real', Pose, queue_size=10)
-    pub_occ = rospy.Publisher('robot_location/in_occupancy_map', Pose, queue_size=10)
+    pub_occ = rospy.Publisher('robot_location/occupancy_map', Pose, queue_size=10)
     # initialize node
     rospy.init_node('robot_location_publisher')
     rospy.Subscriber("/map", OccupancyGrid, cd__map, queue_size=1)#

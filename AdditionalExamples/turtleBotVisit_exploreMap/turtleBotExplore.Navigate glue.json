@@ -6,14 +6,7 @@
         "Version": 1.0
     },
     "GlueFramework": "ROS",
-    "ModuleResponse": {
-        "ResponseRules": [
-            {
-                "Response": "eSuccess",
-                "ConditionCodeWithLocalVariables": "True"
-            }
-        ]
-    },
+    "ModuleResponse": {},
     "ModuleActivation": {
         "RosService": {
             "ImportCode": [
@@ -36,7 +29,7 @@
             "ServiceParameters": [
                 {
                     "ServiceFieldName": "linear",
-                    "AssignServiceFieldCode": "float(execute)"
+                    "AssignServiceFieldCode": "float(not execute)"
                 },
                 {
                     "ServiceFieldName": "angular",
@@ -48,11 +41,11 @@
     "LocalVariablesInitialization": [
         {
             "InputLocalVariable": "direction",
-            "FromGlobalVariable": "oDirection"
+            "FromGlobalVariable": "navDirection.direction"
         },
         {
             "InputLocalVariable": "execute",
-            "FromGlobalVariable": "oExecuteAction"
+            "FromGlobalVariable": "navDirection.onlyObserve"
         },
         {
             "LocalVariableName": "occupancyGrid",
@@ -147,33 +140,33 @@
         },
         {
             "LocalVariableName": "map_position_x",
-            "RosTopicPath": "/robot_location/occupancy_map",
+            "RosTopicPath": "/map",
             "VariableType": "float",
-            "TopicMessageType": "Pose",
+            "TopicMessageType": "OccupancyGrid",
             "ImportCode": [
                 {
-                    "From": "geometry_msgs.msg",
+                    "From": "nav_msgs.msg",
                     "Import": [
-                        "Pose"
+                        "OccupancyGrid"
                     ]
                 }
             ],
-            "AssignmentCode": "return __input.position.x"
+            "AssignmentCode": "return __input.info.origin.position.x"
         },
         {
             "LocalVariableName": "map_position_y",
-            "RosTopicPath": "/robot_location/occupancy_map",
+            "RosTopicPath": "/map",
             "VariableType": "float",
-            "TopicMessageType": "Pose",
+            "TopicMessageType": "OccupancyGrid",
             "ImportCode": [
                 {
-                    "From": "geometry_msgs.msg",
+                    "From": "nav_msgs.msg",
                     "Import": [
-                        "Pose"
+                        "OccupancyGrid"
                     ]
                 }
             ],
-            "AssignmentCode": "return __input.position.y"
+            "AssignmentCode": "return __input.info.origin.position.y"
         },
         {
             "LocalVariableName": "map_resolution",

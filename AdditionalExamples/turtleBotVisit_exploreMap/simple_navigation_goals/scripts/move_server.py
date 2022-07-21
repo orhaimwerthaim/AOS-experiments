@@ -13,14 +13,38 @@ from nav_msgs.msg import OccupancyGrid
 from geometry_msgs.msg import Twist
 from simple_navigation_goals.srv import move,moveResponse# 
 
+#map_published=False
+sub_once = None
+counter=0
+def cb__map(data):
+	global counter
+ #       global map_published
+        print(counter)
+        counter=1+counter
+	map_published = True
+  #      print('counter:',counter)
+
 def handle_move(req):
+    global map_published
+    global sub_once
+    global counter
+    counter=0
+    map_published = False
     print("handle_move(req):req")
     print(req)
     if abs(req.angular) > 0:
 	move_robot(0.0, req.angular)
-        rospy.sleep(0.3)
+        rospy.sleep(0.15)
     if abs(req.linear) > 0:
-	move_robot(req.linear, 0.0)
+	move_robot(req.linear, 0.0) 
+    
+    sub_once = rospy.Subscriber("/map", OccupancyGrid, cb__map, queue_size=1000)
+    while not counter>1:
+        rospy.sleep(0.05)
+#	print('counter:',counter)
+    
+    sub_once.unregister()
+
     return moveResponse()
 
 

@@ -48,14 +48,12 @@
     type="navigate_server.py"
     output="screen"/>  -->  
 
-   <node name="move_server"
-    pkg="simple_navigation_goals"
-    type="move_server_.py"
-    output="screen"/>  -->  
+   <node name="move_server" pkg="simple_navigation_goals" type="move_server.py"
+    /> 
 
       <node name="pub_robot_location"
     pkg="simple_navigation_goals"
     type="publish_robot_location.py"
-    output="screen"/>  -->  
+    />  
  
 </launch>
