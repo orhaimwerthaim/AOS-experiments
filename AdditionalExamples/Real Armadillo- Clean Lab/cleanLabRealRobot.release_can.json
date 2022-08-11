@@ -12,7 +12,7 @@
                 "AssignmentCode": "__meetPrecondition= (state.robotL.discrete == trashCan1 || state.robotL.discrete == trashCan2) && state.holding_can;"
             }
         ],
-        "ViolatingPreconditionPenalty": -20
+        "ViolatingPreconditionPenalty": 0
     },
     "DynamicModel": {
         "NextStateAssignments": [
@@ -27,16 +27,16 @@
                 "AssignmentCode": "if (__meetPrecondition && state.robotL.discrete == trashCan2) {state__.spaceLeftInTrashCan2 -= 1;}"
             },
             {
-                "AssignmentCode": "if (__meetPrecondition && state.canLocation1 == eRobotHand) {state__.canLocation1 = state.robotL.discrete;}"
+                "AssignmentCode": "if (__meetPrecondition && state.canLocation1 == eRobotHand) {state__.canLocation1 = inTrashCan;}"
             },
             {
-                "AssignmentCode": "if (__meetPrecondition && state.canLocation2 == eRobotHand) {state__.canLocation2 = state.robotL.discrete;}"
+                "AssignmentCode": "if (__meetPrecondition && state.canLocation2 == eRobotHand) {state__.canLocation2 = inTrashCan;}"
             },
             {
-                "AssignmentCode": "if (__meetPrecondition && state.canLocation3 == eRobotHand) {state__.canLocation3 = state.robotL.discrete;}"
+                "AssignmentCode": "if (__meetPrecondition && state.canLocation3 == eRobotHand) {state__.canLocation3 = inTrashCan;}"
             },
             {
-                "AssignmentCode": "if (__meetPrecondition && state.canLocation4 == eRobotHand) {state__.canLocation4 = state.robotL.discrete;}"
+                "AssignmentCode": "if (__meetPrecondition && state.canLocation4 == eRobotHand) {state__.canLocation4 = inTrashCan;}"
             },
             {
                 "AssignmentName": "__reward",

@@ -4,14 +4,18 @@
         "Name": "enhanced_pick",
         "Type": "PLP",
         "Version": 1.0
-    },  
+    },
     "Preconditions": {
         "GlobalVariablePreconditionAssignments": [
             {
                 "AssignmentName": "__meetPrecondition",
                 "AssignmentCode": "__meetPrecondition= ((std::set<tDiscreteLocation> {state.canLocation1, state.canLocation2, state.canLocation3, state.canLocation4}).count(state.robotL.discrete)) > 0;"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition= (state.robotL.discrete == state.canLocation1 || state.robotL.discrete == state.canLocation2 || state.robotL.discrete == state.canLocation3 || state.robotL.discrete == state.canLocation4);"
             }
-        ], 
+        ],
         "ViolatingPreconditionPenalty": -10
     },
     "DynamicModel": {
@@ -30,7 +34,7 @@
                         "actual_dropped_the_object"
                     ]
                 },
-                "AssignmentCode": "realCase = !__meetPrecondition ? actual_not_holding : AOS.SampleDiscrete(enumRealCase,{0.5238, 0.0952,0,0.0476,0.4285});"
+                "AssignmentCode": "realCase = !__meetPrecondition ? actual_not_holding : AOS.SampleDiscrete(enumRealCase,{1.0, 0.0,0,0.0,0.0});"
             },
             {
                 "AssignmentName": "holding_can",
@@ -58,11 +62,11 @@
             },
             {
                 "AssignmentName": "__moduleResponse",
-                "AssignmentCode": "if (realCase == actual_not_holding || realCase == actual_dropped_the_object)  __moduleResponse= res_pick_not_holding; if(realCase == actual_pick_action_success) __moduleResponse=AOS.Bernoulli(0.818)?res_pick_holding_can:res_pick_not_holding; if(realCase == actual_arm_outstretched_with_can) __moduleResponse= AOS.Bernoulli(0.818)?res_pick_arm_outstretched_holding_can:res_pick_without_can_arm_outstretched; if(realCase == actual_arm_outstretched_without_can) __moduleResponse=res_pick_without_can_arm_outstretched;"
+                "AssignmentCode": "if (realCase == actual_not_holding || realCase == actual_dropped_the_object)  __moduleResponse= res_pick_not_holding; if(realCase == actual_pick_action_success) __moduleResponse=AOS.Bernoulli(0.999)?res_pick_holding_can:res_pick_not_holding; if(realCase == actual_arm_outstretched_with_can) __moduleResponse= AOS.Bernoulli(0.818)?res_pick_arm_outstretched_holding_can:res_pick_without_can_arm_outstretched; if(realCase == actual_arm_outstretched_without_can) __moduleResponse=res_pick_without_can_arm_outstretched;"
             },
             {
                 "AssignmentName": "__reward",
-                "AssignmentCode": "__reward = -2;"
+                "AssignmentCode": "__reward = -1;"
             }
         ]
     }

@@ -1,0 +1,59 @@
+{
+    "PlpMain": {
+        "Project": "wildFire",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 15,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "targetTable",
+            "Type": "bool",
+            "IsArray": true,
+            "DefaultCode": "state.targetTable={false,false,false,false,true,true,true,false,false};"
+        },
+        {
+            "Name": "burningTable",
+            "Type": "bool",
+            "IsArray": true,
+            "DefaultCode": "state.burningTable={false,false,false,false,false,false,false,false,false};"
+        },
+        {
+            "Name": "out_of_fuelTable",
+            "Type": "bool",
+            "IsArray": true,
+            "DefaultCode": "state.out_of_fuelTable={false,false,false,false,false,false,false,false,false};"
+        },
+        {
+            "Name": "l1",
+            "Type": "int",
+            "DefaultCode": "state.l1 = 1;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l2",
+            "Type": "int",
+            "DefaultCode": "state.l2 = 2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l3",
+            "Type": "int",
+            "DefaultCode": "state.l3 = 3;",
+            "IsActionParameterValue": true
+        }
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [],
+    "ExtrinsicChangesDynamicModel": [
+        {
+            "AssignmentCode": "for(int x=1; x<=3; x++){for(int y=1; y<=3;y++){int cell =(x-1)+(y-1)*3;int burning_neighbors = 0;burning_neighbors += (x<3 && state.burningTable[cell+1]) ? 1 : 0;burning_neighbors += (x>1 && state.burningTable[cell-1]) ? 1 : 0;burning_neighbors += (y<3 && state.burningTable[cell+3]) ? 1 : 0;burning_neighbors += (y>1 && state.burningTable[cell-3]) ? 1 : 0;if(put_out !=NULL && put_out->x == x && put_out->y == y){state_.burningTable[cell] = false;}else if(!state.out_of_fuelTable[cell] && !state.burningTable[cell]){if(state.targetTable[cell] && burning_neighbors==0){state_.burningTable[cell] = false;}else{state_.burningTable[cell] = AOS.Bernoulli(1.0/exp(4.5-burning_neighbors));}}state_.out_of_fuelTable[cell] = state.out_of_fuelTable[cell] || state.burningTable[cell] || (!state.targetTable[cell] && cut_out != NULL && cut_out->x==x && cut_out->y==y);  }}"
+        }
+    ]
+}

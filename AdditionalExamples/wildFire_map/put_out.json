@@ -1,0 +1,33 @@
+{
+    "PlpMain": {
+        "Project": "wildFire",
+        "Name": "put_out",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "x",
+            "Type": "int"
+        },
+        {
+            "Name": "y",
+            "Type": "int"
+        }
+    ],
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            
+        ],
+        "ViolatingPreconditionPenalty": -800
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+             
+        ]
+    },
+    "StateGivenObservationModel": {
+        "Assignments": [ 
+        ]
+    }
+}

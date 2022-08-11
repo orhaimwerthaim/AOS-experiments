@@ -42,6 +42,10 @@
                 {
                     "ServiceFieldName": "goal",
                     "AssignServiceFieldCode": "Point(x= nav_to_x, y= nav_to_y, z= nav_to_z)"
+                },
+                {
+                    "ServiceFieldName": "Y",
+                    "AssignServiceFieldCode": "nav_to_Y"
                 }
             ]
         }
@@ -74,6 +78,10 @@
         {
             "InputLocalVariable": "nav_to_z",
             "FromGlobalVariable": "oDesiredLocation.z"
+        },
+        {
+            "InputLocalVariable": "nav_to_Y",
+            "FromGlobalVariable": "oDesiredLocation.Y"
         }
     ]
 }

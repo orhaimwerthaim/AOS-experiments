@@ -67,24 +67,48 @@
                 "AssignmentCode": "state__.robotGridLocY = int((state__.robotRealLocY - state__.map_position_y) / mapRes);"
             },
             {
-                "AssignmentName": "should we iterate up or down in x",
-                "AssignmentCode": "float signX = (state__.robotRealLocX-state.robotRealLocX) == 0 ? 1 : (state__.robotRealLocX-state.robotRealLocX)/abs(state__.robotRealLocX-state.robotRealLocX);"
+                "AssignmentName": "declar jump x",
+                "AssignmentCode": "float jumpX = state__.robotRealLocX-state.robotRealLocX;"
+            },
+            {
+                "AssignmentName": "declar jump y",
+                "AssignmentCode": "float jumpY = state__.robotRealLocY-state.robotRealLocY;"
+            },
+            {
+                "AssignmentName": "calc num of jumps",
+                "AssignmentCode": "float jumpsCount = abs(jumpX) > abs(jumpY) ? (int)(jumpX/mapRes)+1 : (int)(jumpY/mapRes)+1;"
+            },
+            {
+                "AssignmentName": "calc jump x",
+                "AssignmentCode": "jumpX = jumpX / jumpsCount;"
+            },
+            {
+                "AssignmentName": "calc jump y",
+                "AssignmentCode": "jumpY = jumpY / jumpsCount;"
             },
             {
                 "AssignmentName": "should we iterate up or down in y",
                 "AssignmentCode": "float signY = (state__.robotRealLocY-state.robotRealLocY) == 0 ? 1 : (state__.robotRealLocY-state.robotRealLocY)/abs(state__.robotRealLocY-state.robotRealLocY);"
             },
             {
+                "AssignmentName": "should we iterate up or down in x",
+                "AssignmentCode": "float signX = (state__.robotRealLocX-state.robotRealLocX) == 0 ? 1 : (state__.robotRealLocX-state.robotRealLocX)/abs(state__.robotRealLocX-state.robotRealLocX);"
+            },
+            {
+                "AssignmentName": "init temp variables",
+                "AssignmentCode": "float curX = state.robotRealLocX; float curY= state.robotRealLocY;"
+            },
+            {
                 "AssignmentName": "go until hitting an obstacle",
-                "AssignmentCode": "for(float curX= state.robotRealLocX; (signX > 0 && curX <= state__.robotRealLocX) || (signX < 0 && curX >= state__.robotRealLocX); curX+= signX *mapRes*0.95){for(float curY= state.robotRealLocY; (signY > 0 && curY <= state__.robotRealLocY) || (signY < 0 && curY >= state__.robotRealLocY); curY+= signY *mapRes*0.95){int occupancyIndX = (int)((curX - state__.map_position_x) / mapRes);int occupancyIndY = (int)((curY - state__.map_position_y) / mapRes);int cellValue = state.occupancyGrid.size() == 0 ? 0 : state.occupancyGrid[occupancyIndX + state__.map_width*occupancyIndY];if(cellValue > 50){state__.robotRealLocX = curX- signX *mapRes;state__.robotRealLocY = curY- signY *mapRes;state__.robotGridLocX = int((state__.robotRealLocX - state__.map_position_x) / state__.map_resolution);state__.robotGridLocY = int((state__.robotRealLocY - state__.map_position_x) / state__.map_resolution);break;}}}"
+                "AssignmentCode": "for(; ((signX > 0 && curX <= state__.robotRealLocX) || (signX < 0 && curX >= state__.robotRealLocX)) && ((signY > 0 && curY <= state__.robotRealLocY) || (signY < 0 && curY >= state__.robotRealLocY)); curX+= jumpX, curY+= jumpY) {int occupancyIndX = (int)((curX - state__.map_position_x) / mapRes);int occupancyIndY = (int)((curY - state__.map_position_y) / mapRes);int cellValue = state.occupancyGrid.size() == 0 ? 0 : state.occupancyGrid[occupancyIndX + state__.map_width*occupancyIndY]; if(cellValue > 50){state__.robotRealLocX = curX- signX *mapRes;state__.robotRealLocY = curY- signY *mapRes; state__.robotGridLocX = int((state__.robotRealLocX - state__.map_position_x) / state__.map_resolution); state__.robotGridLocY = int((state__.robotRealLocY - state__.map_position_x) / state__.map_resolution);break;}}"
             },
             {
                 "AssignmentName": "points to mark unknown cells around them",
-                "AssignmentCode": "int coordinatesX [] = {state__.robotRealLocX, (state__.robotRealLocX - (state__.robotRealLocX - state.robotRealLocX)/2)};"
+                "AssignmentCode": "float coordinatesX [] = {state__.robotRealLocX, (state__.robotRealLocX - (state__.robotRealLocX - state.robotRealLocX)/2)};"
             },
             {
                 "AssignmentName": "points to mark unknown cells around them",
-                "AssignmentCode": "int coordinatesY [] = {state__.robotRealLocY, (state__.robotRealLocY - (state__.robotRealLocY - state.robotRealLocY)/2)};"
+                "AssignmentCode": "float coordinatesY [] = {state__.robotRealLocY, (state__.robotRealLocY - (state__.robotRealLocY - state.robotRealLocY)/2)};"
             },
             {
                 "AssignmentName": "count unknouwn marked cells",
@@ -92,11 +116,11 @@
             },
             {
                 "AssignmentName": "set laser Range",
-                "AssignmentCode": "float laserRange=1.0;"
+                "AssignmentCode": "float laserRange=2.0;"
             },
             {
                 "AssignmentName": "iterate and mark cells",
-                "AssignmentCode": "for(int pointId = 0; pointId < 2; pointId++){for(int degree = 0; degree < 360; degree+=2){bool obstacleFound=false;float untilX = coordinatesX[pointId] + cos(toRadian(degree))*laserRange; float untilY = coordinatesY[pointId] + cos(toRadian(degree))*laserRange;float signX = (untilX-coordinatesX[pointId])/abs(untilX-coordinatesX[pointId]);float signY = (untilY-coordinatesY[pointId])/abs(untilY-coordinatesY[pointId]);for(float curY= coordinatesY[pointId]; (signY > 0 && curY <= untilY) || (signY < 0 && curY >= untilY); curY+= signY *mapRes){for(float curX= coordinatesX[pointId]; (signX > 0 && curX <= untilX) || (signY < 0 && curX >= untilX); curX+= signX *mapRes){int occupancyIndX = (int)((curX - state__.map_position_x) / mapRes);int occupancyIndY = (int)((curY - state__.map_position_y) / mapRes);int cellValue = state.occupancyGrid[occupancyIndX + state__.map_width*occupancyIndY];if(cellValue > 50){obstacleFound=true;break;}if(cellValue == -1 && state__.occupancyGrid[occupancyIndX + state__.map_width*occupancyIndY] == -1){countUnknownCells++;state__.occupancyGrid[occupancyIndX + state__.map_width*occupancyIndY] =0;}}if(obstacleFound){break;}}}}"
+                "AssignmentCode": "for(int pointId = 0; pointId < 2; pointId++){for(int degree = 0; degree < 360; degree+=2){bool obstacleFound=false;float untilX = coordinatesX[pointId] + cos(toRadian(degree))*laserRange; float untilY = coordinatesY[pointId] + sin(toRadian(degree))*laserRange; float signX = untilX-coordinatesX[pointId] == 0 ? 1 :(untilX-coordinatesX[pointId])/abs(untilX-coordinatesX[pointId]);float signY = untilY-coordinatesY[pointId] == 0 ? 1 : (untilY-coordinatesY[pointId])/abs(untilY-coordinatesY[pointId]); jumpX = untilX-coordinatesX[pointId]; jumpY = untilY-coordinatesY[pointId]; jumpsCount = abs(jumpX) > abs(jumpY) ? (int)(jumpX/mapRes)+1 : (int)(jumpY/mapRes)+1; jumpX = jumpX / jumpsCount; jumpY = jumpY / jumpsCount; curX = coordinatesX[pointId]; curY= coordinatesY[pointId]; for(; ((signX > 0 && curX <= untilX) || (signX < 0 && curX >= untilX)) && ((signY > 0 && curY <= untilY) || (signY < 0 && curY >= untilY)); curX+= jumpX, curY+= jumpY){ int occupancyIndX = (int)((curX - state__.map_position_x) / mapRes);int occupancyIndY = (int)((curY - state__.map_position_y) / mapRes);int cellIndex = occupancyIndX + state__.map_width*occupancyIndY; int cellValue = state.occupancyGrid[cellIndex];if(cellValue > 50){obstacleFound=true;break;} if(cellValue == -1 && state__.occupancyGrid[cellIndex] == -1){countUnknownCells++;state__.occupancyGrid[cellIndex] =0;}}if(obstacleFound){break;}}}"
             },
             {
                 "AssignmentName": "fo debug copy only ",

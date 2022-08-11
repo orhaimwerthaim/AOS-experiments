@@ -18,7 +18,7 @@
                 "AssignmentCode": "__meetPrecondition= state.robotL.discrete != oDesiredLocation.discrete;"
             }
         ],
-        "ViolatingPreconditionPenalty": -20
+        "ViolatingPreconditionPenalty": -40
     },
     "DynamicModel": {
         "NextStateAssignments": [
@@ -44,7 +44,10 @@
                 "AssignmentCode": "if (realCase == action_success) __moduleResponse = eSuccess; else __moduleResponse = eFailed;"
             },
             {
-                "AssignmentCode": "__reward = -(sqrt(pow(state.robotL.x-oDesiredLocation.x,2.0)+pow(state.robotL.y-oDesiredLocation.y,2.0)))*10;"
+                "AssignmentCode": "__reward = -(sqrt(pow(state.robotL.x-oDesiredLocation.x,2.0)+pow(state.robotL.y-oDesiredLocation.y,2.0)))*0.1 - 1;"
+            },
+            {
+                "AssignmentCode": "__reward = -1;"
             }
         ]
     }
