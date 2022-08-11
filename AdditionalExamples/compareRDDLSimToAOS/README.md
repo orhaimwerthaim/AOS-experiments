@@ -55,4 +55,9 @@ Variance, σ^2: 	258109292.89</br>
 
 B. We documented the domain and tested the AOS sampling rate:</br>
 The results were:</br>
+179167, 180604, 179441, 177487, 181684, 182354, 181257, 180636, 175721, 181430</br>
+
+Mean, μ:	179,978</br>
+Standard Deviation, σ: 1959</br>
+Variance, σ^2: 	3839801</br>
 
