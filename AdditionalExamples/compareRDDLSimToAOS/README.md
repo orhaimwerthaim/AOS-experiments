@@ -24,9 +24,35 @@ It is possible to perform the experiment on any machine (after downloading and c
 `./AOS-Solver/build/examples/cpp_models/plps_domain/despot_plps_domain`</br>
 The results were that *the domain generative module sampling rate was 452,052 samples per second*.
 
-### 2.We tried the wild fire domain described in the RDDL tutorial:
-A. The RDDLSim results were that *the domain generative module sampling rate was 25,300 samples per second*.</br>
+### 2.We tested the wild fire domain described in the RDDL tutorial:
+A. We tested the RDDLSim sampling rate per second on the domain 10 times:</br>
 To run the experiment use:</br>
-`./runRddlSimExperiment.bash <path_to_code_directory> wildfire_inst_mdp__1_v2`</br>
+`./runRddlSimExperiment.bash $PWD wildfire_inst_mdp__1_v2` </br>
+</br>
+The results were:</br>
+30646, 28810, 24606, 26218, 25302, 27083, 26238, 25951, 26128, 24910</br>
+Mean, μ:	26,589<br>
+Standard Deviation, σ: 1,758</br>
+Variance, σ^2: 	3092423 </br>
 
-B. Running the AOS on the wildfire domain sampled 190,343 samples per second.
+B. We documented the domain and tested the AOS sampling rate:</br>
+The results were:</br>
+177091, 190097, 188656, 189462, 185602, 190280, 189670, 186727, 187192, 190434</br>
+Mean, μ:	187,521</br>
+Standard Deviation, σ: 3,815</br>
+Variance, σ^2: 	14561347.09</br>
+
+
+
+### 3. We tested the 'academic advising' domain, found in the RDDLSim repository:
+A. running the RDDLSim experimend 10 times: </br>
+`./runRddlSimExperiment.bash $PWD academic_advising_inst_mdp__1` </br>
+The results for sampling rate per second were:
+91872, 78607, 79837, 80573, 117494, 80168, 80799, 80096, 76893, 122570</br>
+Mean, μ:	88,890.9</br>
+Standard Deviation, σ: 16,065.780183047</br>
+Variance, σ^2: 	258109292.89</br>
+
+B. We documented the domain and tested the AOS sampling rate:</br>
+The results were:</br>
+
