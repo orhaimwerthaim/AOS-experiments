@@ -29,4 +29,4 @@ A. The RDDLSim results were that *the domain generative module sampling rate was
 To run the experiment use:</br>
 `./runRddlSimExperiment.bash <path_to_code_directory> wildfire_inst_mdp__1_v2`</br>
 
-B. Running the AOS on the wildfire domain sampled 187,192 samples per second.
+B. Running the AOS on the wildfire domain sampled 193,272 samples per second.
