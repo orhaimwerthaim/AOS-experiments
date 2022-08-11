@@ -1,0 +1,20 @@
+{
+    "PlpMain": {
+        "Project": "cleanLabRealRobot",
+        "Name": "observe",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [  ], 
+    "DynamicModel": {
+        "NextStateAssignments": [ 
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "__moduleResponse = (state.robotL.discrete == state.canLocation1 || state.robotL.discrete == state.canLocation2)? eObserveCan : eNotObserveCan;"
+            }, 
+            {
+                "AssignmentCode": "__reward = -1;"
+            }
+        ]
+    }
+}

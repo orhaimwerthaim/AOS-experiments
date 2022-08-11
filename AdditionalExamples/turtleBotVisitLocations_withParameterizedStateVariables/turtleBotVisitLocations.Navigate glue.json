@@ -1,20 +1,16 @@
 {
     "PlpMain": {
-        "Project": "aosPaper",
+        "Project": "turtleBotVisitLocations",
         "Name": "navigate",
         "Type": "Glue",
         "Version": 1.0
     },
     "GlueFramework": "ROS",
-    "ModuleResponse": {
+    "ModuleResponse": {  
         "ResponseRules": [
             {
                 "Response": "eSuccess",
-                "ConditionCodeWithLocalVariables": "skillSuccess and goal_reached"
-            },
-            {
-                "Response": "eFailed",
-                "ConditionCodeWithLocalVariables": "True"
+                "ConditionCodeWithLocalVariables": "True" 
             }
         ]
     },
@@ -47,18 +43,16 @@
     },
     "LocalVariablesInitialization": [
         {
-            "LocalVariableName": "skillSuccess",
-            "VariableType":"bool",
-            "FromROSServiceResponse": true,
-            "AssignmentCode": "skillSuccess=__input.success",
-            "ImportCode": [
-                {
-                    "From": "std_msgs.msg",
-                    "Import": [
-                        "Bool"
-                    ]
-                }
-            ]
+            "InputLocalVariable": "nav_to_x",
+            "FromGlobalVariable": "oDesiredLocation.x"
+        },
+        {
+            "InputLocalVariable": "nav_to_y",
+            "FromGlobalVariable": "oDesiredLocation.y"
+        },
+        {
+            "InputLocalVariable": "nav_to_z",
+            "FromGlobalVariable": "oDesiredLocation.z"
         },
         {
             "LocalVariableName": "goal_reached",
@@ -77,16 +71,20 @@
             "AssignmentCode": "if goal_reached == True:\n\treturn True\nelse:\n\treturn __input.msg.find('Goal reached') > -1"
         },
         {
-            "InputLocalVariable": "nav_to_x",
-            "FromGlobalVariable": "oDesiredLocation.x"
-        },
-        {
-            "InputLocalVariable": "nav_to_y",
-            "FromGlobalVariable": "oDesiredLocation.y"
-        },
-        {
-            "InputLocalVariable": "nav_to_z",
-            "FromGlobalVariable": "oDesiredLocation.z"
+            "LocalVariableName": "last_value_goal_reached",
+            "RosTopicPath": "/rosout",
+            "VariableType": "bool",
+            "InitialValue": "False",
+            "TopicMessageType": "Log",
+            "ImportCode": [
+                {
+                    "From": "rosgraph_msgs.msg",
+                    "Import": [
+                        "Log"
+                    ]
+                }
+            ],
+            "AssignmentCode": "return __input.msg.find('Goal reached') == -1"
         }
     ]
 }

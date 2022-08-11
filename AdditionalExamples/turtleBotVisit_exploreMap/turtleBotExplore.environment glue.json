@@ -1,0 +1,10 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotExplore",
+        "Name": "environment",
+        "Type": "EnvironmentGlue",
+        "Version": 1
+    },
+    "LocalVariableTypes": [],
+    "Constants": []
+}

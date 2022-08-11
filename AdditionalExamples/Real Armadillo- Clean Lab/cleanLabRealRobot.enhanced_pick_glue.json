@@ -1,0 +1,58 @@
+{
+    "PlpMain": {
+        "Project": "cleanLabRealRobot",
+        "Name": "enhanced_pick",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "res_pick_holding_can",
+                "ConditionCodeWithLocalVariables": "True"
+            },
+            {
+                "Response": "res_pick_not_holding",
+                "ConditionCodeWithLocalVariables": "False"
+            },
+            {
+                "Response": "res_pick_arm_outstretched_holding_can",
+                "ConditionCodeWithLocalVariables": "False"
+            },
+            {
+                "Response": "res_pick_without_can_arm_outstretched",
+                "ConditionCodeWithLocalVariables": "False"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "robotican_demos_upgrade.srv",
+                    "Import": [
+                        "*"
+                    ]
+                }
+            ],
+            "ServiceName": "pick_unknown",
+            "ServicePath": "/pick_unknown",
+            "ServiceParameters": [
+                {
+                    "ServiceFieldName": "robot",
+                    "AssignServiceFieldCode": "''"
+                },
+                {
+                    "ServiceFieldName": "obj",
+                    "AssignServiceFieldCode": "''"
+                },
+                {
+                    "ServiceFieldName": "discrete_location",
+                    "AssignServiceFieldCode": "''"
+                }
+            ]
+        }
+    },
+    "LocalVariablesInitialization": []
+}

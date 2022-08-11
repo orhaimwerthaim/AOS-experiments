@@ -1,0 +1,57 @@
+run test to move turtlebot3:
+
+$ roslaunch turtlebot3_gazebo turtlebot3_world.launch
+make sure you saved a map at ~/map.yaml  (see https://emanual.robotis.com/docs/en/platform/turtlebot3/slam/#save-map)
+$ roslaunch turtlebot3_navigation turtlebot3_navigation.launch map_file:=$HOME/map.yaml
+$ rosrun simple_navigation_goals navigate_server.py
+$ rosservice call /navigate_to_point "{goal: {x: -2.01710748672, y: 0.570648550987, z: -0.165466308594}}"
+
+
+
+send http request:
+http://localhost:5000/InitializeProject
+
+
+Body:
+{ 
+    "PLPsDirectoryPath":"/home/or/Dropbox/AOS/PLP examples/working examples/turtleBotVisitLocations",
+    "RunWithoutRebuild":false,
+    "OnlyGenerateCode":true,
+    "RosTarget":
+    {
+        "WorkspaceDirectortyPath":"/home/or/catkin_ws",
+        "TargetProjectLaunchFile":"/home/or/catkin_ws/src/simple_navigation_goals/launch/servers.launch",
+        "RosTargetProjectPackages":["simple_navigation_goals"],
+        "TargetProjectInitializationTimeInSeconds":10
+    },
+    "SolverConfiguration":{ 
+        "NumOfParticles":5234,
+        "ActionsToSimulate":[],
+        "IsInternalSimulation":false,
+        "PlanningTimePerMoveInSeconds":2
+        },
+    "MiddlewareConfiguration":{
+        "DebugOn":true
+         
+    }
+}
+
+
+
+
+$ rosrun aos_ros_middleware_auto aos_ros_middleware_auto_node.py
+run solver.
+
+
+חזון הAOS מכיל ריבוי רכיבים ובכדי למקסם את הפרודקטיביות ולהראות תוצאות לאורך הדרך החלטנו לממשו בכיוון של תכנון אג'ילי כלומר פיתוח ופריסה מתמשכים תוך התחשבות בצרכים העתידיים, במקום במודל מפל המים.
+התחלנו במשימה שתספק את התועלת המירבית למשתמש והיא מימוש רכיב התכנון והביצוע האוטומטי.
+קיימות מערכות שמשלבות תכנון וביצוע אך האינטגרציה עם קוד המשתמש מצריכה מאמץ ניכר, מה שמרתיע משתמשים רבים, לחלקן חיבור בלתי ניתן לניתוק עם ROS (מערכת הפעלת הרובוטים הנפוצה ביותר), תוך התעלמות ממערכות רובוטיקה אחרות והתפתחויות עתידיות ובנוסף לכך יש רק תמיכה מוגבלת בתכנון הסתברותי ובמקרים בהם מצב העולם אינו ידוע בוודאות שכידוע אלו ממאפייני עולם הרובוטיקה.  
+
+בכדי לענות על צרכים אלו ועוד עיצבנו את הAOS כאשר המשתמש רק מספק את הקוד של יכולות הרובוט בצירוף תיעוד (קבצי PLP) ותיאור של הסביבה ויעדי הרובוט, והAOS מבצע אוטומטית את האינטגרציה ואת הפעלת הרובוט.
+עיצוב הAOS הוא מודולרי ומורכב מיחידת קבלת החלטות (solver), שכבה פונקציונאלית המפעילה את הרובוט, ושיכבה מגשרת השומרת את נתוני המערכת.
+עיצוב זה מאפשר הוספת רכיבים נוספים כמו למידת תיעוד מדוייק יותר, זיהוי אנומליות ובקרה כאשר לכולם יש ממשק רק עם אותה שכבה מגשרת.    
+הפעלת וניטור המערכת מתבצע באמצעות ממשק Restful שהוא סטנדרט מקובל בתעשייה וע"י בקשות HTTP ניתן לבצע כל פעולה הקשורה למערכת.
+מימשנו בשלב זה שכבה פונקציונאלית עבור ROS אך המערכת תוכננה כך שניתן יהיה לממש שכבה פונקציונאלית עבור פלטפורמות נוספות.
+כל זאת נעשה באופן מוכוון משתמש בכדי להנגיש ולדחוף קדימה את התפוצה והגיוון ברובוטים ומערכות אוטונומיות.  
+חלק מחזון הAOS הוא קלות השימוש
+חלק מחזון הAOS הוא plug&play ושימוש חוזר בקוד ולכן המערכת מצריכה מאמץ מינמלי מהמשתמש לצורך האינטרגרציה. המשתמש מתעד כל יכולת של הרובוט בפורמט PLP המכיל גם את האופן בו אותה יכולת מופעלת, ובנוסף הוא מתאר בפורמט פשוט את סביבת הפעולה של הרובוט ויעדיו  

@@ -1,0 +1,54 @@
+{
+    "PlpMain": {
+        "Project": "cleanLabRealRobot",
+        "Name": "navigate",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oDesiredLocation",
+            "Type": "tLocation"
+        }
+    ],
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition= state.robotL.discrete != oDesiredLocation.discrete;"
+            }
+        ],
+        "ViolatingPreconditionPenalty": -40
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "realCase",
+                "TempVar": {
+                    "VarName": "realCase",
+                    "Type": "enum",
+                    "EnumValues": [
+                        "action_success",
+                        "failed"
+                    ],
+                    "EnumName": "enumRealCase"
+                },
+                "AssignmentCode": "realCase = AOS.SampleDiscrete(enumRealCase,{0.8, 0});"
+            },
+            {
+                "AssignmentName": "state.robotGenerallocation_",
+                "AssignmentCode": "if (realCase == action_success) {state__.robotL.discrete = oDesiredLocation.discrete; state__.robotL.x = oDesiredLocation.x; state__.robotL.y = oDesiredLocation.y; state__.robotL.z = oDesiredLocation.z;}"
+            },
+            {
+                "AssignmentName": "__moduleResponse",
+                "AssignmentCode": "if (realCase == action_success) __moduleResponse = eSuccess; else __moduleResponse = eFailed;"
+            },
+            {
+                "AssignmentCode": "__reward = -(sqrt(pow(state.robotL.x-oDesiredLocation.x,2.0)+pow(state.robotL.y-oDesiredLocation.y,2.0)))*0.1 - 1;"
+            },
+            {
+                "AssignmentCode": "__reward = -1;"
+            }
+        ]
+    }
+}

@@ -1,0 +1,96 @@
+{
+    "PlpMain": {
+        "Project": "wildFire",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 15,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "tDiscreteLocation",
+            "Type": "enum",
+            "EnumValues": [
+                "eL1",
+                "eL2",
+                "eL3",
+                "eL4",
+                "eL5",
+                "eL6",
+                "eL7",
+                "eL8"
+            ]
+        },
+        {
+            "TypeName": "tCell",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "x",
+                    "Type": "int",
+                    "Default": "-1"
+                },
+                {
+                    "Name": "y",
+                    "Type": "int",
+                    "Default": "-1"
+                },
+                {
+                    "Name": "target",
+                    "Type": "bool",
+                    "Default": "false"
+                },
+                {
+                    "Name": "burning",
+                    "Type": "bool",
+                    "Default": "false"
+                },
+                {
+                    "Name": "out_of_fuel",
+                    "Type": "bool",
+                    "Default": "false"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "grid",
+            "Type": "tCell",
+            "Parameters": [
+                "(1,4,1)",
+                "(1,4,1)"
+            ],
+            "IncludeParametersCode": "true",
+            "DefaultCode": "if((par1 == 2 && par2 == 2) ||(par1 == 2 && par2 == 3) || (par1 == 3 && par2 == 1)){state.grid[make_tuple(par1,par2)].target=true;}"
+        },
+        {
+            "Name": "l1",
+            "Type": "int",
+            "DefaultCode": "state.l1 = 1;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l2",
+            "Type": "int",
+            "DefaultCode": "state.l2 = 2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "l3",
+            "Type": "int",
+            "DefaultCode": "state.l3 = 3;",
+            "IsActionParameterValue": true
+        }
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [],
+    "ExtrinsicChangesDynamicModel": [
+        {
+            "AssignmentCode": "for(int x=1; x<=3; x++){for(int y=1; y<=3;y++){auto cell =state.grid.find(make_tuple(x,y))->second;auto cell_ =state_.grid.find(make_tuple(x,y))->second;int burning_neighbors = 0;burning_neighbors += (x<3 && state.grid.find(make_tuple(x+1,y))->second.burning) ? 1 : 0;burning_neighbors += (x>0 && state.grid.find(make_tuple(x-1,y))->second.burning) ? 1 : 0;burning_neighbors += (y<3 && state.grid.find(make_tuple(x,y+1))->second.burning) ? 1 : 0;burning_neighbors += (y>0 && state.grid.find(make_tuple(x,y-1))->second.burning) ? 1 : 0;if(put_out !=NULL && put_out->x == x && put_out->y == y){cell_.burning = false;}else if(!cell.out_of_fuel && !cell.burning){if(cell.target && burning_neighbors==0){cell_.burning = false;}else{cell_.burning = AOS.Bernoulli(1.0/exp(4.5-burning_neighbors));}}cell_.out_of_fuel = cell.out_of_fuel || cell.burning || (!cell.target && cut_out != NULL && cut_out->x==x && cut_out->y==y);  state_.grid[make_tuple(x, y)] = cell_;}}"
+        }
+    ]
+}

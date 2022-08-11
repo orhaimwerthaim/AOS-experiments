@@ -10,7 +10,7 @@
         "ResponseRules": [
             {
                 "Response": "eArmOutstretched",
-                "ConditionCodeWithLocalVariables": "is_arm_outstretched == True",
+                "ConditionCodeWithLocalVariables": "is_arm_outstretched == True"
             },
             {
                 "Response": "eArmNotOutstretched",

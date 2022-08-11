@@ -1,20 +1,21 @@
 {
     "PlpMain": {
-        "Project": "aosPaper",
+        "Project": "cleanLabRealRobot",
         "Name": "navigate",
         "Type": "Glue",
-        "Version": 1.0
+        "Version": 1.2
     },
     "GlueFramework": "ROS",
     "ModuleResponse": {
         "ResponseRules": [
             {
                 "Response": "eSuccess",
-                "ConditionCodeWithLocalVariables": "skillSuccess and goal_reached"
+                "ConditionCodeWithLocalVariables": "goal_reached == True",
+                "Comment": ""
             },
             {
                 "Response": "eFailed",
-                "ConditionCodeWithLocalVariables": "True"
+                "ConditionCodeWithLocalVariables": "goal_reached == False"
             }
         ]
     },
@@ -41,25 +42,15 @@
                 {
                     "ServiceFieldName": "goal",
                     "AssignServiceFieldCode": "Point(x= nav_to_x, y= nav_to_y, z= nav_to_z)"
+                },
+                {
+                    "ServiceFieldName": "Y",
+                    "AssignServiceFieldCode": "nav_to_Y"
                 }
             ]
         }
     },
     "LocalVariablesInitialization": [
-        {
-            "LocalVariableName": "skillSuccess",
-            "VariableType":"bool",
-            "FromROSServiceResponse": true,
-            "AssignmentCode": "skillSuccess=__input.success",
-            "ImportCode": [
-                {
-                    "From": "std_msgs.msg",
-                    "Import": [
-                        "Bool"
-                    ]
-                }
-            ]
-        },
         {
             "LocalVariableName": "goal_reached",
             "RosTopicPath": "/rosout",
@@ -87,6 +78,10 @@
         {
             "InputLocalVariable": "nav_to_z",
             "FromGlobalVariable": "oDesiredLocation.z"
+        },
+        {
+            "InputLocalVariable": "nav_to_Y",
+            "FromGlobalVariable": "oDesiredLocation.Y"
         }
     ]
 }

@@ -1,0 +1,171 @@
+{
+    "PlpMain": {
+        "Project": "turtleBotExplore",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 1,
+        "Discount": 0.95
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "tNavigateAction",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "direction",
+                    "Type": "float",
+                    "Default": "0"
+                },
+                {
+                    "Name": "directionDesc",
+                    "Type": "string",
+                    "Default": "\"empty\""
+                },
+                {
+                    "Name": "onlyObserve",
+                    "Type": "bool",
+                    "Default": "false"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "map_width",
+            "Type": "int",
+            "DefaultCode": "-1"
+        },
+        {
+            "Name": "map_position_y",
+            "Type": "float",
+            "DefaultCode": "-1"
+        },
+        {
+            "Name": "map_position_x",
+            "Type": "float",
+            "DefaultCode": "-1"
+        },
+        {
+            "Name": "map_resolution",
+            "Type": "float",
+            "DefaultCode": "0"
+        },
+        {
+            "Name": "stepCount",
+            "Type": "int",
+            "DefaultCode": "state.stepCount=0;"
+        },
+        {
+            "Name": "occupancyGrid",
+            "Type": "int",
+            "IsArray": true,
+            "DefaultCode": ""
+        },
+        {
+            "Name": "occupancyGrid2",
+            "Type": "int",
+            "IsArray": true,
+            "DefaultCode": ""
+        },
+        {
+            "Name": "occupancyGrid1",
+            "Type": "int",
+            "IsArray": true,
+            "DefaultCode": ""
+        },
+        {
+            "Name": "robotGridLocX",
+            "Type": "int",
+            "DefaultCode": "state.robotGridLocX = -1"
+        },
+        {
+            "Name": "robotGridLocY",
+            "Type": "int",
+            "DefaultCode": "state.robotGridLocY = -1"
+        },
+        {
+            "Name": "robotRealLocX",
+            "Type": "float",
+            "DefaultCode": "state.robotRealLocX = -1"
+        },
+        {
+            "Name": "robotRealLocY",
+            "Type": "float",
+            "DefaultCode": "state.robotRealLocY = -1"
+        },
+        {
+            "Name": "orientation",
+            "Type": "float",
+            "DefaultCode": "state.orientation = -1;"
+        },
+        {
+            "Name": "robotWasInitialized",
+            "Type": "bool",
+            "DefaultCode": "state.robotWasInitialized = false;"
+        },
+        {
+            "Name": "forward",
+            "Type": "tNavigateAction",
+            "DefaultCode": "state.forward.direction = 0; state.forward.directionDesc=\"forward\";",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "backwards",
+            "Type": "tNavigateAction",
+            "DefaultCode": "state.backwards.direction = 3; state.backwards.directionDesc=\"backwards\";",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "right",
+            "Type": "tNavigateAction",
+            "DefaultCode": "state.right.direction = -1.5; state.right.directionDesc=\"right\";",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "left",
+            "Type": "tNavigateAction",
+            "DefaultCode": "state.left.direction = 1.5; state.left.directionDesc=\"left\";",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "top_right",
+            "Type": "tNavigateAction",
+            "DefaultCode": "state.top_right.direction = -0.75; state.top_right.directionDesc=\"forward right\";",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "back_right",
+            "Type": "tNavigateAction",
+            "DefaultCode": "state.back_right.direction = -2.25; state.back_right.directionDesc=\"backwards right\";",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "top_left",
+            "Type": "tNavigateAction",
+            "DefaultCode": "state.top_left.direction = 0.75; state.top_left.directionDesc=\"forward left\";",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "back_left",
+            "Type": "tNavigateAction",
+            "DefaultCode": "state.back_left.direction = 2.25; state.back_left.directionDesc=\"backwards left\";",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "onlyObserve",
+            "Type": "tNavigateAction",
+            "DefaultCode": "state.onlyObserve.direction = 0.0;state.onlyObserve.directionDesc=\"onlyObserve\";state.onlyObserve.onlyObserve=true;",
+            "IsActionParameterValue": true
+        }
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [],
+    "ExtrinsicChangesDynamicModel": [
+        {
+            "AssignmentCode": "state_.stepCount++;"
+        }
+    ]
+}

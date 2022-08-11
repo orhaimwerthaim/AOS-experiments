@@ -1,0 +1,4 @@
+int16 can_id
+bool add_cup
+---
+int16 remaining_space

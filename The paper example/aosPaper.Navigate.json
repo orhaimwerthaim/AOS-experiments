@@ -32,7 +32,7 @@
     "DynamicModel": {
         "NextStateAssignments": [
             {
-                "AssignmentCode": " state__.robotLocation.discrete = !__meetPrecondition || AOS.Bernoulli(0.01) ? -1: oDesiredLocation.discrete;"
+                "AssignmentCode": " state__.robotLocation.discrete = !__meetPrecondition || AOS.Bernoulli(0.1) ? -1: oDesiredLocation.discrete;"
             },
             {
                 "AssignmentCode": " if(state__.robotLocation.discrete == oDesiredLocation.discrete){ state__.robotLocation.x = oDesiredLocation.x; state__.robotLocation.y = oDesiredLocation.y; state__.robotLocation.z = oDesiredLocation.z;}"
@@ -51,7 +51,7 @@
                 "AssignmentCode": "__moduleResponse = (state__.robotLocation.discrete == -1 && AOS.Bernoulli(0.8)) ? eFailed : eSuccess;"
             },
             {
-                "AssignmentCode": "__reward = state_.robotLocation.discrete == -1 ? -5 : -pow(sqrt(pow(state.robotLocation.x-oDesiredLocation.x,2.0)+pow(state.robotLocation.y-oDesiredLocation.y,2.0)),2.0);"
+                "AssignmentCode": "__reward = state_.robotLocation.discrete == -1 ? -5 : -(sqrt(pow(state.robotLocation.x-oDesiredLocation.x,2.0)+pow(state.robotLocation.y-oDesiredLocation.y,2.0)))*10;"
             },
             {
                 "AssignmentCode": "if (state__.robotLocation.discrete == -1) __reward =  -10;"

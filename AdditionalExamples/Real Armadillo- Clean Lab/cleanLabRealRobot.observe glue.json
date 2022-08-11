@@ -1,20 +1,20 @@
 {
     "PlpMain": {
-        "Project": "aosPaper",
-        "Name": "navigate",
+        "Project": "cleanLabRealRobot",
+        "Name": "observe",
         "Type": "Glue",
-        "Version": 1.0
+        "Version": 1.2
     },
     "GlueFramework": "ROS",
     "ModuleResponse": {
         "ResponseRules": [
             {
-                "Response": "eSuccess",
-                "ConditionCodeWithLocalVariables": "skillSuccess and goal_reached"
+                "Response": "eNotObserveCan",
+                "ConditionCodeWithLocalVariables": "goal_reached == True"
             },
             {
-                "Response": "eFailed",
-                "ConditionCodeWithLocalVariables": "True"
+                "Response": "eObserveCan",
+                "ConditionCodeWithLocalVariables": "goal_reached == False"
             }
         ]
     },
@@ -47,21 +47,7 @@
     },
     "LocalVariablesInitialization": [
         {
-            "LocalVariableName": "skillSuccess",
-            "VariableType":"bool",
-            "FromROSServiceResponse": true,
-            "AssignmentCode": "skillSuccess=__input.success",
-            "ImportCode": [
-                {
-                    "From": "std_msgs.msg",
-                    "Import": [
-                        "Bool"
-                    ]
-                }
-            ]
-        },
-        {
-            "LocalVariableName": "goal_reached",
+            "LocalVariableName": "goal_reached2",
             "RosTopicPath": "/rosout",
             "VariableType": "bool",
             "InitialValue": "False",
@@ -75,18 +61,6 @@
                 }
             ],
             "AssignmentCode": "if goal_reached == True:\n\treturn True\nelse:\n\treturn __input.msg.find('Goal reached') > -1"
-        },
-        {
-            "InputLocalVariable": "nav_to_x",
-            "FromGlobalVariable": "oDesiredLocation.x"
-        },
-        {
-            "InputLocalVariable": "nav_to_y",
-            "FromGlobalVariable": "oDesiredLocation.y"
-        },
-        {
-            "InputLocalVariable": "nav_to_z",
-            "FromGlobalVariable": "oDesiredLocation.z"
         }
     ]
 }

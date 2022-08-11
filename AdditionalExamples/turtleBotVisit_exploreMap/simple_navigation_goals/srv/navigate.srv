@@ -1,0 +1,4 @@
+geometry_msgs/Point goal
+float64 Y
+---
+bool success
