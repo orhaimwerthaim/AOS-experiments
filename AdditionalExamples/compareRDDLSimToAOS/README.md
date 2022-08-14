@@ -67,3 +67,22 @@ Mean, μ:	172524.8</br>
 Variance, σ^2: 	13669578.16</br>
 Standard Deviation, σ: 3697.2392619359</br>
 
+### 3. We tested the 'Tamarisk' domain, found in the RDDLSim repository:
+A. running the RDDLSim experimend 10 times: </br>
+5143, 5417, 5122, 4899, 5580, 4949, 4620, 5623, 5267, 5102</br>
+Count, N:	10</br>
+Sum, Σx:	51722</br>
+Mean, μ:	5172.2</br>
+Variance, σ^2: 	87611.76</br>
+Standard Deviation, σ: 295.99283775119</br>
+
+B. We documented the domain and tested the AOS sampling rate:</br>
+The results were:</br>
+136756, 127063, 130625, 129179, 131534, 115934, 124241, 129042, 123940, 128700</br>
+
+Count, N:	10</br>
+Sum, Σx:	1277014</br>
+Mean, μ:	127701.4</br>
+Variance, σ^2: 	27520150.84</br>
+Standard Deviation, σ: 5245.9651962246</br>
+
