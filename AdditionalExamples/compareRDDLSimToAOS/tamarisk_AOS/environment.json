@@ -1,0 +1,221 @@
+{
+    "PlpMain": {
+        "Project": "tamarisk",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 15,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "ERADICATION_RATE",
+            "Type": "float",
+            "DefaultCode": "state.ERADICATION_RATE=0.9;"
+        },
+        {
+            "Name": "RESTORATION_RATE",
+            "Type": "float",
+            "DefaultCode": "state.RESTORATION_RATE=0.9;"
+        },
+        {
+            "Name": "DOWNSTREAM_SPREAD_RATE",
+            "Type": "float",
+            "DefaultCode": "state.DOWNSTREAM_SPREAD_RATE=0.6;"
+        },
+        {
+            "Name": "UPSTREAM_SPREAD_RATE",
+            "Type": "float",
+            "DefaultCode": "state.UPSTREAM_SPREAD_RATE=0.15;"
+        },
+        {
+            "Name": "DEATH_RATE_TAMARISK",
+            "Type": "float",
+            "DefaultCode": "state.DEATH_RATE_TAMARISK=0.05;"
+        },
+        {
+            "Name": "DEATH_RATE_NATIVE",
+            "Type": "float",
+            "DefaultCode": "state.DEATH_RATE_NATIVE=0.05;"
+        },
+        {
+            "Name": "EXOGENOUS_PROD_RATE_NATIVE",
+            "Type": "float",
+            "DefaultCode": "state.EXOGENOUS_PROD_RATE_NATIVE=0.1;"
+        },
+        {
+            "Name": "EXOGENOUS_PROD_RATE_TAMARISK",
+            "Type": "float",
+            "DefaultCode": "state.EXOGENOUS_PROD_RATE_TAMARISK=0.1;"
+        },
+        {
+            "Name": "COMPETITION_WIN_RATE_NATIVE",
+            "Type": "float",
+            "DefaultCode": "state.COMPETITION_WIN_RATE_NATIVE=0.2;"
+        },
+        {
+            "Name": "COMPETITION_WIN_RATE_TAMARISK",
+            "Type": "float",
+            "DefaultCode": "state.COMPETITION_WIN_RATE_TAMARISK=0.8;"
+        },
+        {
+            "Name": "COST_PER_INVADED_REACH",
+            "Type": "float",
+            "DefaultCode": "state.COST_PER_INVADED_REACH=5.0;"
+        },
+        {
+            "Name": "COST_PER_TREE",
+            "Type": "float",
+            "DefaultCode": "state.COST_PER_TREE=0.5;"
+        },
+        {
+            "Name": "COST_PER_EMPTY_SLOT",
+            "Type": "float",
+            "DefaultCode": "state.COST_PER_EMPTY_SLOT=0.25;"
+        }, 
+        {
+            "Name": "ERADICATION_COST",
+            "Type": "float",
+            "DefaultCode": "state.ERADICATION_COST=0.49;"
+        },
+        {
+            "Name": "RESTORATION_COST",
+            "Type": "float",
+            "DefaultCode": "state.RESTORATION_COST=0.9;"
+        },
+        {
+            "Name": "RESTORATION_COST_FOR_EMPTY_SLOT",
+            "Type": "float",
+            "DefaultCode": "state.RESTORATION_COST_FOR_EMPTY_SLOT=0.4;"
+        },
+        {
+            "Name": "RESTORATION_COST_FOR_INVADED_SLOT",
+            "Type": "float",
+            "DefaultCode": "state.RESTORATION_COST_FOR_INVADED_SLOT=0.8;"
+        },
+        {
+            "Name": "r1",
+            "Type": "int",
+            "DefaultCode": "state.r1 = 0;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "r2",
+            "Type": "int",
+            "DefaultCode": "state.r2 = 1;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "r3",
+            "Type": "int",
+            "DefaultCode": "state.r3 = 2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "r4",
+            "Type": "int",
+            "DefaultCode": "state.r4 = 3;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "tamarisk_at",
+            "Type": "bool",
+            "IsArray": true,
+            "DefaultCode": "state.tamarisk_at={true,false,false,false,false,false,false,false};"
+        },
+        {
+            "Name": "native_at",
+            "Type": "bool",
+            "IsArray": true,
+            "DefaultCode": "state.native_at={true,false,false,true,true,false,false,false};"
+        },
+        {
+            "Name": "SLOT_AT_REACH",
+            "Type": "int",
+            "IsArray": true,
+            "DefaultCode": "state.SLOT_AT_REACH={state.r1,state.r1,state.r2,state.r2,state.r3,state.r3,state.r4,state.r4};"
+        },
+        {
+            "Name": "DOWNSTREAM_REACH",
+            "Type": "vector<bool>",
+            "IsArray": true,
+            "DefaultCode": "state.DOWNSTREAM_REACH={{false,false,false,false},{true,false,false,false},{false,true,false,false},{false,false,true,false}};"
+        }
+        
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [],
+    "ExtrinsicChangesDynamicModel": [
+        {
+            "AssignmentCode": 
+            [
+                "int tempS = -1;",
+                "for(int s=0; s < 8; s++)",
+                "{",
+                "   if(state.tamarisk_at[s] && state.native_at[s]) state_.tamarisk_at[s] = AOS.Bernoulli(state.COMPETITION_WIN_RATE_TAMARISK);",
+                "   else if(!state.tamarisk_at[s] && eradicate != NULL && eradicate->reach == state.SLOT_AT_REACH[s] && !std::any_of(state.SLOT_AT_REACH.begin(), state.SLOT_AT_REACH.end(), [&](const int & reach){tempS++; return eradicate->reach == reach && state.tamarisk_at[tempS];})) state_.tamarisk_at[s] = false;",
+                "   else if(state.tamarisk_at[s] && eradicate != NULL && eradicate->reach == state.SLOT_AT_REACH[s] && !std::any_of(state.SLOT_AT_REACH.begin(), state.SLOT_AT_REACH.end(), [&](const int & reach){tempS++; return eradicate->reach == reach && state.tamarisk_at[tempS];})) state_.tamarisk_at[s] = AOS.Bernoulli(1.0 - state.ERADICATION_RATE);",
+                "   else if(state.tamarisk_at[s]) state_.tamarisk_at[s] = AOS.Bernoulli(1.0 - state.DEATH_RATE_TAMARISK);",
+                "   else if(!state.tamarisk_at[s] && !state.native_at[s])",
+                "        {",
+                "               float prob = state.EXOGENOUS_PROD_RATE_TAMARISK + (1 - state.EXOGENOUS_PROD_RATE_TAMARISK);",
+                "               float prod1=-1;",
+                "               float prod2=-1;",
+                "               float prod3=-1;",
+                "               for(int s2=0;s2<8;s2++)",
+                "               {",
+                "                   float value =0;",
+                "                   for(int r=0; r< state.DOWNSTREAM_REACH.size();r++)",
+                "                   {",
+                "                       value = (state.SLOT_AT_REACH[s] == r && r == state.SLOT_AT_REACH[s2] && s != s2 && state.tamarisk_at[s2]) ? (1.0 - state.DOWNSTREAM_SPREAD_RATE) : 1.0;",
+                "                       prod1 = prod1 == -1 ? value : value*prod1;",
+                "                       for(int r2=0; r2 < state.DOWNSTREAM_REACH.size();r2++)",
+                "                       {",
+                "                           value = (state.SLOT_AT_REACH[s] == r && r == state.SLOT_AT_REACH[s2] && state.DOWNSTREAM_REACH[r][r2] && r2 == state.SLOT_AT_REACH[s2] && state.tamarisk_at[s2]) ? (1.0 - state.DOWNSTREAM_SPREAD_RATE) : 1.0;",
+                "                           prod2 = prod2 == -1 ? value : value*prod2;",
+                "                           value = (state.SLOT_AT_REACH[s] == r && r == state.SLOT_AT_REACH[s2] && state.DOWNSTREAM_REACH[r2][r] && r2 == state.SLOT_AT_REACH[s2] && state.tamarisk_at[s2]) ? (1.0 - state.UPSTREAM_SPREAD_RATE) : 1.0;",
+                "                           prod3 = prod3 == -1 ? value : value*prod3;",
+                "                       }",
+                "                   ",
+                "                   ",
+                "                   }",
+                "                }",
+                "                state_.tamarisk_at[s] = AOS.Bernoulli(prob*prod1*prod2*prod3);   ",
+                "          }",
+                "          else state_.tamarisk_at[s]=state.tamarisk_at[s];",
+                "   if(state.tamarisk_at[s] && state.native_at[s]) state_.native_at[s] = AOS.Bernoulli(state.COMPETITION_WIN_RATE_TAMARISK);",
+                "   else if(!state.tamarisk_at[s] && state.native_at[s] && restore != NULL && restore->reach == state.SLOT_AT_REACH[s]) state_.native_at[s] = true;",
+                "   else if(!state.tamarisk_at[s] && !state.native_at[s] && restore != NULL && restore->reach == state.SLOT_AT_REACH[s]) state_.native_at[s] = AOS.Bernoulli( state.RESTORATION_RATE);",
+                "   else if(state.native_at[s]) state_.native_at[s] = AOS.Bernoulli(1.0 - state.DEATH_RATE_NATIVE);", 
+                "   else if(!state.tamarisk_at[s] && !state.native_at[s]) state_.native_at[s] = AOS.Bernoulli(state.EXOGENOUS_PROD_RATE_NATIVE);",   
+                "        else state_.native_at[s]=state.native_at[s];",            
+                "}",
+                "for(int r=0; r< state.DOWNSTREAM_REACH.size();r++)",
+                "{",
+                "   __reward -= eradicate != NULL && eradicate->reach == r ? state.ERADICATION_COST: 0;",
+                "   __reward -= restore != NULL && restore->reach == r ? state.RESTORATION_COST: 0;",
+                "   bool exist_tamarisk = false;",
+                "   for(int s=0; s < 8; s++)",
+                "   {",
+                "           __reward -= restore != NULL && restore->reach == r && state.SLOT_AT_REACH[s] == r && !state.tamarisk_at[s] && !state.native_at[s] ? state.RESTORATION_COST_FOR_EMPTY_SLOT: 0;",
+                "           if(r == state.SLOT_AT_REACH[s] && state.tamarisk_at[s]){__reward -= state.COST_PER_INVADED_REACH;}",
+                "   }",
+                
+                "}",
+                "for(int s=0; s < 8; s++)",
+                "{",
+                "   __reward -= state.tamarisk_at[s] ? state.COST_PER_INVADED_REACH : 0;",
+                "   __reward -= !state.tamarisk_at[s] && !state.native_at[s] ? state.COST_PER_TREE : 0;",
+                "   __reward -= !state.tamarisk_at[s] && !state.native_at[s] ? state.COST_PER_TREE : 0;",
+                "}",
+                "          ",
+                ""
+            ]
+            
+        }
+    ]
+}

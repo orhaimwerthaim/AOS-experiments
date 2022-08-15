@@ -1,0 +1,30 @@
+{
+    "PlpMain": {
+        "Project": "cleanLabRealRobot",
+        "Name": "release_can",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {},
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "robotican_demos_upgrade.srv",
+                    "Import": [
+                        "*"
+                    ]
+                }
+            ],
+            "ServicePath": "/throw_can",
+            "ServiceName": "throw_can",
+            "ServiceParameters": [
+                {
+                    "ServiceFieldName": "trash_id",
+                    "AssignServiceFieldCode": "0"
+                }
+            ]
+        }
+    }
+}

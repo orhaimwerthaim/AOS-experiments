@@ -10,7 +10,7 @@
         "ResponseRules": [
             {
                 "Response": "eSuccess",
-                "ConditionCodeWithLocalVariables": "True",
+                "ConditionCodeWithLocalVariables": "goal_reached == True",
                 "Comment": ""
             },
             {

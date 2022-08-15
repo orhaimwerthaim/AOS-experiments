@@ -116,11 +116,12 @@ public class Simulator {
 //				cur_discount *= _i._dDiscount;
 
 
+
+			// Done with this iteration, advance to next round
+			_state.advanceNextState(false /* do not clear observations */);
 			}
 			System.out.println("The number of Simulations per second is :" + i);
 			System.exit(0);
-			// Done with this iteration, advance to next round
-			_state.advanceNextState(false /* do not clear observations */);
 			int j=i+1;
 			// A "terminate-when" condition in the horizon specification may lead to early termination
 			if (_i._termCond != null && _state.checkTerminationCondition(_i._termCond))

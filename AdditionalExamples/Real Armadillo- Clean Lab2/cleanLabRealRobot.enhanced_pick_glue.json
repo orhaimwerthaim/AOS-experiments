@@ -10,19 +10,11 @@
         "ResponseRules": [
             {
                 "Response": "res_pick_holding_can",
-                "ConditionCodeWithLocalVariables": "True"
+                "ConditionCodeWithLocalVariables": "result"
             },
             {
                 "Response": "res_pick_not_holding",
-                "ConditionCodeWithLocalVariables": "False"
-            },
-            {
-                "Response": "res_pick_arm_outstretched_holding_can",
-                "ConditionCodeWithLocalVariables": "False"
-            },
-            {
-                "Response": "res_pick_without_can_arm_outstretched",
-                "ConditionCodeWithLocalVariables": "False"
+                "ConditionCodeWithLocalVariables": "not result"
             }
         ]
     },

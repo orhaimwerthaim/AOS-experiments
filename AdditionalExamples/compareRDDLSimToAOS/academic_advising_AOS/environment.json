@@ -1,0 +1,136 @@
+{
+    "PlpMain": {
+        "Project": "academic_advising",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 15,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "CS11",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 0;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CS12",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 1;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CS21",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CS22",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 3;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CS31",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 4;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CS32",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 5;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CS41",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 6;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CS42",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 7;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CS51",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 8;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CS52",
+            "Type": "int",
+            "DefaultCode": "state.CS11 = 9;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "PREREQ",
+            "Type": "vector<int>",
+            "IsArray": true,
+            "DefaultCode": "state.PREREQ={{},{},{},{},{},{},{},{},{},{}};state.PREREQ[state.CS21]={state.CS11, state.CS12};state.PREREQ[state.CS22]={state.CS12, state.CS21};state.PREREQ[state.CS31]={state.CS21, state.CS11};state.PREREQ[state.CS32]={state.CS22, state.CS11};state.PREREQ[state.CS41]={state.CS11, state.CS22};state.PREREQ[state.CS42]={state.CS11, state.CS31};state.PREREQ[state.CS51]={state.CS41, state.CS12};state.PREREQ[state.CS52]={state.CS31, state.CS22};"
+        },
+        {
+            "Name": "PRIOR_PROB_PASS_NO_PREREQ",
+            "Type": "float",
+            "IsArray": true,
+            "DefaultCode": "state.PRIOR_PROB_PASS_NO_PREREQ={0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8,0.8};"
+        },
+        {
+            "Name": "PRIOR_PROB_PASS",
+            "Type": "float",
+            "IsArray": true,
+            "DefaultCode": "state.PRIOR_PROB_PASS={0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2};"
+        },
+        {
+            "Name": "PROGRAM_REQUIREMENT",
+            "Type": "bool",
+            "IsArray": true,
+            "DefaultCode": "state.PROGRAM_REQUIREMENT={false,false,true,true,false,false,true,false,false, false};"
+        },
+        {
+            "Name": "COURSE_COST",
+            "Type": "float",
+            "IsArray": true,
+            "DefaultCode": "state.COURSE_COST={-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0};"
+        },
+        {
+            "Name": "COURSE_RETAKE_COST",
+            "Type": "float",
+            "IsArray": true,
+            "DefaultCode": "state.COURSE_RETAKE_COST={-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0};"
+        },
+        {
+            "Name": "PROGRAM_INCOMPLETE_PENALTY",
+            "Type": "float", 
+            "DefaultCode": "state.PROGRAM_INCOMPLETE_PENALTY=-5.0;"
+        },
+        {
+            "Name": "passed",
+            "Type": "bool",
+            "IsArray": true,
+            "DefaultCode": "state.passed={false,false,false,false,false,false,false,false,false,false};"
+        },
+        {
+            "Name": "taken",
+            "Type": "bool",
+            "IsArray": true,
+            "DefaultCode": "state.taken={false,false,false,false,false,false,false,false,false,false};"
+        }
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [],
+    "ExtrinsicChangesDynamicModel": [
+        {
+            "AssignmentCode": "bool PROGRAM_INCOMPLETE = false;for(int courseID=0; courseID < 10;courseID++){PROGRAM_INCOMPLETE |= state.PROGRAM_REQUIREMENT[courseID] && !state.passed[courseID];if(takeCourse!=NULL && !state.passed[courseID] && takeCourse->courseID == courseID){__reward += state.taken[courseID] ? state.COURSE_RETAKE_COST[courseID]  : state.COURSE_COST[courseID];if(state.PREREQ[courseID].size()==0){state_.passed[courseID] = AOS.Bernoulli(state.PRIOR_PROB_PASS_NO_PREREQ[courseID]);}else{int count_passed_pre_req = std::count_if(state.PREREQ[courseID].begin(), state.PREREQ[courseID].end(), [&](int i){return state.passed[i];});float prob = state.PRIOR_PROB_PASS[courseID] + (1-state.PRIOR_PROB_PASS[courseID])* (count_passed_pre_req/(1+state.PREREQ[courseID].size()));state_.passed[courseID]=AOS.Bernoulli(prob);}}else{state_.passed[courseID]=state.passed[courseID];}state_.taken[courseID]=state.taken[courseID] || takeCourse!=NULL && takeCourse->courseID == courseID;}__reward += PROGRAM_INCOMPLETE ? state.PROGRAM_INCOMPLETE_PENALTY : 0;"
+        }
+    ]
+}

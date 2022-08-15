@@ -1,0 +1,35 @@
+{
+    "PlpMain": {
+        "Project": "cleanLabRealRobot",
+        "Name": "release_can",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition= (state.robotL.discrete == trashCan1 || state.robotL.discrete == trashCan2) && state.holding_can;"
+            }
+        ],
+        "ViolatingPreconditionPenalty": 0
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "state.robotGenerallocation_",
+                "AssignmentCode": "if (__meetPrecondition) {state__.holding_can = false;}"
+            },
+            {
+                "AssignmentCode": "if (__meetPrecondition && state.robotL.discrete == trashCan1) {state__.spaceLeftInTrashCan1 -= 1;}"
+            },
+            {
+                "AssignmentCode": "if (__meetPrecondition && state.robotL.discrete == trashCan2) {state__.spaceLeftInTrashCan2 -= 1;}"
+            }, 
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = -1;"
+            }
+        ]
+    }
+}

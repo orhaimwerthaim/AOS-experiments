@@ -1,12 +1,24 @@
 {
     "PlpMain": {
-        "Project": "cleanLabRealRobot",
+        "Project": "iros",
         "Name": "release_can",
         "Type": "Glue",
         "Version": 1.0
     },
     "GlueFramework": "ROS",
-    "ModuleResponse": {},
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "eSuccess",
+                "ConditionCodeWithLocalVariables": "True",
+                "Comment": ""
+            },
+            {
+                "Response": "eFailed",
+                "ConditionCodeWithLocalVariables": "False"
+            }
+        ]
+    },
     "ModuleActivation": {
         "RosService": {
             "ImportCode": [
