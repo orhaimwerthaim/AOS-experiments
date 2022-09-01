@@ -100,6 +100,7 @@ The only chance to stop this catastrophe is to spray, in advance, the cell in wh
 
 ## 4.1 Swarm of Locusts(2)
 A. running the RDDLSim experimend 10 times: </br>
+The results were:</br>
 28740, 28909, 29303, 29088, 28754, 27988, 29438, 28118, 28470, 28230</br>
 Count, N:	10</br>
 Sum, Σx:	287038</br>
@@ -120,6 +121,7 @@ Variance, σ^2: 	46493350.61</br>
 
 ## 4.2 Swarm of Locusts(3)
 A. Swarm of Locusts(3)- running the RDDLSim experimend 10 times: </br>
+The results were:</br>
 19944, 19586, 19327, 19815, 19592, 18779, 18448, 18911, 18659, 19307</br>
 Standard Deviation, σ: 486.5597188424</br>
 Count, N:	10</br>
@@ -139,6 +141,17 @@ Variance, σ2: 	29970080.04</br>
 
 
 ## 4.2 Swarm of Locusts(50)
+A. Swarm of Locusts(50)- running the RDDLSim experimend 10 times: </br>
+The results were:</br>
+1189, 1179, 1223, 1127, 1210, 1075, 1073, 1154, 1185, 1041</br>
+Standard Deviation, σ: 60.251473011039</br>
+
+Count, N:	10</br>
+Sum, Σx:	11456</br>
+Mean, μ:	1145.6</br>
+Variance, σ2: 	3630.24</br>
+</br>
+
 B. We documented the domain and tested the AOS sampling rate:</br>
 The results were:</br>
 23410, 24517, 24146, 24442, 24885, 24368, 24194, 24684, 24411, 24975</br>
@@ -153,8 +166,18 @@ Variance, σ^2: 	175005.36</br>
 
 
 ## 4.2 Swarm of Locusts(100)
+A. Swarm of Locusts(100)- running the RDDLSim experimend 10 times: </br>
+The results were:</br>
+525, 531, 540, 535, 566, 562, 572, 542, 577, 553</br>
+Standard Deviation, σ: 17.309246084102</br>
+Count, N:	10</br>
+Sum, Σx:	5503</br>
+Mean, μ:	550.3</br>
+Variance, σ2: 	299.61</br>
+</br>
 
-
+B. We documented the domain and tested the AOS sampling rate:</br>
+The results were:</br>
 12783, 12315, 12465, 12279, 12398, 12479, 12301, 12379, 12387, 12615</br>
 Standard Deviation, σ: 148.18262381265</br>
 
@@ -162,4 +185,4 @@ Count, N:	10</br>
 Sum, Σx:	124401</br>
 Mean, μ:	12440.1</br>
 Variance, σ2: 	21958.09</br>
-
+</br>
