@@ -1,0 +1,98 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+// tic_tac_toe25 Domain by Or Wertheim
+
+domain tic_tac_toe25 {
+types {
+		cell : object;
+		enum_priority : {@p1, @p2, @p3,@p4, @p5, @p6,@p7, @p8, @p9, @Empty};
+	};
+
+pvariables {
+default_act : { action-fluent, int, default = 0};
+ 
+non : {non-fluent, int, default = 0}; 
+
+int_priority(enum_priority) : {non-fluent, int, default = 0};
+priority(enum_priority) : {state-fluent, int, default = 0};
+
+totalWeight2 : {state-fluent, real, default = 0};
+ 
+
+totalWeight:{ interm-fluent, real, level = 1};
+selected_priority:{ interm-fluent, enum_priority, level = 2};   
+
+};
+cpfs{
+ 
+  totalWeight2'=totalWeight;
+
+totalWeight= if ((sum_{?p : enum_priority} (priority(?p) ~= 0)) == 0) then 0.0 else (sum_{?p : enum_priority}([if (int_priority(?p) == 0) then 0.0 else (prod_{?p2 : enum_priority} [if (priority(?p2) <= priority(?p) ^ priority(?p2) ~= 0) then (2.0) else [if(priority(?p) == 0) then 0.0 else 1.0]])]));
+ 
+selected_priority = Discrete(enum_priority, 
+						@p1 : if(totalWeight == 0) then 1.0/9.0 else (if (priority(@p1) == 0) then 0.0 else (prod_{?p : enum_priority} [if (int_priority(@p1) >= priority(?p) ^ priority(?p) ~=0) then (2.0) else (1.0)])/totalWeight),
+						@p2 : if(totalWeight == 0) then 1.0/9.0 else (if (priority(@p2) == 0) then 0.0 else (prod_{?p : enum_priority} [if (int_priority(@p2) >= priority(?p) ^ priority(?p) ~=0) then (2.0) else (1.0)])/totalWeight),
+						@p3 : if(totalWeight == 0) then 1.0/9.0 else (if (priority(@p3) == 0) then 0.0 else (prod_{?p : enum_priority} [if (int_priority(@p3) >= priority(?p) ^ priority(?p) ~=0) then (2.0) else (1.0)])/totalWeight),
+						@p4 : if(totalWeight == 0) then 1.0/9.0 else (if (priority(@p4) == 0) then 0.0 else (prod_{?p : enum_priority} [if (int_priority(@p4) >= priority(?p) ^ priority(?p) ~=0) then (2.0) else (1.0)])/totalWeight),
+						@p5 : if(totalWeight == 0) then 1.0/9.0 else (if (priority(@p5) == 0) then 0.0 else (prod_{?p : enum_priority} [if (int_priority(@p5) >= priority(?p) ^ priority(?p) ~=0) then (2.0) else (1.0)])/totalWeight),
+						@p6 : if(totalWeight == 0) then 1.0/9.0 else (if (priority(@p6) == 0) then 0.0 else (prod_{?p : enum_priority} [if (int_priority(@p6) >= priority(?p) ^ priority(?p) ~=0) then (2.0) else (1.0)])/totalWeight),
+						@p7 : if(totalWeight == 0) then 1.0/9.0 else (if (priority(@p7) == 0) then 0.0 else (prod_{?p : enum_priority} [if (int_priority(@p7) >= priority(?p) ^ priority(?p) ~=0) then (2.0) else (1.0)])/totalWeight),
+						@p8 : if(totalWeight == 0) then 1.0/9.0 else (if (priority(@p8) == 0) then 0.0 else (prod_{?p : enum_priority} [if (int_priority(@p8) >= priority(?p) ^ priority(?p) ~=0) then (2.0) else (1.0)])/totalWeight),
+						@p9 : if(totalWeight == 0) then 1.0/9.0 else (if (priority(@p9) == 0) then 0.0 else (prod_{?p : enum_priority} [if (int_priority(@p9) >= priority(?p) ^ priority(?p) ~=0) then (2.0) else (1.0)])/totalWeight),						@Empty : 0.0
+					); 
+
+priority'(?p)= if(priority(?p) == int_priority(selected_priority)) then 0 else priority(?p);
+ 
+
+};
+	reward = 0;
+	
+}
+
+non-fluents tic_tac_toe25_nf {
+
+	domain = tic_tac_toe25;
+	objects { 
+		cell : {cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9};
+	};
+	non-fluents {
+non=9;	
+int_priority(@p1)=1;
+int_priority(@p2)=2;
+int_priority(@p3)=3;
+int_priority(@p4)=4;
+int_priority(@p5)=5;
+int_priority(@p6)=6;
+int_priority(@p7)=7;
+int_priority(@p8)=8;
+int_priority(@p9)=9;
+
+};
+}
+
+instance inst_tic_tac_toe25 {
+
+	domain = tic_tac_toe25;
+	
+	non-fluents = tic_tac_toe25_nf;
+  
+	init-state {   
+
+priority(@p1)=1;
+priority(@p2)=2;
+priority(@p3)=3;
+priority(@p4)=4;
+priority(@p5)=5;
+priority(@p6)=6;
+priority(@p7)=7;
+priority(@p8)=8;
+priority(@p9)=9;
+priority(@Empty)=0;
+	};
+  
+	max-nondef-actions = 1;
+  
+	horizon  = 10;
+	discount = 0.9;
+}
+
+

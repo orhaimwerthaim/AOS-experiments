@@ -1,0 +1,87 @@
+{
+    "PlpMain": {
+        "Project": "swarm_of_locusts",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 15,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "cor1",
+            "Type": "int",
+            "DefaultCode": "state.cor1 = 1;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "cor2",
+            "Type": "int",
+            "DefaultCode": "state.cor2 = 2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "cor3",
+            "Type": "int",
+            "DefaultCode": "state.cor3 = 3;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "tons_of_plants_in_cells",
+            "Type": "float",
+            "IsArray": true,
+            "DefaultCode": "state.tons_of_plants_in_cells={10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0,10.0};"
+        },
+        {
+            "Name": "swarm_disabled",
+            "Type": "bool",
+            "DefaultCode": "state.swarm_disabled=false;"
+        },
+        {
+            "Name": "swarm_location_x",
+            "Type": "int",
+            "DefaultCode": "state.swarm_location_x=2;"
+        }, 
+        {
+            "Name": "swarm_location_y",
+            "Type": "int",
+            "DefaultCode": "state.swarm_location_y=2;"
+        }
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [],
+    "ExtrinsicChangesDynamicModel": [
+        {
+            "AssignmentCode": 
+            [
+                "int num_of_transitions = 2;",
+                "for(int move=0; move < num_of_transitions; move++)",
+                "{",
+                "   std::vector<double> weights;",
+                "    float up = state_.swarm_location_y > 2 ? 0 : state_.tons_of_plants_in_cells[ (state_.swarm_location_y)*3 + (state_.swarm_location_x-1)];",
+                "    float down = state_.swarm_location_y < 2 ? 0 : state_.tons_of_plants_in_cells[ (state_.swarm_location_y-2)*3 + (state_.swarm_location_x-1)];",
+                "    float right = state_.swarm_location_x > 2 ? 0 : state_.tons_of_plants_in_cells[ (state_.swarm_location_y-1)*3 + (state_.swarm_location_x)];",
+                "    float left = state_.swarm_location_x < 2 ? 0 : state_.tons_of_plants_in_cells[ (state_.swarm_location_y-1)*3 + (state_.swarm_location_x-2)];",
+                "   weights.push_back(up);weights.push_back(down);weights.push_back(right);weights.push_back(left);",
+                "   float total_weight = weights[0]+weights[1]+weights[2]+weights[3];",
+                "   for(int i=0;i<weights.size();i++){weights[i]=weights[i]/total_weight;}",
+                "   int direction = AOSUtils::SampleDiscrete(weights);",
+                "   state_.swarm_location_y += direction == 0 ? 1 : (direction == 1 ? -1 : 0);",
+                "   state_.swarm_location_x += direction == 2 ? 1 : (direction == 3 ? -1 : 0);",
+                "   if(!state_.swarm_disabled)state_.tons_of_plants_in_cells[ (state_.swarm_location_y-1)*3 + (state_.swarm_location_x-1)] *=0.5;",
+                "   state_.swarm_disabled = disable_swarm_act != NULL && disable_swarm_act->x == state_.swarm_location_x && disable_swarm_act->y == state_.swarm_location_y? true : state_.swarm_disabled;",
+                "}",
+                "__reward=0;",
+                "for (int i =0; i < state_.tons_of_plants_in_cells.size(); i++)",
+                "{",
+                "    __reward+=state_.tons_of_plants_in_cells[i];",
+                "}"
+            ]
+            
+        }
+    ]
+}

@@ -52,6 +52,7 @@
         {
             "LocalVariableName": "navigateSuccess",
             "FromROSServiceResponse": true,
+            "VariableType":"bool",
             "AssignmentCode": "navigateSuccess = __input.success"
         },
         {

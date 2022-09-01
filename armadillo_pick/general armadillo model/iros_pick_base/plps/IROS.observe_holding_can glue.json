@@ -42,6 +42,7 @@
     "LocalVariablesInitialization": [
         {
             "LocalVariableName": "is_holding_can",
+            "VariableType":"bool",
             "FromROSServiceResponse": true,
             "AssignmentCode": "is_holding_can = __input.response"
         }

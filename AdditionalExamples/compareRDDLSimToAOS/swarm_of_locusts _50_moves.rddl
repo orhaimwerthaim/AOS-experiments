@@ -1,0 +1,1736 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+// swarm_of_locusts50 Domain by Or Wertheim
+//  _____________
+//  3|@c1|@c2|@c3|
+//  2|@c4|@c5|@c6|
+//  1|@c7|@c8|@c9|
+//  --------------
+//y/x  1   2   3
+
+domain swarm_of_locusts50 {
+types {
+		cell : object;
+		direction : {@up, @down, @left,@right};
+	};
+
+pvariables { 
+x_location(cell) : {non-fluent, int, default = -1};
+y_location(cell) : {non-fluent, int, default = -1};
+
+tons_of_plants(cell) : {state-fluent, real, default = 10.0}; 
+
+
+swarm_disabled : {state-fluent, bool, default = false};
+swarm_location_x : {state-fluent, int, default = 1};
+swarm_location_y : {state-fluent, int, default = 1}; 
+total_neighbors_plants1 : {interm-fluent, real, level = 1};
+swarm_move1 : {interm-fluent, direction, level = 2};
+swarm_location1_x : { interm-fluent, real, level = 3};
+swarm_location1_y : { interm-fluent, real, level = 3};
+tons_of_plants1(cell) : { interm-fluent, real, level = 4};
+total_neighbors_plants2 : {interm-fluent, real, level = 5};
+swarm_move2 : {interm-fluent, direction, level = 6};
+swarm_location2_x : { interm-fluent, real, level = 7};
+swarm_location2_y : { interm-fluent, real, level = 7};
+tons_of_plants2(cell) : { interm-fluent, real, level = 8};
+total_neighbors_plants3 : {interm-fluent, real, level = 9};
+swarm_move3 : {interm-fluent, direction, level = 10};
+swarm_location3_x : { interm-fluent, real, level = 11};
+swarm_location3_y : { interm-fluent, real, level = 11};
+tons_of_plants3(cell) : { interm-fluent, real, level = 12};
+total_neighbors_plants4 : {interm-fluent, real, level = 13};
+swarm_move4 : {interm-fluent, direction, level = 14};
+swarm_location4_x : { interm-fluent, real, level = 15};
+swarm_location4_y : { interm-fluent, real, level = 15};
+tons_of_plants4(cell) : { interm-fluent, real, level = 16};
+total_neighbors_plants5 : {interm-fluent, real, level = 17};
+swarm_move5 : {interm-fluent, direction, level = 18};
+swarm_location5_x : { interm-fluent, real, level = 19};
+swarm_location5_y : { interm-fluent, real, level = 19};
+tons_of_plants5(cell) : { interm-fluent, real, level = 20};
+total_neighbors_plants6 : {interm-fluent, real, level = 21};
+swarm_move6 : {interm-fluent, direction, level = 22};
+swarm_location6_x : { interm-fluent, real, level = 23};
+swarm_location6_y : { interm-fluent, real, level = 23};
+tons_of_plants6(cell) : { interm-fluent, real, level = 24};
+total_neighbors_plants7 : {interm-fluent, real, level = 25};
+swarm_move7 : {interm-fluent, direction, level = 26};
+swarm_location7_x : { interm-fluent, real, level = 27};
+swarm_location7_y : { interm-fluent, real, level = 27};
+tons_of_plants7(cell) : { interm-fluent, real, level = 28};
+total_neighbors_plants8 : {interm-fluent, real, level = 29};
+swarm_move8 : {interm-fluent, direction, level = 30};
+swarm_location8_x : { interm-fluent, real, level = 31};
+swarm_location8_y : { interm-fluent, real, level = 31};
+tons_of_plants8(cell) : { interm-fluent, real, level = 32};
+total_neighbors_plants9 : {interm-fluent, real, level = 33};
+swarm_move9 : {interm-fluent, direction, level = 34};
+swarm_location9_x : { interm-fluent, real, level = 35};
+swarm_location9_y : { interm-fluent, real, level = 35};
+tons_of_plants9(cell) : { interm-fluent, real, level = 36};
+total_neighbors_plants10 : {interm-fluent, real, level = 37};
+swarm_move10 : {interm-fluent, direction, level = 38};
+swarm_location10_x : { interm-fluent, real, level = 39};
+swarm_location10_y : { interm-fluent, real, level = 39};
+tons_of_plants10(cell) : { interm-fluent, real, level = 40};
+total_neighbors_plants11 : {interm-fluent, real, level = 41};
+swarm_move11 : {interm-fluent, direction, level = 42};
+swarm_location11_x : { interm-fluent, real, level = 43};
+swarm_location11_y : { interm-fluent, real, level = 43};
+tons_of_plants11(cell) : { interm-fluent, real, level = 44};
+total_neighbors_plants12 : {interm-fluent, real, level = 45};
+swarm_move12 : {interm-fluent, direction, level = 46};
+swarm_location12_x : { interm-fluent, real, level = 47};
+swarm_location12_y : { interm-fluent, real, level = 47};
+tons_of_plants12(cell) : { interm-fluent, real, level = 48};
+total_neighbors_plants13 : {interm-fluent, real, level = 49};
+swarm_move13 : {interm-fluent, direction, level = 50};
+swarm_location13_x : { interm-fluent, real, level = 51};
+swarm_location13_y : { interm-fluent, real, level = 51};
+tons_of_plants13(cell) : { interm-fluent, real, level = 52};
+total_neighbors_plants14 : {interm-fluent, real, level = 53};
+swarm_move14 : {interm-fluent, direction, level = 54};
+swarm_location14_x : { interm-fluent, real, level = 55};
+swarm_location14_y : { interm-fluent, real, level = 55};
+tons_of_plants14(cell) : { interm-fluent, real, level = 56};
+total_neighbors_plants15 : {interm-fluent, real, level = 57};
+swarm_move15 : {interm-fluent, direction, level = 58};
+swarm_location15_x : { interm-fluent, real, level = 59};
+swarm_location15_y : { interm-fluent, real, level = 59};
+tons_of_plants15(cell) : { interm-fluent, real, level = 60};
+total_neighbors_plants16 : {interm-fluent, real, level = 61};
+swarm_move16 : {interm-fluent, direction, level = 62};
+swarm_location16_x : { interm-fluent, real, level = 63};
+swarm_location16_y : { interm-fluent, real, level = 63};
+tons_of_plants16(cell) : { interm-fluent, real, level = 64};
+total_neighbors_plants17 : {interm-fluent, real, level = 65};
+swarm_move17 : {interm-fluent, direction, level = 66};
+swarm_location17_x : { interm-fluent, real, level = 67};
+swarm_location17_y : { interm-fluent, real, level = 67};
+tons_of_plants17(cell) : { interm-fluent, real, level = 68};
+total_neighbors_plants18 : {interm-fluent, real, level = 69};
+swarm_move18 : {interm-fluent, direction, level = 70};
+swarm_location18_x : { interm-fluent, real, level = 71};
+swarm_location18_y : { interm-fluent, real, level = 71};
+tons_of_plants18(cell) : { interm-fluent, real, level = 72};
+total_neighbors_plants19 : {interm-fluent, real, level = 73};
+swarm_move19 : {interm-fluent, direction, level = 74};
+swarm_location19_x : { interm-fluent, real, level = 75};
+swarm_location19_y : { interm-fluent, real, level = 75};
+tons_of_plants19(cell) : { interm-fluent, real, level = 76};
+total_neighbors_plants20 : {interm-fluent, real, level = 77};
+swarm_move20 : {interm-fluent, direction, level = 78};
+swarm_location20_x : { interm-fluent, real, level = 79};
+swarm_location20_y : { interm-fluent, real, level = 79};
+tons_of_plants20(cell) : { interm-fluent, real, level = 80};
+total_neighbors_plants21 : {interm-fluent, real, level = 81};
+swarm_move21 : {interm-fluent, direction, level = 82};
+swarm_location21_x : { interm-fluent, real, level = 83};
+swarm_location21_y : { interm-fluent, real, level = 83};
+tons_of_plants21(cell) : { interm-fluent, real, level = 84};
+total_neighbors_plants22 : {interm-fluent, real, level = 85};
+swarm_move22 : {interm-fluent, direction, level = 86};
+swarm_location22_x : { interm-fluent, real, level = 87};
+swarm_location22_y : { interm-fluent, real, level = 87};
+tons_of_plants22(cell) : { interm-fluent, real, level = 88};
+total_neighbors_plants23 : {interm-fluent, real, level = 89};
+swarm_move23 : {interm-fluent, direction, level = 90};
+swarm_location23_x : { interm-fluent, real, level = 91};
+swarm_location23_y : { interm-fluent, real, level = 91};
+tons_of_plants23(cell) : { interm-fluent, real, level = 92};
+total_neighbors_plants24 : {interm-fluent, real, level = 93};
+swarm_move24 : {interm-fluent, direction, level = 94};
+swarm_location24_x : { interm-fluent, real, level = 95};
+swarm_location24_y : { interm-fluent, real, level = 95};
+tons_of_plants24(cell) : { interm-fluent, real, level = 96};
+total_neighbors_plants25 : {interm-fluent, real, level = 97};
+swarm_move25 : {interm-fluent, direction, level = 98};
+swarm_location25_x : { interm-fluent, real, level = 99};
+swarm_location25_y : { interm-fluent, real, level = 99};
+tons_of_plants25(cell) : { interm-fluent, real, level = 100};
+total_neighbors_plants26 : {interm-fluent, real, level = 101};
+swarm_move26 : {interm-fluent, direction, level = 102};
+swarm_location26_x : { interm-fluent, real, level = 103};
+swarm_location26_y : { interm-fluent, real, level = 103};
+tons_of_plants26(cell) : { interm-fluent, real, level = 104};
+total_neighbors_plants27 : {interm-fluent, real, level = 105};
+swarm_move27 : {interm-fluent, direction, level = 106};
+swarm_location27_x : { interm-fluent, real, level = 107};
+swarm_location27_y : { interm-fluent, real, level = 107};
+tons_of_plants27(cell) : { interm-fluent, real, level = 108};
+total_neighbors_plants28 : {interm-fluent, real, level = 109};
+swarm_move28 : {interm-fluent, direction, level = 110};
+swarm_location28_x : { interm-fluent, real, level = 111};
+swarm_location28_y : { interm-fluent, real, level = 111};
+tons_of_plants28(cell) : { interm-fluent, real, level = 112};
+total_neighbors_plants29 : {interm-fluent, real, level = 113};
+swarm_move29 : {interm-fluent, direction, level = 114};
+swarm_location29_x : { interm-fluent, real, level = 115};
+swarm_location29_y : { interm-fluent, real, level = 115};
+tons_of_plants29(cell) : { interm-fluent, real, level = 116};
+total_neighbors_plants30 : {interm-fluent, real, level = 117};
+swarm_move30 : {interm-fluent, direction, level = 118};
+swarm_location30_x : { interm-fluent, real, level = 119};
+swarm_location30_y : { interm-fluent, real, level = 119};
+tons_of_plants30(cell) : { interm-fluent, real, level = 120};
+total_neighbors_plants31 : {interm-fluent, real, level = 121};
+swarm_move31 : {interm-fluent, direction, level = 122};
+swarm_location31_x : { interm-fluent, real, level = 123};
+swarm_location31_y : { interm-fluent, real, level = 123};
+tons_of_plants31(cell) : { interm-fluent, real, level = 124};
+total_neighbors_plants32 : {interm-fluent, real, level = 125};
+swarm_move32 : {interm-fluent, direction, level = 126};
+swarm_location32_x : { interm-fluent, real, level = 127};
+swarm_location32_y : { interm-fluent, real, level = 127};
+tons_of_plants32(cell) : { interm-fluent, real, level = 128};
+total_neighbors_plants33 : {interm-fluent, real, level = 129};
+swarm_move33 : {interm-fluent, direction, level = 130};
+swarm_location33_x : { interm-fluent, real, level = 131};
+swarm_location33_y : { interm-fluent, real, level = 131};
+tons_of_plants33(cell) : { interm-fluent, real, level = 132};
+total_neighbors_plants34 : {interm-fluent, real, level = 133};
+swarm_move34 : {interm-fluent, direction, level = 134};
+swarm_location34_x : { interm-fluent, real, level = 135};
+swarm_location34_y : { interm-fluent, real, level = 135};
+tons_of_plants34(cell) : { interm-fluent, real, level = 136};
+total_neighbors_plants35 : {interm-fluent, real, level = 137};
+swarm_move35 : {interm-fluent, direction, level = 138};
+swarm_location35_x : { interm-fluent, real, level = 139};
+swarm_location35_y : { interm-fluent, real, level = 139};
+tons_of_plants35(cell) : { interm-fluent, real, level = 140};
+total_neighbors_plants36 : {interm-fluent, real, level = 141};
+swarm_move36 : {interm-fluent, direction, level = 142};
+swarm_location36_x : { interm-fluent, real, level = 143};
+swarm_location36_y : { interm-fluent, real, level = 143};
+tons_of_plants36(cell) : { interm-fluent, real, level = 144};
+total_neighbors_plants37 : {interm-fluent, real, level = 145};
+swarm_move37 : {interm-fluent, direction, level = 146};
+swarm_location37_x : { interm-fluent, real, level = 147};
+swarm_location37_y : { interm-fluent, real, level = 147};
+tons_of_plants37(cell) : { interm-fluent, real, level = 148};
+total_neighbors_plants38 : {interm-fluent, real, level = 149};
+swarm_move38 : {interm-fluent, direction, level = 150};
+swarm_location38_x : { interm-fluent, real, level = 151};
+swarm_location38_y : { interm-fluent, real, level = 151};
+tons_of_plants38(cell) : { interm-fluent, real, level = 152};
+total_neighbors_plants39 : {interm-fluent, real, level = 153};
+swarm_move39 : {interm-fluent, direction, level = 154};
+swarm_location39_x : { interm-fluent, real, level = 155};
+swarm_location39_y : { interm-fluent, real, level = 155};
+tons_of_plants39(cell) : { interm-fluent, real, level = 156};
+total_neighbors_plants40 : {interm-fluent, real, level = 157};
+swarm_move40 : {interm-fluent, direction, level = 158};
+swarm_location40_x : { interm-fluent, real, level = 159};
+swarm_location40_y : { interm-fluent, real, level = 159};
+tons_of_plants40(cell) : { interm-fluent, real, level = 160};
+total_neighbors_plants41 : {interm-fluent, real, level = 161};
+swarm_move41 : {interm-fluent, direction, level = 162};
+swarm_location41_x : { interm-fluent, real, level = 163};
+swarm_location41_y : { interm-fluent, real, level = 163};
+tons_of_plants41(cell) : { interm-fluent, real, level = 164};
+total_neighbors_plants42 : {interm-fluent, real, level = 165};
+swarm_move42 : {interm-fluent, direction, level = 166};
+swarm_location42_x : { interm-fluent, real, level = 167};
+swarm_location42_y : { interm-fluent, real, level = 167};
+tons_of_plants42(cell) : { interm-fluent, real, level = 168};
+total_neighbors_plants43 : {interm-fluent, real, level = 169};
+swarm_move43 : {interm-fluent, direction, level = 170};
+swarm_location43_x : { interm-fluent, real, level = 171};
+swarm_location43_y : { interm-fluent, real, level = 171};
+tons_of_plants43(cell) : { interm-fluent, real, level = 172};
+total_neighbors_plants44 : {interm-fluent, real, level = 173};
+swarm_move44 : {interm-fluent, direction, level = 174};
+swarm_location44_x : { interm-fluent, real, level = 175};
+swarm_location44_y : { interm-fluent, real, level = 175};
+tons_of_plants44(cell) : { interm-fluent, real, level = 176};
+total_neighbors_plants45 : {interm-fluent, real, level = 177};
+swarm_move45 : {interm-fluent, direction, level = 178};
+swarm_location45_x : { interm-fluent, real, level = 179};
+swarm_location45_y : { interm-fluent, real, level = 179};
+tons_of_plants45(cell) : { interm-fluent, real, level = 180};
+total_neighbors_plants46 : {interm-fluent, real, level = 181};
+swarm_move46 : {interm-fluent, direction, level = 182};
+swarm_location46_x : { interm-fluent, real, level = 183};
+swarm_location46_y : { interm-fluent, real, level = 183};
+tons_of_plants46(cell) : { interm-fluent, real, level = 184};
+total_neighbors_plants47 : {interm-fluent, real, level = 185};
+swarm_move47 : {interm-fluent, direction, level = 186};
+swarm_location47_x : { interm-fluent, real, level = 187};
+swarm_location47_y : { interm-fluent, real, level = 187};
+tons_of_plants47(cell) : { interm-fluent, real, level = 188};
+total_neighbors_plants48 : {interm-fluent, real, level = 189};
+swarm_move48 : {interm-fluent, direction, level = 190};
+swarm_location48_x : { interm-fluent, real, level = 191};
+swarm_location48_y : { interm-fluent, real, level = 191};
+tons_of_plants48(cell) : { interm-fluent, real, level = 192};
+total_neighbors_plants49 : {interm-fluent, real, level = 193};
+swarm_move49 : {interm-fluent, direction, level = 194};
+swarm_location49_x : { interm-fluent, real, level = 195};
+swarm_location49_y : { interm-fluent, real, level = 195};
+tons_of_plants49(cell) : { interm-fluent, real, level = 196};
+total_neighbors_plants50 : {interm-fluent, real, level = 197};
+swarm_move50 : {interm-fluent, direction, level = 198};
+swarm_location50_x : { interm-fluent, real, level = 199};
+swarm_location50_y : { interm-fluent, real, level = 199};
+disable_swarm_act(cell) : { action-fluent, bool, default = 0};
+};
+cpfs{
+
+total_neighbors_plants1 = sum_{?c : cell}[if (((swarm_location_x+1) == x_location(?c) ^ swarm_location_y == y_location(?c)) |
+((swarm_location_x - 1) == x_location(?c) ^ swarm_location_y == y_location(?c)) | 
+((swarm_location_y + 1) == y_location(?c) ^ swarm_location_x == x_location(?c)) |
+((swarm_location_y -1) == y_location(?c) ^ swarm_location_x == x_location(?c))) then tons_of_plants(?c) else 0.0];
+
+swarm_move1 = Discrete(direction, 
+						@up : if(swarm_location_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location_y + 1) == y_location(?c) ^ swarm_location_x == x_location(?c)) then tons_of_plants(?c) else 0.0])/total_neighbors_plants1,
+						@down : if(swarm_location_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location_y - 1) == y_location(?c) ^ swarm_location_x == x_location(?c)) then tons_of_plants(?c) else 0.0]/total_neighbors_plants1),
+						@left : if(swarm_location_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location_x - 1) == x_location(?c) ^ swarm_location_y == y_location(?c)) then tons_of_plants(?c) else 0.0]/total_neighbors_plants1),
+						@right :if(swarm_location_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location_x + 1) == x_location(?c) ^ swarm_location_y == y_location(?c)) then tons_of_plants(?c) else 0.0]/total_neighbors_plants1)
+					);
+
+swarm_location1_x = switch(swarm_move1)
+{
+case @up: swarm_location_x,
+case @down: swarm_location_x,
+case @right: swarm_location_x + 1,
+case @left: swarm_location_x - 1
+}; 
+
+swarm_location1_y = switch(swarm_move1)
+{
+case @up: swarm_location_y + 1,
+case @down: swarm_location_y - 1,
+case @right: swarm_location_y,
+case @left: swarm_location_y
+};
+tons_of_plants1(?c)= if (swarm_location1_y == y_location(?c) ^ swarm_location1_x == x_location(?c)) then tons_of_plants(?c)*0.5 else tons_of_plants(?c);
+total_neighbors_plants2 = sum_{?c : cell}[if (((swarm_location1_x+1) == x_location(?c) ^ swarm_location1_y == y_location(?c)) |
+((swarm_location1_x - 1) == x_location(?c) ^ swarm_location1_y == y_location(?c)) | 
+((swarm_location1_y + 1) == y_location(?c) ^ swarm_location1_x == x_location(?c)) |
+((swarm_location1_y -1) == y_location(?c) ^ swarm_location1_x == x_location(?c))) then tons_of_plants1(?c) else 0.0];
+
+swarm_move2 = Discrete(direction, 
+						@up : if(swarm_location1_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location1_y + 1) == y_location(?c) ^ swarm_location1_x == x_location(?c)) then tons_of_plants1(?c) else 0.0])/total_neighbors_plants2,
+						@down : if(swarm_location1_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location1_y - 1) == y_location(?c) ^ swarm_location1_x == x_location(?c)) then tons_of_plants1(?c) else 0.0]/total_neighbors_plants2),
+						@left : if(swarm_location1_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location1_x - 1) == x_location(?c) ^ swarm_location1_y == y_location(?c)) then tons_of_plants1(?c) else 0.0]/total_neighbors_plants2),
+						@right :if(swarm_location1_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location1_x + 1) == x_location(?c) ^ swarm_location1_y == y_location(?c)) then tons_of_plants1(?c) else 0.0]/total_neighbors_plants2)
+					);
+
+swarm_location2_x = switch(swarm_move2)
+{
+case @up: swarm_location1_x,
+case @down: swarm_location1_x,
+case @right: swarm_location1_x + 1,
+case @left: swarm_location1_x - 1
+}; 
+
+swarm_location2_y = switch(swarm_move2)
+{
+case @up: swarm_location1_y + 1,
+case @down: swarm_location1_y - 1,
+case @right: swarm_location1_y,
+case @left: swarm_location1_y
+};
+tons_of_plants2(?c)= if (swarm_location2_y == y_location(?c) ^ swarm_location2_x == x_location(?c)) then tons_of_plants1(?c)*0.5 else tons_of_plants1(?c);
+total_neighbors_plants3 = sum_{?c : cell}[if (((swarm_location2_x+1) == x_location(?c) ^ swarm_location2_y == y_location(?c)) |
+((swarm_location2_x - 1) == x_location(?c) ^ swarm_location2_y == y_location(?c)) | 
+((swarm_location2_y + 1) == y_location(?c) ^ swarm_location2_x == x_location(?c)) |
+((swarm_location2_y -1) == y_location(?c) ^ swarm_location2_x == x_location(?c))) then tons_of_plants2(?c) else 0.0];
+
+swarm_move3 = Discrete(direction, 
+						@up : if(swarm_location2_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location2_y + 1) == y_location(?c) ^ swarm_location2_x == x_location(?c)) then tons_of_plants2(?c) else 0.0])/total_neighbors_plants3,
+						@down : if(swarm_location2_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location2_y - 1) == y_location(?c) ^ swarm_location2_x == x_location(?c)) then tons_of_plants2(?c) else 0.0]/total_neighbors_plants3),
+						@left : if(swarm_location2_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location2_x - 1) == x_location(?c) ^ swarm_location2_y == y_location(?c)) then tons_of_plants2(?c) else 0.0]/total_neighbors_plants3),
+						@right :if(swarm_location2_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location2_x + 1) == x_location(?c) ^ swarm_location2_y == y_location(?c)) then tons_of_plants2(?c) else 0.0]/total_neighbors_plants3)
+					);
+
+swarm_location3_x = switch(swarm_move3)
+{
+case @up: swarm_location2_x,
+case @down: swarm_location2_x,
+case @right: swarm_location2_x + 1,
+case @left: swarm_location2_x - 1
+}; 
+
+swarm_location3_y = switch(swarm_move3)
+{
+case @up: swarm_location2_y + 1,
+case @down: swarm_location2_y - 1,
+case @right: swarm_location2_y,
+case @left: swarm_location2_y
+};
+tons_of_plants3(?c)= if (swarm_location3_y == y_location(?c) ^ swarm_location3_x == x_location(?c)) then tons_of_plants2(?c)*0.5 else tons_of_plants2(?c);
+total_neighbors_plants4 = sum_{?c : cell}[if (((swarm_location3_x+1) == x_location(?c) ^ swarm_location3_y == y_location(?c)) |
+((swarm_location3_x - 1) == x_location(?c) ^ swarm_location3_y == y_location(?c)) | 
+((swarm_location3_y + 1) == y_location(?c) ^ swarm_location3_x == x_location(?c)) |
+((swarm_location3_y -1) == y_location(?c) ^ swarm_location3_x == x_location(?c))) then tons_of_plants3(?c) else 0.0];
+
+swarm_move4 = Discrete(direction, 
+						@up : if(swarm_location3_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location3_y + 1) == y_location(?c) ^ swarm_location3_x == x_location(?c)) then tons_of_plants3(?c) else 0.0])/total_neighbors_plants4,
+						@down : if(swarm_location3_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location3_y - 1) == y_location(?c) ^ swarm_location3_x == x_location(?c)) then tons_of_plants3(?c) else 0.0]/total_neighbors_plants4),
+						@left : if(swarm_location3_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location3_x - 1) == x_location(?c) ^ swarm_location3_y == y_location(?c)) then tons_of_plants3(?c) else 0.0]/total_neighbors_plants4),
+						@right :if(swarm_location3_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location3_x + 1) == x_location(?c) ^ swarm_location3_y == y_location(?c)) then tons_of_plants3(?c) else 0.0]/total_neighbors_plants4)
+					);
+
+swarm_location4_x = switch(swarm_move4)
+{
+case @up: swarm_location3_x,
+case @down: swarm_location3_x,
+case @right: swarm_location3_x + 1,
+case @left: swarm_location3_x - 1
+}; 
+
+swarm_location4_y = switch(swarm_move4)
+{
+case @up: swarm_location3_y + 1,
+case @down: swarm_location3_y - 1,
+case @right: swarm_location3_y,
+case @left: swarm_location3_y
+};
+tons_of_plants4(?c)= if (swarm_location4_y == y_location(?c) ^ swarm_location4_x == x_location(?c)) then tons_of_plants3(?c)*0.5 else tons_of_plants3(?c);
+total_neighbors_plants5 = sum_{?c : cell}[if (((swarm_location4_x+1) == x_location(?c) ^ swarm_location4_y == y_location(?c)) |
+((swarm_location4_x - 1) == x_location(?c) ^ swarm_location4_y == y_location(?c)) | 
+((swarm_location4_y + 1) == y_location(?c) ^ swarm_location4_x == x_location(?c)) |
+((swarm_location4_y -1) == y_location(?c) ^ swarm_location4_x == x_location(?c))) then tons_of_plants4(?c) else 0.0];
+
+swarm_move5 = Discrete(direction, 
+						@up : if(swarm_location4_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location4_y + 1) == y_location(?c) ^ swarm_location4_x == x_location(?c)) then tons_of_plants4(?c) else 0.0])/total_neighbors_plants5,
+						@down : if(swarm_location4_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location4_y - 1) == y_location(?c) ^ swarm_location4_x == x_location(?c)) then tons_of_plants4(?c) else 0.0]/total_neighbors_plants5),
+						@left : if(swarm_location4_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location4_x - 1) == x_location(?c) ^ swarm_location4_y == y_location(?c)) then tons_of_plants4(?c) else 0.0]/total_neighbors_plants5),
+						@right :if(swarm_location4_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location4_x + 1) == x_location(?c) ^ swarm_location4_y == y_location(?c)) then tons_of_plants4(?c) else 0.0]/total_neighbors_plants5)
+					);
+
+swarm_location5_x = switch(swarm_move5)
+{
+case @up: swarm_location4_x,
+case @down: swarm_location4_x,
+case @right: swarm_location4_x + 1,
+case @left: swarm_location4_x - 1
+}; 
+
+swarm_location5_y = switch(swarm_move5)
+{
+case @up: swarm_location4_y + 1,
+case @down: swarm_location4_y - 1,
+case @right: swarm_location4_y,
+case @left: swarm_location4_y
+};
+tons_of_plants5(?c)= if (swarm_location5_y == y_location(?c) ^ swarm_location5_x == x_location(?c)) then tons_of_plants4(?c)*0.5 else tons_of_plants4(?c);
+total_neighbors_plants6 = sum_{?c : cell}[if (((swarm_location5_x+1) == x_location(?c) ^ swarm_location5_y == y_location(?c)) |
+((swarm_location5_x - 1) == x_location(?c) ^ swarm_location5_y == y_location(?c)) | 
+((swarm_location5_y + 1) == y_location(?c) ^ swarm_location5_x == x_location(?c)) |
+((swarm_location5_y -1) == y_location(?c) ^ swarm_location5_x == x_location(?c))) then tons_of_plants5(?c) else 0.0];
+
+swarm_move6 = Discrete(direction, 
+						@up : if(swarm_location5_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location5_y + 1) == y_location(?c) ^ swarm_location5_x == x_location(?c)) then tons_of_plants5(?c) else 0.0])/total_neighbors_plants6,
+						@down : if(swarm_location5_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location5_y - 1) == y_location(?c) ^ swarm_location5_x == x_location(?c)) then tons_of_plants5(?c) else 0.0]/total_neighbors_plants6),
+						@left : if(swarm_location5_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location5_x - 1) == x_location(?c) ^ swarm_location5_y == y_location(?c)) then tons_of_plants5(?c) else 0.0]/total_neighbors_plants6),
+						@right :if(swarm_location5_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location5_x + 1) == x_location(?c) ^ swarm_location5_y == y_location(?c)) then tons_of_plants5(?c) else 0.0]/total_neighbors_plants6)
+					);
+
+swarm_location6_x = switch(swarm_move6)
+{
+case @up: swarm_location5_x,
+case @down: swarm_location5_x,
+case @right: swarm_location5_x + 1,
+case @left: swarm_location5_x - 1
+}; 
+
+swarm_location6_y = switch(swarm_move6)
+{
+case @up: swarm_location5_y + 1,
+case @down: swarm_location5_y - 1,
+case @right: swarm_location5_y,
+case @left: swarm_location5_y
+};
+tons_of_plants6(?c)= if (swarm_location6_y == y_location(?c) ^ swarm_location6_x == x_location(?c)) then tons_of_plants5(?c)*0.5 else tons_of_plants5(?c);
+total_neighbors_plants7 = sum_{?c : cell}[if (((swarm_location6_x+1) == x_location(?c) ^ swarm_location6_y == y_location(?c)) |
+((swarm_location6_x - 1) == x_location(?c) ^ swarm_location6_y == y_location(?c)) | 
+((swarm_location6_y + 1) == y_location(?c) ^ swarm_location6_x == x_location(?c)) |
+((swarm_location6_y -1) == y_location(?c) ^ swarm_location6_x == x_location(?c))) then tons_of_plants6(?c) else 0.0];
+
+swarm_move7 = Discrete(direction, 
+						@up : if(swarm_location6_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location6_y + 1) == y_location(?c) ^ swarm_location6_x == x_location(?c)) then tons_of_plants6(?c) else 0.0])/total_neighbors_plants7,
+						@down : if(swarm_location6_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location6_y - 1) == y_location(?c) ^ swarm_location6_x == x_location(?c)) then tons_of_plants6(?c) else 0.0]/total_neighbors_plants7),
+						@left : if(swarm_location6_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location6_x - 1) == x_location(?c) ^ swarm_location6_y == y_location(?c)) then tons_of_plants6(?c) else 0.0]/total_neighbors_plants7),
+						@right :if(swarm_location6_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location6_x + 1) == x_location(?c) ^ swarm_location6_y == y_location(?c)) then tons_of_plants6(?c) else 0.0]/total_neighbors_plants7)
+					);
+
+swarm_location7_x = switch(swarm_move7)
+{
+case @up: swarm_location6_x,
+case @down: swarm_location6_x,
+case @right: swarm_location6_x + 1,
+case @left: swarm_location6_x - 1
+}; 
+
+swarm_location7_y = switch(swarm_move7)
+{
+case @up: swarm_location6_y + 1,
+case @down: swarm_location6_y - 1,
+case @right: swarm_location6_y,
+case @left: swarm_location6_y
+};
+tons_of_plants7(?c)= if (swarm_location7_y == y_location(?c) ^ swarm_location7_x == x_location(?c)) then tons_of_plants6(?c)*0.5 else tons_of_plants6(?c);
+total_neighbors_plants8 = sum_{?c : cell}[if (((swarm_location7_x+1) == x_location(?c) ^ swarm_location7_y == y_location(?c)) |
+((swarm_location7_x - 1) == x_location(?c) ^ swarm_location7_y == y_location(?c)) | 
+((swarm_location7_y + 1) == y_location(?c) ^ swarm_location7_x == x_location(?c)) |
+((swarm_location7_y -1) == y_location(?c) ^ swarm_location7_x == x_location(?c))) then tons_of_plants7(?c) else 0.0];
+
+swarm_move8 = Discrete(direction, 
+						@up : if(swarm_location7_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location7_y + 1) == y_location(?c) ^ swarm_location7_x == x_location(?c)) then tons_of_plants7(?c) else 0.0])/total_neighbors_plants8,
+						@down : if(swarm_location7_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location7_y - 1) == y_location(?c) ^ swarm_location7_x == x_location(?c)) then tons_of_plants7(?c) else 0.0]/total_neighbors_plants8),
+						@left : if(swarm_location7_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location7_x - 1) == x_location(?c) ^ swarm_location7_y == y_location(?c)) then tons_of_plants7(?c) else 0.0]/total_neighbors_plants8),
+						@right :if(swarm_location7_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location7_x + 1) == x_location(?c) ^ swarm_location7_y == y_location(?c)) then tons_of_plants7(?c) else 0.0]/total_neighbors_plants8)
+					);
+
+swarm_location8_x = switch(swarm_move8)
+{
+case @up: swarm_location7_x,
+case @down: swarm_location7_x,
+case @right: swarm_location7_x + 1,
+case @left: swarm_location7_x - 1
+}; 
+
+swarm_location8_y = switch(swarm_move8)
+{
+case @up: swarm_location7_y + 1,
+case @down: swarm_location7_y - 1,
+case @right: swarm_location7_y,
+case @left: swarm_location7_y
+};
+tons_of_plants8(?c)= if (swarm_location8_y == y_location(?c) ^ swarm_location8_x == x_location(?c)) then tons_of_plants7(?c)*0.5 else tons_of_plants7(?c);
+total_neighbors_plants9 = sum_{?c : cell}[if (((swarm_location8_x+1) == x_location(?c) ^ swarm_location8_y == y_location(?c)) |
+((swarm_location8_x - 1) == x_location(?c) ^ swarm_location8_y == y_location(?c)) | 
+((swarm_location8_y + 1) == y_location(?c) ^ swarm_location8_x == x_location(?c)) |
+((swarm_location8_y -1) == y_location(?c) ^ swarm_location8_x == x_location(?c))) then tons_of_plants8(?c) else 0.0];
+
+swarm_move9 = Discrete(direction, 
+						@up : if(swarm_location8_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location8_y + 1) == y_location(?c) ^ swarm_location8_x == x_location(?c)) then tons_of_plants8(?c) else 0.0])/total_neighbors_plants9,
+						@down : if(swarm_location8_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location8_y - 1) == y_location(?c) ^ swarm_location8_x == x_location(?c)) then tons_of_plants8(?c) else 0.0]/total_neighbors_plants9),
+						@left : if(swarm_location8_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location8_x - 1) == x_location(?c) ^ swarm_location8_y == y_location(?c)) then tons_of_plants8(?c) else 0.0]/total_neighbors_plants9),
+						@right :if(swarm_location8_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location8_x + 1) == x_location(?c) ^ swarm_location8_y == y_location(?c)) then tons_of_plants8(?c) else 0.0]/total_neighbors_plants9)
+					);
+
+swarm_location9_x = switch(swarm_move9)
+{
+case @up: swarm_location8_x,
+case @down: swarm_location8_x,
+case @right: swarm_location8_x + 1,
+case @left: swarm_location8_x - 1
+}; 
+
+swarm_location9_y = switch(swarm_move9)
+{
+case @up: swarm_location8_y + 1,
+case @down: swarm_location8_y - 1,
+case @right: swarm_location8_y,
+case @left: swarm_location8_y
+};
+tons_of_plants9(?c)= if (swarm_location9_y == y_location(?c) ^ swarm_location9_x == x_location(?c)) then tons_of_plants8(?c)*0.5 else tons_of_plants8(?c);
+total_neighbors_plants10 = sum_{?c : cell}[if (((swarm_location9_x+1) == x_location(?c) ^ swarm_location9_y == y_location(?c)) |
+((swarm_location9_x - 1) == x_location(?c) ^ swarm_location9_y == y_location(?c)) | 
+((swarm_location9_y + 1) == y_location(?c) ^ swarm_location9_x == x_location(?c)) |
+((swarm_location9_y -1) == y_location(?c) ^ swarm_location9_x == x_location(?c))) then tons_of_plants9(?c) else 0.0];
+
+swarm_move10 = Discrete(direction, 
+						@up : if(swarm_location9_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location9_y + 1) == y_location(?c) ^ swarm_location9_x == x_location(?c)) then tons_of_plants9(?c) else 0.0])/total_neighbors_plants10,
+						@down : if(swarm_location9_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location9_y - 1) == y_location(?c) ^ swarm_location9_x == x_location(?c)) then tons_of_plants9(?c) else 0.0]/total_neighbors_plants10),
+						@left : if(swarm_location9_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location9_x - 1) == x_location(?c) ^ swarm_location9_y == y_location(?c)) then tons_of_plants9(?c) else 0.0]/total_neighbors_plants10),
+						@right :if(swarm_location9_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location9_x + 1) == x_location(?c) ^ swarm_location9_y == y_location(?c)) then tons_of_plants9(?c) else 0.0]/total_neighbors_plants10)
+					);
+
+swarm_location10_x = switch(swarm_move10)
+{
+case @up: swarm_location9_x,
+case @down: swarm_location9_x,
+case @right: swarm_location9_x + 1,
+case @left: swarm_location9_x - 1
+}; 
+
+swarm_location10_y = switch(swarm_move10)
+{
+case @up: swarm_location9_y + 1,
+case @down: swarm_location9_y - 1,
+case @right: swarm_location9_y,
+case @left: swarm_location9_y
+};
+tons_of_plants10(?c)= if (swarm_location10_y == y_location(?c) ^ swarm_location10_x == x_location(?c)) then tons_of_plants9(?c)*0.5 else tons_of_plants9(?c);
+total_neighbors_plants11 = sum_{?c : cell}[if (((swarm_location10_x+1) == x_location(?c) ^ swarm_location10_y == y_location(?c)) |
+((swarm_location10_x - 1) == x_location(?c) ^ swarm_location10_y == y_location(?c)) | 
+((swarm_location10_y + 1) == y_location(?c) ^ swarm_location10_x == x_location(?c)) |
+((swarm_location10_y -1) == y_location(?c) ^ swarm_location10_x == x_location(?c))) then tons_of_plants10(?c) else 0.0];
+
+swarm_move11 = Discrete(direction, 
+						@up : if(swarm_location10_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location10_y + 1) == y_location(?c) ^ swarm_location10_x == x_location(?c)) then tons_of_plants10(?c) else 0.0])/total_neighbors_plants11,
+						@down : if(swarm_location10_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location10_y - 1) == y_location(?c) ^ swarm_location10_x == x_location(?c)) then tons_of_plants10(?c) else 0.0]/total_neighbors_plants11),
+						@left : if(swarm_location10_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location10_x - 1) == x_location(?c) ^ swarm_location10_y == y_location(?c)) then tons_of_plants10(?c) else 0.0]/total_neighbors_plants11),
+						@right :if(swarm_location10_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location10_x + 1) == x_location(?c) ^ swarm_location10_y == y_location(?c)) then tons_of_plants10(?c) else 0.0]/total_neighbors_plants11)
+					);
+
+swarm_location11_x = switch(swarm_move11)
+{
+case @up: swarm_location10_x,
+case @down: swarm_location10_x,
+case @right: swarm_location10_x + 1,
+case @left: swarm_location10_x - 1
+}; 
+
+swarm_location11_y = switch(swarm_move11)
+{
+case @up: swarm_location10_y + 1,
+case @down: swarm_location10_y - 1,
+case @right: swarm_location10_y,
+case @left: swarm_location10_y
+};
+tons_of_plants11(?c)= if (swarm_location11_y == y_location(?c) ^ swarm_location11_x == x_location(?c)) then tons_of_plants10(?c)*0.5 else tons_of_plants10(?c);
+total_neighbors_plants12 = sum_{?c : cell}[if (((swarm_location11_x+1) == x_location(?c) ^ swarm_location11_y == y_location(?c)) |
+((swarm_location11_x - 1) == x_location(?c) ^ swarm_location11_y == y_location(?c)) | 
+((swarm_location11_y + 1) == y_location(?c) ^ swarm_location11_x == x_location(?c)) |
+((swarm_location11_y -1) == y_location(?c) ^ swarm_location11_x == x_location(?c))) then tons_of_plants11(?c) else 0.0];
+
+swarm_move12 = Discrete(direction, 
+						@up : if(swarm_location11_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location11_y + 1) == y_location(?c) ^ swarm_location11_x == x_location(?c)) then tons_of_plants11(?c) else 0.0])/total_neighbors_plants12,
+						@down : if(swarm_location11_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location11_y - 1) == y_location(?c) ^ swarm_location11_x == x_location(?c)) then tons_of_plants11(?c) else 0.0]/total_neighbors_plants12),
+						@left : if(swarm_location11_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location11_x - 1) == x_location(?c) ^ swarm_location11_y == y_location(?c)) then tons_of_plants11(?c) else 0.0]/total_neighbors_plants12),
+						@right :if(swarm_location11_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location11_x + 1) == x_location(?c) ^ swarm_location11_y == y_location(?c)) then tons_of_plants11(?c) else 0.0]/total_neighbors_plants12)
+					);
+
+swarm_location12_x = switch(swarm_move12)
+{
+case @up: swarm_location11_x,
+case @down: swarm_location11_x,
+case @right: swarm_location11_x + 1,
+case @left: swarm_location11_x - 1
+}; 
+
+swarm_location12_y = switch(swarm_move12)
+{
+case @up: swarm_location11_y + 1,
+case @down: swarm_location11_y - 1,
+case @right: swarm_location11_y,
+case @left: swarm_location11_y
+};
+tons_of_plants12(?c)= if (swarm_location12_y == y_location(?c) ^ swarm_location12_x == x_location(?c)) then tons_of_plants11(?c)*0.5 else tons_of_plants11(?c);
+total_neighbors_plants13 = sum_{?c : cell}[if (((swarm_location12_x+1) == x_location(?c) ^ swarm_location12_y == y_location(?c)) |
+((swarm_location12_x - 1) == x_location(?c) ^ swarm_location12_y == y_location(?c)) | 
+((swarm_location12_y + 1) == y_location(?c) ^ swarm_location12_x == x_location(?c)) |
+((swarm_location12_y -1) == y_location(?c) ^ swarm_location12_x == x_location(?c))) then tons_of_plants12(?c) else 0.0];
+
+swarm_move13 = Discrete(direction, 
+						@up : if(swarm_location12_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location12_y + 1) == y_location(?c) ^ swarm_location12_x == x_location(?c)) then tons_of_plants12(?c) else 0.0])/total_neighbors_plants13,
+						@down : if(swarm_location12_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location12_y - 1) == y_location(?c) ^ swarm_location12_x == x_location(?c)) then tons_of_plants12(?c) else 0.0]/total_neighbors_plants13),
+						@left : if(swarm_location12_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location12_x - 1) == x_location(?c) ^ swarm_location12_y == y_location(?c)) then tons_of_plants12(?c) else 0.0]/total_neighbors_plants13),
+						@right :if(swarm_location12_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location12_x + 1) == x_location(?c) ^ swarm_location12_y == y_location(?c)) then tons_of_plants12(?c) else 0.0]/total_neighbors_plants13)
+					);
+
+swarm_location13_x = switch(swarm_move13)
+{
+case @up: swarm_location12_x,
+case @down: swarm_location12_x,
+case @right: swarm_location12_x + 1,
+case @left: swarm_location12_x - 1
+}; 
+
+swarm_location13_y = switch(swarm_move13)
+{
+case @up: swarm_location12_y + 1,
+case @down: swarm_location12_y - 1,
+case @right: swarm_location12_y,
+case @left: swarm_location12_y
+};
+tons_of_plants13(?c)= if (swarm_location13_y == y_location(?c) ^ swarm_location13_x == x_location(?c)) then tons_of_plants12(?c)*0.5 else tons_of_plants12(?c);
+total_neighbors_plants14 = sum_{?c : cell}[if (((swarm_location13_x+1) == x_location(?c) ^ swarm_location13_y == y_location(?c)) |
+((swarm_location13_x - 1) == x_location(?c) ^ swarm_location13_y == y_location(?c)) | 
+((swarm_location13_y + 1) == y_location(?c) ^ swarm_location13_x == x_location(?c)) |
+((swarm_location13_y -1) == y_location(?c) ^ swarm_location13_x == x_location(?c))) then tons_of_plants13(?c) else 0.0];
+
+swarm_move14 = Discrete(direction, 
+						@up : if(swarm_location13_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location13_y + 1) == y_location(?c) ^ swarm_location13_x == x_location(?c)) then tons_of_plants13(?c) else 0.0])/total_neighbors_plants14,
+						@down : if(swarm_location13_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location13_y - 1) == y_location(?c) ^ swarm_location13_x == x_location(?c)) then tons_of_plants13(?c) else 0.0]/total_neighbors_plants14),
+						@left : if(swarm_location13_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location13_x - 1) == x_location(?c) ^ swarm_location13_y == y_location(?c)) then tons_of_plants13(?c) else 0.0]/total_neighbors_plants14),
+						@right :if(swarm_location13_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location13_x + 1) == x_location(?c) ^ swarm_location13_y == y_location(?c)) then tons_of_plants13(?c) else 0.0]/total_neighbors_plants14)
+					);
+
+swarm_location14_x = switch(swarm_move14)
+{
+case @up: swarm_location13_x,
+case @down: swarm_location13_x,
+case @right: swarm_location13_x + 1,
+case @left: swarm_location13_x - 1
+}; 
+
+swarm_location14_y = switch(swarm_move14)
+{
+case @up: swarm_location13_y + 1,
+case @down: swarm_location13_y - 1,
+case @right: swarm_location13_y,
+case @left: swarm_location13_y
+};
+tons_of_plants14(?c)= if (swarm_location14_y == y_location(?c) ^ swarm_location14_x == x_location(?c)) then tons_of_plants13(?c)*0.5 else tons_of_plants13(?c);
+total_neighbors_plants15 = sum_{?c : cell}[if (((swarm_location14_x+1) == x_location(?c) ^ swarm_location14_y == y_location(?c)) |
+((swarm_location14_x - 1) == x_location(?c) ^ swarm_location14_y == y_location(?c)) | 
+((swarm_location14_y + 1) == y_location(?c) ^ swarm_location14_x == x_location(?c)) |
+((swarm_location14_y -1) == y_location(?c) ^ swarm_location14_x == x_location(?c))) then tons_of_plants14(?c) else 0.0];
+
+swarm_move15 = Discrete(direction, 
+						@up : if(swarm_location14_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location14_y + 1) == y_location(?c) ^ swarm_location14_x == x_location(?c)) then tons_of_plants14(?c) else 0.0])/total_neighbors_plants15,
+						@down : if(swarm_location14_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location14_y - 1) == y_location(?c) ^ swarm_location14_x == x_location(?c)) then tons_of_plants14(?c) else 0.0]/total_neighbors_plants15),
+						@left : if(swarm_location14_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location14_x - 1) == x_location(?c) ^ swarm_location14_y == y_location(?c)) then tons_of_plants14(?c) else 0.0]/total_neighbors_plants15),
+						@right :if(swarm_location14_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location14_x + 1) == x_location(?c) ^ swarm_location14_y == y_location(?c)) then tons_of_plants14(?c) else 0.0]/total_neighbors_plants15)
+					);
+
+swarm_location15_x = switch(swarm_move15)
+{
+case @up: swarm_location14_x,
+case @down: swarm_location14_x,
+case @right: swarm_location14_x + 1,
+case @left: swarm_location14_x - 1
+}; 
+
+swarm_location15_y = switch(swarm_move15)
+{
+case @up: swarm_location14_y + 1,
+case @down: swarm_location14_y - 1,
+case @right: swarm_location14_y,
+case @left: swarm_location14_y
+};
+tons_of_plants15(?c)= if (swarm_location15_y == y_location(?c) ^ swarm_location15_x == x_location(?c)) then tons_of_plants14(?c)*0.5 else tons_of_plants14(?c);
+total_neighbors_plants16 = sum_{?c : cell}[if (((swarm_location15_x+1) == x_location(?c) ^ swarm_location15_y == y_location(?c)) |
+((swarm_location15_x - 1) == x_location(?c) ^ swarm_location15_y == y_location(?c)) | 
+((swarm_location15_y + 1) == y_location(?c) ^ swarm_location15_x == x_location(?c)) |
+((swarm_location15_y -1) == y_location(?c) ^ swarm_location15_x == x_location(?c))) then tons_of_plants15(?c) else 0.0];
+
+swarm_move16 = Discrete(direction, 
+						@up : if(swarm_location15_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location15_y + 1) == y_location(?c) ^ swarm_location15_x == x_location(?c)) then tons_of_plants15(?c) else 0.0])/total_neighbors_plants16,
+						@down : if(swarm_location15_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location15_y - 1) == y_location(?c) ^ swarm_location15_x == x_location(?c)) then tons_of_plants15(?c) else 0.0]/total_neighbors_plants16),
+						@left : if(swarm_location15_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location15_x - 1) == x_location(?c) ^ swarm_location15_y == y_location(?c)) then tons_of_plants15(?c) else 0.0]/total_neighbors_plants16),
+						@right :if(swarm_location15_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location15_x + 1) == x_location(?c) ^ swarm_location15_y == y_location(?c)) then tons_of_plants15(?c) else 0.0]/total_neighbors_plants16)
+					);
+
+swarm_location16_x = switch(swarm_move16)
+{
+case @up: swarm_location15_x,
+case @down: swarm_location15_x,
+case @right: swarm_location15_x + 1,
+case @left: swarm_location15_x - 1
+}; 
+
+swarm_location16_y = switch(swarm_move16)
+{
+case @up: swarm_location15_y + 1,
+case @down: swarm_location15_y - 1,
+case @right: swarm_location15_y,
+case @left: swarm_location15_y
+};
+tons_of_plants16(?c)= if (swarm_location16_y == y_location(?c) ^ swarm_location16_x == x_location(?c)) then tons_of_plants15(?c)*0.5 else tons_of_plants15(?c);
+total_neighbors_plants17 = sum_{?c : cell}[if (((swarm_location16_x+1) == x_location(?c) ^ swarm_location16_y == y_location(?c)) |
+((swarm_location16_x - 1) == x_location(?c) ^ swarm_location16_y == y_location(?c)) | 
+((swarm_location16_y + 1) == y_location(?c) ^ swarm_location16_x == x_location(?c)) |
+((swarm_location16_y -1) == y_location(?c) ^ swarm_location16_x == x_location(?c))) then tons_of_plants16(?c) else 0.0];
+
+swarm_move17 = Discrete(direction, 
+						@up : if(swarm_location16_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location16_y + 1) == y_location(?c) ^ swarm_location16_x == x_location(?c)) then tons_of_plants16(?c) else 0.0])/total_neighbors_plants17,
+						@down : if(swarm_location16_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location16_y - 1) == y_location(?c) ^ swarm_location16_x == x_location(?c)) then tons_of_plants16(?c) else 0.0]/total_neighbors_plants17),
+						@left : if(swarm_location16_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location16_x - 1) == x_location(?c) ^ swarm_location16_y == y_location(?c)) then tons_of_plants16(?c) else 0.0]/total_neighbors_plants17),
+						@right :if(swarm_location16_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location16_x + 1) == x_location(?c) ^ swarm_location16_y == y_location(?c)) then tons_of_plants16(?c) else 0.0]/total_neighbors_plants17)
+					);
+
+swarm_location17_x = switch(swarm_move17)
+{
+case @up: swarm_location16_x,
+case @down: swarm_location16_x,
+case @right: swarm_location16_x + 1,
+case @left: swarm_location16_x - 1
+}; 
+
+swarm_location17_y = switch(swarm_move17)
+{
+case @up: swarm_location16_y + 1,
+case @down: swarm_location16_y - 1,
+case @right: swarm_location16_y,
+case @left: swarm_location16_y
+};
+tons_of_plants17(?c)= if (swarm_location17_y == y_location(?c) ^ swarm_location17_x == x_location(?c)) then tons_of_plants16(?c)*0.5 else tons_of_plants16(?c);
+total_neighbors_plants18 = sum_{?c : cell}[if (((swarm_location17_x+1) == x_location(?c) ^ swarm_location17_y == y_location(?c)) |
+((swarm_location17_x - 1) == x_location(?c) ^ swarm_location17_y == y_location(?c)) | 
+((swarm_location17_y + 1) == y_location(?c) ^ swarm_location17_x == x_location(?c)) |
+((swarm_location17_y -1) == y_location(?c) ^ swarm_location17_x == x_location(?c))) then tons_of_plants17(?c) else 0.0];
+
+swarm_move18 = Discrete(direction, 
+						@up : if(swarm_location17_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location17_y + 1) == y_location(?c) ^ swarm_location17_x == x_location(?c)) then tons_of_plants17(?c) else 0.0])/total_neighbors_plants18,
+						@down : if(swarm_location17_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location17_y - 1) == y_location(?c) ^ swarm_location17_x == x_location(?c)) then tons_of_plants17(?c) else 0.0]/total_neighbors_plants18),
+						@left : if(swarm_location17_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location17_x - 1) == x_location(?c) ^ swarm_location17_y == y_location(?c)) then tons_of_plants17(?c) else 0.0]/total_neighbors_plants18),
+						@right :if(swarm_location17_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location17_x + 1) == x_location(?c) ^ swarm_location17_y == y_location(?c)) then tons_of_plants17(?c) else 0.0]/total_neighbors_plants18)
+					);
+
+swarm_location18_x = switch(swarm_move18)
+{
+case @up: swarm_location17_x,
+case @down: swarm_location17_x,
+case @right: swarm_location17_x + 1,
+case @left: swarm_location17_x - 1
+}; 
+
+swarm_location18_y = switch(swarm_move18)
+{
+case @up: swarm_location17_y + 1,
+case @down: swarm_location17_y - 1,
+case @right: swarm_location17_y,
+case @left: swarm_location17_y
+};
+tons_of_plants18(?c)= if (swarm_location18_y == y_location(?c) ^ swarm_location18_x == x_location(?c)) then tons_of_plants17(?c)*0.5 else tons_of_plants17(?c);
+total_neighbors_plants19 = sum_{?c : cell}[if (((swarm_location18_x+1) == x_location(?c) ^ swarm_location18_y == y_location(?c)) |
+((swarm_location18_x - 1) == x_location(?c) ^ swarm_location18_y == y_location(?c)) | 
+((swarm_location18_y + 1) == y_location(?c) ^ swarm_location18_x == x_location(?c)) |
+((swarm_location18_y -1) == y_location(?c) ^ swarm_location18_x == x_location(?c))) then tons_of_plants18(?c) else 0.0];
+
+swarm_move19 = Discrete(direction, 
+						@up : if(swarm_location18_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location18_y + 1) == y_location(?c) ^ swarm_location18_x == x_location(?c)) then tons_of_plants18(?c) else 0.0])/total_neighbors_plants19,
+						@down : if(swarm_location18_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location18_y - 1) == y_location(?c) ^ swarm_location18_x == x_location(?c)) then tons_of_plants18(?c) else 0.0]/total_neighbors_plants19),
+						@left : if(swarm_location18_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location18_x - 1) == x_location(?c) ^ swarm_location18_y == y_location(?c)) then tons_of_plants18(?c) else 0.0]/total_neighbors_plants19),
+						@right :if(swarm_location18_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location18_x + 1) == x_location(?c) ^ swarm_location18_y == y_location(?c)) then tons_of_plants18(?c) else 0.0]/total_neighbors_plants19)
+					);
+
+swarm_location19_x = switch(swarm_move19)
+{
+case @up: swarm_location18_x,
+case @down: swarm_location18_x,
+case @right: swarm_location18_x + 1,
+case @left: swarm_location18_x - 1
+}; 
+
+swarm_location19_y = switch(swarm_move19)
+{
+case @up: swarm_location18_y + 1,
+case @down: swarm_location18_y - 1,
+case @right: swarm_location18_y,
+case @left: swarm_location18_y
+};
+tons_of_plants19(?c)= if (swarm_location19_y == y_location(?c) ^ swarm_location19_x == x_location(?c)) then tons_of_plants18(?c)*0.5 else tons_of_plants18(?c);
+total_neighbors_plants20 = sum_{?c : cell}[if (((swarm_location19_x+1) == x_location(?c) ^ swarm_location19_y == y_location(?c)) |
+((swarm_location19_x - 1) == x_location(?c) ^ swarm_location19_y == y_location(?c)) | 
+((swarm_location19_y + 1) == y_location(?c) ^ swarm_location19_x == x_location(?c)) |
+((swarm_location19_y -1) == y_location(?c) ^ swarm_location19_x == x_location(?c))) then tons_of_plants19(?c) else 0.0];
+
+swarm_move20 = Discrete(direction, 
+						@up : if(swarm_location19_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location19_y + 1) == y_location(?c) ^ swarm_location19_x == x_location(?c)) then tons_of_plants19(?c) else 0.0])/total_neighbors_plants20,
+						@down : if(swarm_location19_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location19_y - 1) == y_location(?c) ^ swarm_location19_x == x_location(?c)) then tons_of_plants19(?c) else 0.0]/total_neighbors_plants20),
+						@left : if(swarm_location19_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location19_x - 1) == x_location(?c) ^ swarm_location19_y == y_location(?c)) then tons_of_plants19(?c) else 0.0]/total_neighbors_plants20),
+						@right :if(swarm_location19_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location19_x + 1) == x_location(?c) ^ swarm_location19_y == y_location(?c)) then tons_of_plants19(?c) else 0.0]/total_neighbors_plants20)
+					);
+
+swarm_location20_x = switch(swarm_move20)
+{
+case @up: swarm_location19_x,
+case @down: swarm_location19_x,
+case @right: swarm_location19_x + 1,
+case @left: swarm_location19_x - 1
+}; 
+
+swarm_location20_y = switch(swarm_move20)
+{
+case @up: swarm_location19_y + 1,
+case @down: swarm_location19_y - 1,
+case @right: swarm_location19_y,
+case @left: swarm_location19_y
+};
+tons_of_plants20(?c)= if (swarm_location20_y == y_location(?c) ^ swarm_location20_x == x_location(?c)) then tons_of_plants19(?c)*0.5 else tons_of_plants19(?c);
+total_neighbors_plants21 = sum_{?c : cell}[if (((swarm_location20_x+1) == x_location(?c) ^ swarm_location20_y == y_location(?c)) |
+((swarm_location20_x - 1) == x_location(?c) ^ swarm_location20_y == y_location(?c)) | 
+((swarm_location20_y + 1) == y_location(?c) ^ swarm_location20_x == x_location(?c)) |
+((swarm_location20_y -1) == y_location(?c) ^ swarm_location20_x == x_location(?c))) then tons_of_plants20(?c) else 0.0];
+
+swarm_move21 = Discrete(direction, 
+						@up : if(swarm_location20_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location20_y + 1) == y_location(?c) ^ swarm_location20_x == x_location(?c)) then tons_of_plants20(?c) else 0.0])/total_neighbors_plants21,
+						@down : if(swarm_location20_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location20_y - 1) == y_location(?c) ^ swarm_location20_x == x_location(?c)) then tons_of_plants20(?c) else 0.0]/total_neighbors_plants21),
+						@left : if(swarm_location20_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location20_x - 1) == x_location(?c) ^ swarm_location20_y == y_location(?c)) then tons_of_plants20(?c) else 0.0]/total_neighbors_plants21),
+						@right :if(swarm_location20_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location20_x + 1) == x_location(?c) ^ swarm_location20_y == y_location(?c)) then tons_of_plants20(?c) else 0.0]/total_neighbors_plants21)
+					);
+
+swarm_location21_x = switch(swarm_move21)
+{
+case @up: swarm_location20_x,
+case @down: swarm_location20_x,
+case @right: swarm_location20_x + 1,
+case @left: swarm_location20_x - 1
+}; 
+
+swarm_location21_y = switch(swarm_move21)
+{
+case @up: swarm_location20_y + 1,
+case @down: swarm_location20_y - 1,
+case @right: swarm_location20_y,
+case @left: swarm_location20_y
+};
+tons_of_plants21(?c)= if (swarm_location21_y == y_location(?c) ^ swarm_location21_x == x_location(?c)) then tons_of_plants20(?c)*0.5 else tons_of_plants20(?c);
+total_neighbors_plants22 = sum_{?c : cell}[if (((swarm_location21_x+1) == x_location(?c) ^ swarm_location21_y == y_location(?c)) |
+((swarm_location21_x - 1) == x_location(?c) ^ swarm_location21_y == y_location(?c)) | 
+((swarm_location21_y + 1) == y_location(?c) ^ swarm_location21_x == x_location(?c)) |
+((swarm_location21_y -1) == y_location(?c) ^ swarm_location21_x == x_location(?c))) then tons_of_plants21(?c) else 0.0];
+
+swarm_move22 = Discrete(direction, 
+						@up : if(swarm_location21_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location21_y + 1) == y_location(?c) ^ swarm_location21_x == x_location(?c)) then tons_of_plants21(?c) else 0.0])/total_neighbors_plants22,
+						@down : if(swarm_location21_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location21_y - 1) == y_location(?c) ^ swarm_location21_x == x_location(?c)) then tons_of_plants21(?c) else 0.0]/total_neighbors_plants22),
+						@left : if(swarm_location21_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location21_x - 1) == x_location(?c) ^ swarm_location21_y == y_location(?c)) then tons_of_plants21(?c) else 0.0]/total_neighbors_plants22),
+						@right :if(swarm_location21_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location21_x + 1) == x_location(?c) ^ swarm_location21_y == y_location(?c)) then tons_of_plants21(?c) else 0.0]/total_neighbors_plants22)
+					);
+
+swarm_location22_x = switch(swarm_move22)
+{
+case @up: swarm_location21_x,
+case @down: swarm_location21_x,
+case @right: swarm_location21_x + 1,
+case @left: swarm_location21_x - 1
+}; 
+
+swarm_location22_y = switch(swarm_move22)
+{
+case @up: swarm_location21_y + 1,
+case @down: swarm_location21_y - 1,
+case @right: swarm_location21_y,
+case @left: swarm_location21_y
+};
+tons_of_plants22(?c)= if (swarm_location22_y == y_location(?c) ^ swarm_location22_x == x_location(?c)) then tons_of_plants21(?c)*0.5 else tons_of_plants21(?c);
+total_neighbors_plants23 = sum_{?c : cell}[if (((swarm_location22_x+1) == x_location(?c) ^ swarm_location22_y == y_location(?c)) |
+((swarm_location22_x - 1) == x_location(?c) ^ swarm_location22_y == y_location(?c)) | 
+((swarm_location22_y + 1) == y_location(?c) ^ swarm_location22_x == x_location(?c)) |
+((swarm_location22_y -1) == y_location(?c) ^ swarm_location22_x == x_location(?c))) then tons_of_plants22(?c) else 0.0];
+
+swarm_move23 = Discrete(direction, 
+						@up : if(swarm_location22_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location22_y + 1) == y_location(?c) ^ swarm_location22_x == x_location(?c)) then tons_of_plants22(?c) else 0.0])/total_neighbors_plants23,
+						@down : if(swarm_location22_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location22_y - 1) == y_location(?c) ^ swarm_location22_x == x_location(?c)) then tons_of_plants22(?c) else 0.0]/total_neighbors_plants23),
+						@left : if(swarm_location22_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location22_x - 1) == x_location(?c) ^ swarm_location22_y == y_location(?c)) then tons_of_plants22(?c) else 0.0]/total_neighbors_plants23),
+						@right :if(swarm_location22_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location22_x + 1) == x_location(?c) ^ swarm_location22_y == y_location(?c)) then tons_of_plants22(?c) else 0.0]/total_neighbors_plants23)
+					);
+
+swarm_location23_x = switch(swarm_move23)
+{
+case @up: swarm_location22_x,
+case @down: swarm_location22_x,
+case @right: swarm_location22_x + 1,
+case @left: swarm_location22_x - 1
+}; 
+
+swarm_location23_y = switch(swarm_move23)
+{
+case @up: swarm_location22_y + 1,
+case @down: swarm_location22_y - 1,
+case @right: swarm_location22_y,
+case @left: swarm_location22_y
+};
+tons_of_plants23(?c)= if (swarm_location23_y == y_location(?c) ^ swarm_location23_x == x_location(?c)) then tons_of_plants22(?c)*0.5 else tons_of_plants22(?c);
+total_neighbors_plants24 = sum_{?c : cell}[if (((swarm_location23_x+1) == x_location(?c) ^ swarm_location23_y == y_location(?c)) |
+((swarm_location23_x - 1) == x_location(?c) ^ swarm_location23_y == y_location(?c)) | 
+((swarm_location23_y + 1) == y_location(?c) ^ swarm_location23_x == x_location(?c)) |
+((swarm_location23_y -1) == y_location(?c) ^ swarm_location23_x == x_location(?c))) then tons_of_plants23(?c) else 0.0];
+
+swarm_move24 = Discrete(direction, 
+						@up : if(swarm_location23_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location23_y + 1) == y_location(?c) ^ swarm_location23_x == x_location(?c)) then tons_of_plants23(?c) else 0.0])/total_neighbors_plants24,
+						@down : if(swarm_location23_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location23_y - 1) == y_location(?c) ^ swarm_location23_x == x_location(?c)) then tons_of_plants23(?c) else 0.0]/total_neighbors_plants24),
+						@left : if(swarm_location23_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location23_x - 1) == x_location(?c) ^ swarm_location23_y == y_location(?c)) then tons_of_plants23(?c) else 0.0]/total_neighbors_plants24),
+						@right :if(swarm_location23_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location23_x + 1) == x_location(?c) ^ swarm_location23_y == y_location(?c)) then tons_of_plants23(?c) else 0.0]/total_neighbors_plants24)
+					);
+
+swarm_location24_x = switch(swarm_move24)
+{
+case @up: swarm_location23_x,
+case @down: swarm_location23_x,
+case @right: swarm_location23_x + 1,
+case @left: swarm_location23_x - 1
+}; 
+
+swarm_location24_y = switch(swarm_move24)
+{
+case @up: swarm_location23_y + 1,
+case @down: swarm_location23_y - 1,
+case @right: swarm_location23_y,
+case @left: swarm_location23_y
+};
+tons_of_plants24(?c)= if (swarm_location24_y == y_location(?c) ^ swarm_location24_x == x_location(?c)) then tons_of_plants23(?c)*0.5 else tons_of_plants23(?c);
+total_neighbors_plants25 = sum_{?c : cell}[if (((swarm_location24_x+1) == x_location(?c) ^ swarm_location24_y == y_location(?c)) |
+((swarm_location24_x - 1) == x_location(?c) ^ swarm_location24_y == y_location(?c)) | 
+((swarm_location24_y + 1) == y_location(?c) ^ swarm_location24_x == x_location(?c)) |
+((swarm_location24_y -1) == y_location(?c) ^ swarm_location24_x == x_location(?c))) then tons_of_plants24(?c) else 0.0];
+
+swarm_move25 = Discrete(direction, 
+						@up : if(swarm_location24_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location24_y + 1) == y_location(?c) ^ swarm_location24_x == x_location(?c)) then tons_of_plants24(?c) else 0.0])/total_neighbors_plants25,
+						@down : if(swarm_location24_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location24_y - 1) == y_location(?c) ^ swarm_location24_x == x_location(?c)) then tons_of_plants24(?c) else 0.0]/total_neighbors_plants25),
+						@left : if(swarm_location24_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location24_x - 1) == x_location(?c) ^ swarm_location24_y == y_location(?c)) then tons_of_plants24(?c) else 0.0]/total_neighbors_plants25),
+						@right :if(swarm_location24_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location24_x + 1) == x_location(?c) ^ swarm_location24_y == y_location(?c)) then tons_of_plants24(?c) else 0.0]/total_neighbors_plants25)
+					);
+
+swarm_location25_x = switch(swarm_move25)
+{
+case @up: swarm_location24_x,
+case @down: swarm_location24_x,
+case @right: swarm_location24_x + 1,
+case @left: swarm_location24_x - 1
+}; 
+
+swarm_location25_y = switch(swarm_move25)
+{
+case @up: swarm_location24_y + 1,
+case @down: swarm_location24_y - 1,
+case @right: swarm_location24_y,
+case @left: swarm_location24_y
+};
+tons_of_plants25(?c)= if (swarm_location25_y == y_location(?c) ^ swarm_location25_x == x_location(?c)) then tons_of_plants24(?c)*0.5 else tons_of_plants24(?c);
+total_neighbors_plants26 = sum_{?c : cell}[if (((swarm_location25_x+1) == x_location(?c) ^ swarm_location25_y == y_location(?c)) |
+((swarm_location25_x - 1) == x_location(?c) ^ swarm_location25_y == y_location(?c)) | 
+((swarm_location25_y + 1) == y_location(?c) ^ swarm_location25_x == x_location(?c)) |
+((swarm_location25_y -1) == y_location(?c) ^ swarm_location25_x == x_location(?c))) then tons_of_plants25(?c) else 0.0];
+
+swarm_move26 = Discrete(direction, 
+						@up : if(swarm_location25_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location25_y + 1) == y_location(?c) ^ swarm_location25_x == x_location(?c)) then tons_of_plants25(?c) else 0.0])/total_neighbors_plants26,
+						@down : if(swarm_location25_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location25_y - 1) == y_location(?c) ^ swarm_location25_x == x_location(?c)) then tons_of_plants25(?c) else 0.0]/total_neighbors_plants26),
+						@left : if(swarm_location25_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location25_x - 1) == x_location(?c) ^ swarm_location25_y == y_location(?c)) then tons_of_plants25(?c) else 0.0]/total_neighbors_plants26),
+						@right :if(swarm_location25_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location25_x + 1) == x_location(?c) ^ swarm_location25_y == y_location(?c)) then tons_of_plants25(?c) else 0.0]/total_neighbors_plants26)
+					);
+
+swarm_location26_x = switch(swarm_move26)
+{
+case @up: swarm_location25_x,
+case @down: swarm_location25_x,
+case @right: swarm_location25_x + 1,
+case @left: swarm_location25_x - 1
+}; 
+
+swarm_location26_y = switch(swarm_move26)
+{
+case @up: swarm_location25_y + 1,
+case @down: swarm_location25_y - 1,
+case @right: swarm_location25_y,
+case @left: swarm_location25_y
+};
+tons_of_plants26(?c)= if (swarm_location26_y == y_location(?c) ^ swarm_location26_x == x_location(?c)) then tons_of_plants25(?c)*0.5 else tons_of_plants25(?c);
+total_neighbors_plants27 = sum_{?c : cell}[if (((swarm_location26_x+1) == x_location(?c) ^ swarm_location26_y == y_location(?c)) |
+((swarm_location26_x - 1) == x_location(?c) ^ swarm_location26_y == y_location(?c)) | 
+((swarm_location26_y + 1) == y_location(?c) ^ swarm_location26_x == x_location(?c)) |
+((swarm_location26_y -1) == y_location(?c) ^ swarm_location26_x == x_location(?c))) then tons_of_plants26(?c) else 0.0];
+
+swarm_move27 = Discrete(direction, 
+						@up : if(swarm_location26_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location26_y + 1) == y_location(?c) ^ swarm_location26_x == x_location(?c)) then tons_of_plants26(?c) else 0.0])/total_neighbors_plants27,
+						@down : if(swarm_location26_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location26_y - 1) == y_location(?c) ^ swarm_location26_x == x_location(?c)) then tons_of_plants26(?c) else 0.0]/total_neighbors_plants27),
+						@left : if(swarm_location26_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location26_x - 1) == x_location(?c) ^ swarm_location26_y == y_location(?c)) then tons_of_plants26(?c) else 0.0]/total_neighbors_plants27),
+						@right :if(swarm_location26_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location26_x + 1) == x_location(?c) ^ swarm_location26_y == y_location(?c)) then tons_of_plants26(?c) else 0.0]/total_neighbors_plants27)
+					);
+
+swarm_location27_x = switch(swarm_move27)
+{
+case @up: swarm_location26_x,
+case @down: swarm_location26_x,
+case @right: swarm_location26_x + 1,
+case @left: swarm_location26_x - 1
+}; 
+
+swarm_location27_y = switch(swarm_move27)
+{
+case @up: swarm_location26_y + 1,
+case @down: swarm_location26_y - 1,
+case @right: swarm_location26_y,
+case @left: swarm_location26_y
+};
+tons_of_plants27(?c)= if (swarm_location27_y == y_location(?c) ^ swarm_location27_x == x_location(?c)) then tons_of_plants26(?c)*0.5 else tons_of_plants26(?c);
+total_neighbors_plants28 = sum_{?c : cell}[if (((swarm_location27_x+1) == x_location(?c) ^ swarm_location27_y == y_location(?c)) |
+((swarm_location27_x - 1) == x_location(?c) ^ swarm_location27_y == y_location(?c)) | 
+((swarm_location27_y + 1) == y_location(?c) ^ swarm_location27_x == x_location(?c)) |
+((swarm_location27_y -1) == y_location(?c) ^ swarm_location27_x == x_location(?c))) then tons_of_plants27(?c) else 0.0];
+
+swarm_move28 = Discrete(direction, 
+						@up : if(swarm_location27_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location27_y + 1) == y_location(?c) ^ swarm_location27_x == x_location(?c)) then tons_of_plants27(?c) else 0.0])/total_neighbors_plants28,
+						@down : if(swarm_location27_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location27_y - 1) == y_location(?c) ^ swarm_location27_x == x_location(?c)) then tons_of_plants27(?c) else 0.0]/total_neighbors_plants28),
+						@left : if(swarm_location27_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location27_x - 1) == x_location(?c) ^ swarm_location27_y == y_location(?c)) then tons_of_plants27(?c) else 0.0]/total_neighbors_plants28),
+						@right :if(swarm_location27_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location27_x + 1) == x_location(?c) ^ swarm_location27_y == y_location(?c)) then tons_of_plants27(?c) else 0.0]/total_neighbors_plants28)
+					);
+
+swarm_location28_x = switch(swarm_move28)
+{
+case @up: swarm_location27_x,
+case @down: swarm_location27_x,
+case @right: swarm_location27_x + 1,
+case @left: swarm_location27_x - 1
+}; 
+
+swarm_location28_y = switch(swarm_move28)
+{
+case @up: swarm_location27_y + 1,
+case @down: swarm_location27_y - 1,
+case @right: swarm_location27_y,
+case @left: swarm_location27_y
+};
+tons_of_plants28(?c)= if (swarm_location28_y == y_location(?c) ^ swarm_location28_x == x_location(?c)) then tons_of_plants27(?c)*0.5 else tons_of_plants27(?c);
+total_neighbors_plants29 = sum_{?c : cell}[if (((swarm_location28_x+1) == x_location(?c) ^ swarm_location28_y == y_location(?c)) |
+((swarm_location28_x - 1) == x_location(?c) ^ swarm_location28_y == y_location(?c)) | 
+((swarm_location28_y + 1) == y_location(?c) ^ swarm_location28_x == x_location(?c)) |
+((swarm_location28_y -1) == y_location(?c) ^ swarm_location28_x == x_location(?c))) then tons_of_plants28(?c) else 0.0];
+
+swarm_move29 = Discrete(direction, 
+						@up : if(swarm_location28_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location28_y + 1) == y_location(?c) ^ swarm_location28_x == x_location(?c)) then tons_of_plants28(?c) else 0.0])/total_neighbors_plants29,
+						@down : if(swarm_location28_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location28_y - 1) == y_location(?c) ^ swarm_location28_x == x_location(?c)) then tons_of_plants28(?c) else 0.0]/total_neighbors_plants29),
+						@left : if(swarm_location28_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location28_x - 1) == x_location(?c) ^ swarm_location28_y == y_location(?c)) then tons_of_plants28(?c) else 0.0]/total_neighbors_plants29),
+						@right :if(swarm_location28_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location28_x + 1) == x_location(?c) ^ swarm_location28_y == y_location(?c)) then tons_of_plants28(?c) else 0.0]/total_neighbors_plants29)
+					);
+
+swarm_location29_x = switch(swarm_move29)
+{
+case @up: swarm_location28_x,
+case @down: swarm_location28_x,
+case @right: swarm_location28_x + 1,
+case @left: swarm_location28_x - 1
+}; 
+
+swarm_location29_y = switch(swarm_move29)
+{
+case @up: swarm_location28_y + 1,
+case @down: swarm_location28_y - 1,
+case @right: swarm_location28_y,
+case @left: swarm_location28_y
+};
+tons_of_plants29(?c)= if (swarm_location29_y == y_location(?c) ^ swarm_location29_x == x_location(?c)) then tons_of_plants28(?c)*0.5 else tons_of_plants28(?c);
+total_neighbors_plants30 = sum_{?c : cell}[if (((swarm_location29_x+1) == x_location(?c) ^ swarm_location29_y == y_location(?c)) |
+((swarm_location29_x - 1) == x_location(?c) ^ swarm_location29_y == y_location(?c)) | 
+((swarm_location29_y + 1) == y_location(?c) ^ swarm_location29_x == x_location(?c)) |
+((swarm_location29_y -1) == y_location(?c) ^ swarm_location29_x == x_location(?c))) then tons_of_plants29(?c) else 0.0];
+
+swarm_move30 = Discrete(direction, 
+						@up : if(swarm_location29_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location29_y + 1) == y_location(?c) ^ swarm_location29_x == x_location(?c)) then tons_of_plants29(?c) else 0.0])/total_neighbors_plants30,
+						@down : if(swarm_location29_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location29_y - 1) == y_location(?c) ^ swarm_location29_x == x_location(?c)) then tons_of_plants29(?c) else 0.0]/total_neighbors_plants30),
+						@left : if(swarm_location29_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location29_x - 1) == x_location(?c) ^ swarm_location29_y == y_location(?c)) then tons_of_plants29(?c) else 0.0]/total_neighbors_plants30),
+						@right :if(swarm_location29_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location29_x + 1) == x_location(?c) ^ swarm_location29_y == y_location(?c)) then tons_of_plants29(?c) else 0.0]/total_neighbors_plants30)
+					);
+
+swarm_location30_x = switch(swarm_move30)
+{
+case @up: swarm_location29_x,
+case @down: swarm_location29_x,
+case @right: swarm_location29_x + 1,
+case @left: swarm_location29_x - 1
+}; 
+
+swarm_location30_y = switch(swarm_move30)
+{
+case @up: swarm_location29_y + 1,
+case @down: swarm_location29_y - 1,
+case @right: swarm_location29_y,
+case @left: swarm_location29_y
+};
+tons_of_plants30(?c)= if (swarm_location30_y == y_location(?c) ^ swarm_location30_x == x_location(?c)) then tons_of_plants29(?c)*0.5 else tons_of_plants29(?c);
+total_neighbors_plants31 = sum_{?c : cell}[if (((swarm_location30_x+1) == x_location(?c) ^ swarm_location30_y == y_location(?c)) |
+((swarm_location30_x - 1) == x_location(?c) ^ swarm_location30_y == y_location(?c)) | 
+((swarm_location30_y + 1) == y_location(?c) ^ swarm_location30_x == x_location(?c)) |
+((swarm_location30_y -1) == y_location(?c) ^ swarm_location30_x == x_location(?c))) then tons_of_plants30(?c) else 0.0];
+
+swarm_move31 = Discrete(direction, 
+						@up : if(swarm_location30_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location30_y + 1) == y_location(?c) ^ swarm_location30_x == x_location(?c)) then tons_of_plants30(?c) else 0.0])/total_neighbors_plants31,
+						@down : if(swarm_location30_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location30_y - 1) == y_location(?c) ^ swarm_location30_x == x_location(?c)) then tons_of_plants30(?c) else 0.0]/total_neighbors_plants31),
+						@left : if(swarm_location30_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location30_x - 1) == x_location(?c) ^ swarm_location30_y == y_location(?c)) then tons_of_plants30(?c) else 0.0]/total_neighbors_plants31),
+						@right :if(swarm_location30_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location30_x + 1) == x_location(?c) ^ swarm_location30_y == y_location(?c)) then tons_of_plants30(?c) else 0.0]/total_neighbors_plants31)
+					);
+
+swarm_location31_x = switch(swarm_move31)
+{
+case @up: swarm_location30_x,
+case @down: swarm_location30_x,
+case @right: swarm_location30_x + 1,
+case @left: swarm_location30_x - 1
+}; 
+
+swarm_location31_y = switch(swarm_move31)
+{
+case @up: swarm_location30_y + 1,
+case @down: swarm_location30_y - 1,
+case @right: swarm_location30_y,
+case @left: swarm_location30_y
+};
+tons_of_plants31(?c)= if (swarm_location31_y == y_location(?c) ^ swarm_location31_x == x_location(?c)) then tons_of_plants30(?c)*0.5 else tons_of_plants30(?c);
+total_neighbors_plants32 = sum_{?c : cell}[if (((swarm_location31_x+1) == x_location(?c) ^ swarm_location31_y == y_location(?c)) |
+((swarm_location31_x - 1) == x_location(?c) ^ swarm_location31_y == y_location(?c)) | 
+((swarm_location31_y + 1) == y_location(?c) ^ swarm_location31_x == x_location(?c)) |
+((swarm_location31_y -1) == y_location(?c) ^ swarm_location31_x == x_location(?c))) then tons_of_plants31(?c) else 0.0];
+
+swarm_move32 = Discrete(direction, 
+						@up : if(swarm_location31_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location31_y + 1) == y_location(?c) ^ swarm_location31_x == x_location(?c)) then tons_of_plants31(?c) else 0.0])/total_neighbors_plants32,
+						@down : if(swarm_location31_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location31_y - 1) == y_location(?c) ^ swarm_location31_x == x_location(?c)) then tons_of_plants31(?c) else 0.0]/total_neighbors_plants32),
+						@left : if(swarm_location31_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location31_x - 1) == x_location(?c) ^ swarm_location31_y == y_location(?c)) then tons_of_plants31(?c) else 0.0]/total_neighbors_plants32),
+						@right :if(swarm_location31_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location31_x + 1) == x_location(?c) ^ swarm_location31_y == y_location(?c)) then tons_of_plants31(?c) else 0.0]/total_neighbors_plants32)
+					);
+
+swarm_location32_x = switch(swarm_move32)
+{
+case @up: swarm_location31_x,
+case @down: swarm_location31_x,
+case @right: swarm_location31_x + 1,
+case @left: swarm_location31_x - 1
+}; 
+
+swarm_location32_y = switch(swarm_move32)
+{
+case @up: swarm_location31_y + 1,
+case @down: swarm_location31_y - 1,
+case @right: swarm_location31_y,
+case @left: swarm_location31_y
+};
+tons_of_plants32(?c)= if (swarm_location32_y == y_location(?c) ^ swarm_location32_x == x_location(?c)) then tons_of_plants31(?c)*0.5 else tons_of_plants31(?c);
+total_neighbors_plants33 = sum_{?c : cell}[if (((swarm_location32_x+1) == x_location(?c) ^ swarm_location32_y == y_location(?c)) |
+((swarm_location32_x - 1) == x_location(?c) ^ swarm_location32_y == y_location(?c)) | 
+((swarm_location32_y + 1) == y_location(?c) ^ swarm_location32_x == x_location(?c)) |
+((swarm_location32_y -1) == y_location(?c) ^ swarm_location32_x == x_location(?c))) then tons_of_plants32(?c) else 0.0];
+
+swarm_move33 = Discrete(direction, 
+						@up : if(swarm_location32_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location32_y + 1) == y_location(?c) ^ swarm_location32_x == x_location(?c)) then tons_of_plants32(?c) else 0.0])/total_neighbors_plants33,
+						@down : if(swarm_location32_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location32_y - 1) == y_location(?c) ^ swarm_location32_x == x_location(?c)) then tons_of_plants32(?c) else 0.0]/total_neighbors_plants33),
+						@left : if(swarm_location32_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location32_x - 1) == x_location(?c) ^ swarm_location32_y == y_location(?c)) then tons_of_plants32(?c) else 0.0]/total_neighbors_plants33),
+						@right :if(swarm_location32_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location32_x + 1) == x_location(?c) ^ swarm_location32_y == y_location(?c)) then tons_of_plants32(?c) else 0.0]/total_neighbors_plants33)
+					);
+
+swarm_location33_x = switch(swarm_move33)
+{
+case @up: swarm_location32_x,
+case @down: swarm_location32_x,
+case @right: swarm_location32_x + 1,
+case @left: swarm_location32_x - 1
+}; 
+
+swarm_location33_y = switch(swarm_move33)
+{
+case @up: swarm_location32_y + 1,
+case @down: swarm_location32_y - 1,
+case @right: swarm_location32_y,
+case @left: swarm_location32_y
+};
+tons_of_plants33(?c)= if (swarm_location33_y == y_location(?c) ^ swarm_location33_x == x_location(?c)) then tons_of_plants32(?c)*0.5 else tons_of_plants32(?c);
+total_neighbors_plants34 = sum_{?c : cell}[if (((swarm_location33_x+1) == x_location(?c) ^ swarm_location33_y == y_location(?c)) |
+((swarm_location33_x - 1) == x_location(?c) ^ swarm_location33_y == y_location(?c)) | 
+((swarm_location33_y + 1) == y_location(?c) ^ swarm_location33_x == x_location(?c)) |
+((swarm_location33_y -1) == y_location(?c) ^ swarm_location33_x == x_location(?c))) then tons_of_plants33(?c) else 0.0];
+
+swarm_move34 = Discrete(direction, 
+						@up : if(swarm_location33_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location33_y + 1) == y_location(?c) ^ swarm_location33_x == x_location(?c)) then tons_of_plants33(?c) else 0.0])/total_neighbors_plants34,
+						@down : if(swarm_location33_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location33_y - 1) == y_location(?c) ^ swarm_location33_x == x_location(?c)) then tons_of_plants33(?c) else 0.0]/total_neighbors_plants34),
+						@left : if(swarm_location33_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location33_x - 1) == x_location(?c) ^ swarm_location33_y == y_location(?c)) then tons_of_plants33(?c) else 0.0]/total_neighbors_plants34),
+						@right :if(swarm_location33_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location33_x + 1) == x_location(?c) ^ swarm_location33_y == y_location(?c)) then tons_of_plants33(?c) else 0.0]/total_neighbors_plants34)
+					);
+
+swarm_location34_x = switch(swarm_move34)
+{
+case @up: swarm_location33_x,
+case @down: swarm_location33_x,
+case @right: swarm_location33_x + 1,
+case @left: swarm_location33_x - 1
+}; 
+
+swarm_location34_y = switch(swarm_move34)
+{
+case @up: swarm_location33_y + 1,
+case @down: swarm_location33_y - 1,
+case @right: swarm_location33_y,
+case @left: swarm_location33_y
+};
+tons_of_plants34(?c)= if (swarm_location34_y == y_location(?c) ^ swarm_location34_x == x_location(?c)) then tons_of_plants33(?c)*0.5 else tons_of_plants33(?c);
+total_neighbors_plants35 = sum_{?c : cell}[if (((swarm_location34_x+1) == x_location(?c) ^ swarm_location34_y == y_location(?c)) |
+((swarm_location34_x - 1) == x_location(?c) ^ swarm_location34_y == y_location(?c)) | 
+((swarm_location34_y + 1) == y_location(?c) ^ swarm_location34_x == x_location(?c)) |
+((swarm_location34_y -1) == y_location(?c) ^ swarm_location34_x == x_location(?c))) then tons_of_plants34(?c) else 0.0];
+
+swarm_move35 = Discrete(direction, 
+						@up : if(swarm_location34_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location34_y + 1) == y_location(?c) ^ swarm_location34_x == x_location(?c)) then tons_of_plants34(?c) else 0.0])/total_neighbors_plants35,
+						@down : if(swarm_location34_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location34_y - 1) == y_location(?c) ^ swarm_location34_x == x_location(?c)) then tons_of_plants34(?c) else 0.0]/total_neighbors_plants35),
+						@left : if(swarm_location34_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location34_x - 1) == x_location(?c) ^ swarm_location34_y == y_location(?c)) then tons_of_plants34(?c) else 0.0]/total_neighbors_plants35),
+						@right :if(swarm_location34_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location34_x + 1) == x_location(?c) ^ swarm_location34_y == y_location(?c)) then tons_of_plants34(?c) else 0.0]/total_neighbors_plants35)
+					);
+
+swarm_location35_x = switch(swarm_move35)
+{
+case @up: swarm_location34_x,
+case @down: swarm_location34_x,
+case @right: swarm_location34_x + 1,
+case @left: swarm_location34_x - 1
+}; 
+
+swarm_location35_y = switch(swarm_move35)
+{
+case @up: swarm_location34_y + 1,
+case @down: swarm_location34_y - 1,
+case @right: swarm_location34_y,
+case @left: swarm_location34_y
+};
+tons_of_plants35(?c)= if (swarm_location35_y == y_location(?c) ^ swarm_location35_x == x_location(?c)) then tons_of_plants34(?c)*0.5 else tons_of_plants34(?c);
+total_neighbors_plants36 = sum_{?c : cell}[if (((swarm_location35_x+1) == x_location(?c) ^ swarm_location35_y == y_location(?c)) |
+((swarm_location35_x - 1) == x_location(?c) ^ swarm_location35_y == y_location(?c)) | 
+((swarm_location35_y + 1) == y_location(?c) ^ swarm_location35_x == x_location(?c)) |
+((swarm_location35_y -1) == y_location(?c) ^ swarm_location35_x == x_location(?c))) then tons_of_plants35(?c) else 0.0];
+
+swarm_move36 = Discrete(direction, 
+						@up : if(swarm_location35_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location35_y + 1) == y_location(?c) ^ swarm_location35_x == x_location(?c)) then tons_of_plants35(?c) else 0.0])/total_neighbors_plants36,
+						@down : if(swarm_location35_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location35_y - 1) == y_location(?c) ^ swarm_location35_x == x_location(?c)) then tons_of_plants35(?c) else 0.0]/total_neighbors_plants36),
+						@left : if(swarm_location35_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location35_x - 1) == x_location(?c) ^ swarm_location35_y == y_location(?c)) then tons_of_plants35(?c) else 0.0]/total_neighbors_plants36),
+						@right :if(swarm_location35_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location35_x + 1) == x_location(?c) ^ swarm_location35_y == y_location(?c)) then tons_of_plants35(?c) else 0.0]/total_neighbors_plants36)
+					);
+
+swarm_location36_x = switch(swarm_move36)
+{
+case @up: swarm_location35_x,
+case @down: swarm_location35_x,
+case @right: swarm_location35_x + 1,
+case @left: swarm_location35_x - 1
+}; 
+
+swarm_location36_y = switch(swarm_move36)
+{
+case @up: swarm_location35_y + 1,
+case @down: swarm_location35_y - 1,
+case @right: swarm_location35_y,
+case @left: swarm_location35_y
+};
+tons_of_plants36(?c)= if (swarm_location36_y == y_location(?c) ^ swarm_location36_x == x_location(?c)) then tons_of_plants35(?c)*0.5 else tons_of_plants35(?c);
+total_neighbors_plants37 = sum_{?c : cell}[if (((swarm_location36_x+1) == x_location(?c) ^ swarm_location36_y == y_location(?c)) |
+((swarm_location36_x - 1) == x_location(?c) ^ swarm_location36_y == y_location(?c)) | 
+((swarm_location36_y + 1) == y_location(?c) ^ swarm_location36_x == x_location(?c)) |
+((swarm_location36_y -1) == y_location(?c) ^ swarm_location36_x == x_location(?c))) then tons_of_plants36(?c) else 0.0];
+
+swarm_move37 = Discrete(direction, 
+						@up : if(swarm_location36_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location36_y + 1) == y_location(?c) ^ swarm_location36_x == x_location(?c)) then tons_of_plants36(?c) else 0.0])/total_neighbors_plants37,
+						@down : if(swarm_location36_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location36_y - 1) == y_location(?c) ^ swarm_location36_x == x_location(?c)) then tons_of_plants36(?c) else 0.0]/total_neighbors_plants37),
+						@left : if(swarm_location36_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location36_x - 1) == x_location(?c) ^ swarm_location36_y == y_location(?c)) then tons_of_plants36(?c) else 0.0]/total_neighbors_plants37),
+						@right :if(swarm_location36_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location36_x + 1) == x_location(?c) ^ swarm_location36_y == y_location(?c)) then tons_of_plants36(?c) else 0.0]/total_neighbors_plants37)
+					);
+
+swarm_location37_x = switch(swarm_move37)
+{
+case @up: swarm_location36_x,
+case @down: swarm_location36_x,
+case @right: swarm_location36_x + 1,
+case @left: swarm_location36_x - 1
+}; 
+
+swarm_location37_y = switch(swarm_move37)
+{
+case @up: swarm_location36_y + 1,
+case @down: swarm_location36_y - 1,
+case @right: swarm_location36_y,
+case @left: swarm_location36_y
+};
+tons_of_plants37(?c)= if (swarm_location37_y == y_location(?c) ^ swarm_location37_x == x_location(?c)) then tons_of_plants36(?c)*0.5 else tons_of_plants36(?c);
+total_neighbors_plants38 = sum_{?c : cell}[if (((swarm_location37_x+1) == x_location(?c) ^ swarm_location37_y == y_location(?c)) |
+((swarm_location37_x - 1) == x_location(?c) ^ swarm_location37_y == y_location(?c)) | 
+((swarm_location37_y + 1) == y_location(?c) ^ swarm_location37_x == x_location(?c)) |
+((swarm_location37_y -1) == y_location(?c) ^ swarm_location37_x == x_location(?c))) then tons_of_plants37(?c) else 0.0];
+
+swarm_move38 = Discrete(direction, 
+						@up : if(swarm_location37_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location37_y + 1) == y_location(?c) ^ swarm_location37_x == x_location(?c)) then tons_of_plants37(?c) else 0.0])/total_neighbors_plants38,
+						@down : if(swarm_location37_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location37_y - 1) == y_location(?c) ^ swarm_location37_x == x_location(?c)) then tons_of_plants37(?c) else 0.0]/total_neighbors_plants38),
+						@left : if(swarm_location37_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location37_x - 1) == x_location(?c) ^ swarm_location37_y == y_location(?c)) then tons_of_plants37(?c) else 0.0]/total_neighbors_plants38),
+						@right :if(swarm_location37_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location37_x + 1) == x_location(?c) ^ swarm_location37_y == y_location(?c)) then tons_of_plants37(?c) else 0.0]/total_neighbors_plants38)
+					);
+
+swarm_location38_x = switch(swarm_move38)
+{
+case @up: swarm_location37_x,
+case @down: swarm_location37_x,
+case @right: swarm_location37_x + 1,
+case @left: swarm_location37_x - 1
+}; 
+
+swarm_location38_y = switch(swarm_move38)
+{
+case @up: swarm_location37_y + 1,
+case @down: swarm_location37_y - 1,
+case @right: swarm_location37_y,
+case @left: swarm_location37_y
+};
+tons_of_plants38(?c)= if (swarm_location38_y == y_location(?c) ^ swarm_location38_x == x_location(?c)) then tons_of_plants37(?c)*0.5 else tons_of_plants37(?c);
+total_neighbors_plants39 = sum_{?c : cell}[if (((swarm_location38_x+1) == x_location(?c) ^ swarm_location38_y == y_location(?c)) |
+((swarm_location38_x - 1) == x_location(?c) ^ swarm_location38_y == y_location(?c)) | 
+((swarm_location38_y + 1) == y_location(?c) ^ swarm_location38_x == x_location(?c)) |
+((swarm_location38_y -1) == y_location(?c) ^ swarm_location38_x == x_location(?c))) then tons_of_plants38(?c) else 0.0];
+
+swarm_move39 = Discrete(direction, 
+						@up : if(swarm_location38_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location38_y + 1) == y_location(?c) ^ swarm_location38_x == x_location(?c)) then tons_of_plants38(?c) else 0.0])/total_neighbors_plants39,
+						@down : if(swarm_location38_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location38_y - 1) == y_location(?c) ^ swarm_location38_x == x_location(?c)) then tons_of_plants38(?c) else 0.0]/total_neighbors_plants39),
+						@left : if(swarm_location38_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location38_x - 1) == x_location(?c) ^ swarm_location38_y == y_location(?c)) then tons_of_plants38(?c) else 0.0]/total_neighbors_plants39),
+						@right :if(swarm_location38_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location38_x + 1) == x_location(?c) ^ swarm_location38_y == y_location(?c)) then tons_of_plants38(?c) else 0.0]/total_neighbors_plants39)
+					);
+
+swarm_location39_x = switch(swarm_move39)
+{
+case @up: swarm_location38_x,
+case @down: swarm_location38_x,
+case @right: swarm_location38_x + 1,
+case @left: swarm_location38_x - 1
+}; 
+
+swarm_location39_y = switch(swarm_move39)
+{
+case @up: swarm_location38_y + 1,
+case @down: swarm_location38_y - 1,
+case @right: swarm_location38_y,
+case @left: swarm_location38_y
+};
+tons_of_plants39(?c)= if (swarm_location39_y == y_location(?c) ^ swarm_location39_x == x_location(?c)) then tons_of_plants38(?c)*0.5 else tons_of_plants38(?c);
+total_neighbors_plants40 = sum_{?c : cell}[if (((swarm_location39_x+1) == x_location(?c) ^ swarm_location39_y == y_location(?c)) |
+((swarm_location39_x - 1) == x_location(?c) ^ swarm_location39_y == y_location(?c)) | 
+((swarm_location39_y + 1) == y_location(?c) ^ swarm_location39_x == x_location(?c)) |
+((swarm_location39_y -1) == y_location(?c) ^ swarm_location39_x == x_location(?c))) then tons_of_plants39(?c) else 0.0];
+
+swarm_move40 = Discrete(direction, 
+						@up : if(swarm_location39_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location39_y + 1) == y_location(?c) ^ swarm_location39_x == x_location(?c)) then tons_of_plants39(?c) else 0.0])/total_neighbors_plants40,
+						@down : if(swarm_location39_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location39_y - 1) == y_location(?c) ^ swarm_location39_x == x_location(?c)) then tons_of_plants39(?c) else 0.0]/total_neighbors_plants40),
+						@left : if(swarm_location39_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location39_x - 1) == x_location(?c) ^ swarm_location39_y == y_location(?c)) then tons_of_plants39(?c) else 0.0]/total_neighbors_plants40),
+						@right :if(swarm_location39_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location39_x + 1) == x_location(?c) ^ swarm_location39_y == y_location(?c)) then tons_of_plants39(?c) else 0.0]/total_neighbors_plants40)
+					);
+
+swarm_location40_x = switch(swarm_move40)
+{
+case @up: swarm_location39_x,
+case @down: swarm_location39_x,
+case @right: swarm_location39_x + 1,
+case @left: swarm_location39_x - 1
+}; 
+
+swarm_location40_y = switch(swarm_move40)
+{
+case @up: swarm_location39_y + 1,
+case @down: swarm_location39_y - 1,
+case @right: swarm_location39_y,
+case @left: swarm_location39_y
+};
+tons_of_plants40(?c)= if (swarm_location40_y == y_location(?c) ^ swarm_location40_x == x_location(?c)) then tons_of_plants39(?c)*0.5 else tons_of_plants39(?c);
+total_neighbors_plants41 = sum_{?c : cell}[if (((swarm_location40_x+1) == x_location(?c) ^ swarm_location40_y == y_location(?c)) |
+((swarm_location40_x - 1) == x_location(?c) ^ swarm_location40_y == y_location(?c)) | 
+((swarm_location40_y + 1) == y_location(?c) ^ swarm_location40_x == x_location(?c)) |
+((swarm_location40_y -1) == y_location(?c) ^ swarm_location40_x == x_location(?c))) then tons_of_plants40(?c) else 0.0];
+
+swarm_move41 = Discrete(direction, 
+						@up : if(swarm_location40_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location40_y + 1) == y_location(?c) ^ swarm_location40_x == x_location(?c)) then tons_of_plants40(?c) else 0.0])/total_neighbors_plants41,
+						@down : if(swarm_location40_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location40_y - 1) == y_location(?c) ^ swarm_location40_x == x_location(?c)) then tons_of_plants40(?c) else 0.0]/total_neighbors_plants41),
+						@left : if(swarm_location40_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location40_x - 1) == x_location(?c) ^ swarm_location40_y == y_location(?c)) then tons_of_plants40(?c) else 0.0]/total_neighbors_plants41),
+						@right :if(swarm_location40_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location40_x + 1) == x_location(?c) ^ swarm_location40_y == y_location(?c)) then tons_of_plants40(?c) else 0.0]/total_neighbors_plants41)
+					);
+
+swarm_location41_x = switch(swarm_move41)
+{
+case @up: swarm_location40_x,
+case @down: swarm_location40_x,
+case @right: swarm_location40_x + 1,
+case @left: swarm_location40_x - 1
+}; 
+
+swarm_location41_y = switch(swarm_move41)
+{
+case @up: swarm_location40_y + 1,
+case @down: swarm_location40_y - 1,
+case @right: swarm_location40_y,
+case @left: swarm_location40_y
+};
+tons_of_plants41(?c)= if (swarm_location41_y == y_location(?c) ^ swarm_location41_x == x_location(?c)) then tons_of_plants40(?c)*0.5 else tons_of_plants40(?c);
+total_neighbors_plants42 = sum_{?c : cell}[if (((swarm_location41_x+1) == x_location(?c) ^ swarm_location41_y == y_location(?c)) |
+((swarm_location41_x - 1) == x_location(?c) ^ swarm_location41_y == y_location(?c)) | 
+((swarm_location41_y + 1) == y_location(?c) ^ swarm_location41_x == x_location(?c)) |
+((swarm_location41_y -1) == y_location(?c) ^ swarm_location41_x == x_location(?c))) then tons_of_plants41(?c) else 0.0];
+
+swarm_move42 = Discrete(direction, 
+						@up : if(swarm_location41_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location41_y + 1) == y_location(?c) ^ swarm_location41_x == x_location(?c)) then tons_of_plants41(?c) else 0.0])/total_neighbors_plants42,
+						@down : if(swarm_location41_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location41_y - 1) == y_location(?c) ^ swarm_location41_x == x_location(?c)) then tons_of_plants41(?c) else 0.0]/total_neighbors_plants42),
+						@left : if(swarm_location41_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location41_x - 1) == x_location(?c) ^ swarm_location41_y == y_location(?c)) then tons_of_plants41(?c) else 0.0]/total_neighbors_plants42),
+						@right :if(swarm_location41_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location41_x + 1) == x_location(?c) ^ swarm_location41_y == y_location(?c)) then tons_of_plants41(?c) else 0.0]/total_neighbors_plants42)
+					);
+
+swarm_location42_x = switch(swarm_move42)
+{
+case @up: swarm_location41_x,
+case @down: swarm_location41_x,
+case @right: swarm_location41_x + 1,
+case @left: swarm_location41_x - 1
+}; 
+
+swarm_location42_y = switch(swarm_move42)
+{
+case @up: swarm_location41_y + 1,
+case @down: swarm_location41_y - 1,
+case @right: swarm_location41_y,
+case @left: swarm_location41_y
+};
+tons_of_plants42(?c)= if (swarm_location42_y == y_location(?c) ^ swarm_location42_x == x_location(?c)) then tons_of_plants41(?c)*0.5 else tons_of_plants41(?c);
+total_neighbors_plants43 = sum_{?c : cell}[if (((swarm_location42_x+1) == x_location(?c) ^ swarm_location42_y == y_location(?c)) |
+((swarm_location42_x - 1) == x_location(?c) ^ swarm_location42_y == y_location(?c)) | 
+((swarm_location42_y + 1) == y_location(?c) ^ swarm_location42_x == x_location(?c)) |
+((swarm_location42_y -1) == y_location(?c) ^ swarm_location42_x == x_location(?c))) then tons_of_plants42(?c) else 0.0];
+
+swarm_move43 = Discrete(direction, 
+						@up : if(swarm_location42_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location42_y + 1) == y_location(?c) ^ swarm_location42_x == x_location(?c)) then tons_of_plants42(?c) else 0.0])/total_neighbors_plants43,
+						@down : if(swarm_location42_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location42_y - 1) == y_location(?c) ^ swarm_location42_x == x_location(?c)) then tons_of_plants42(?c) else 0.0]/total_neighbors_plants43),
+						@left : if(swarm_location42_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location42_x - 1) == x_location(?c) ^ swarm_location42_y == y_location(?c)) then tons_of_plants42(?c) else 0.0]/total_neighbors_plants43),
+						@right :if(swarm_location42_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location42_x + 1) == x_location(?c) ^ swarm_location42_y == y_location(?c)) then tons_of_plants42(?c) else 0.0]/total_neighbors_plants43)
+					);
+
+swarm_location43_x = switch(swarm_move43)
+{
+case @up: swarm_location42_x,
+case @down: swarm_location42_x,
+case @right: swarm_location42_x + 1,
+case @left: swarm_location42_x - 1
+}; 
+
+swarm_location43_y = switch(swarm_move43)
+{
+case @up: swarm_location42_y + 1,
+case @down: swarm_location42_y - 1,
+case @right: swarm_location42_y,
+case @left: swarm_location42_y
+};
+tons_of_plants43(?c)= if (swarm_location43_y == y_location(?c) ^ swarm_location43_x == x_location(?c)) then tons_of_plants42(?c)*0.5 else tons_of_plants42(?c);
+total_neighbors_plants44 = sum_{?c : cell}[if (((swarm_location43_x+1) == x_location(?c) ^ swarm_location43_y == y_location(?c)) |
+((swarm_location43_x - 1) == x_location(?c) ^ swarm_location43_y == y_location(?c)) | 
+((swarm_location43_y + 1) == y_location(?c) ^ swarm_location43_x == x_location(?c)) |
+((swarm_location43_y -1) == y_location(?c) ^ swarm_location43_x == x_location(?c))) then tons_of_plants43(?c) else 0.0];
+
+swarm_move44 = Discrete(direction, 
+						@up : if(swarm_location43_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location43_y + 1) == y_location(?c) ^ swarm_location43_x == x_location(?c)) then tons_of_plants43(?c) else 0.0])/total_neighbors_plants44,
+						@down : if(swarm_location43_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location43_y - 1) == y_location(?c) ^ swarm_location43_x == x_location(?c)) then tons_of_plants43(?c) else 0.0]/total_neighbors_plants44),
+						@left : if(swarm_location43_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location43_x - 1) == x_location(?c) ^ swarm_location43_y == y_location(?c)) then tons_of_plants43(?c) else 0.0]/total_neighbors_plants44),
+						@right :if(swarm_location43_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location43_x + 1) == x_location(?c) ^ swarm_location43_y == y_location(?c)) then tons_of_plants43(?c) else 0.0]/total_neighbors_plants44)
+					);
+
+swarm_location44_x = switch(swarm_move44)
+{
+case @up: swarm_location43_x,
+case @down: swarm_location43_x,
+case @right: swarm_location43_x + 1,
+case @left: swarm_location43_x - 1
+}; 
+
+swarm_location44_y = switch(swarm_move44)
+{
+case @up: swarm_location43_y + 1,
+case @down: swarm_location43_y - 1,
+case @right: swarm_location43_y,
+case @left: swarm_location43_y
+};
+tons_of_plants44(?c)= if (swarm_location44_y == y_location(?c) ^ swarm_location44_x == x_location(?c)) then tons_of_plants43(?c)*0.5 else tons_of_plants43(?c);
+total_neighbors_plants45 = sum_{?c : cell}[if (((swarm_location44_x+1) == x_location(?c) ^ swarm_location44_y == y_location(?c)) |
+((swarm_location44_x - 1) == x_location(?c) ^ swarm_location44_y == y_location(?c)) | 
+((swarm_location44_y + 1) == y_location(?c) ^ swarm_location44_x == x_location(?c)) |
+((swarm_location44_y -1) == y_location(?c) ^ swarm_location44_x == x_location(?c))) then tons_of_plants44(?c) else 0.0];
+
+swarm_move45 = Discrete(direction, 
+						@up : if(swarm_location44_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location44_y + 1) == y_location(?c) ^ swarm_location44_x == x_location(?c)) then tons_of_plants44(?c) else 0.0])/total_neighbors_plants45,
+						@down : if(swarm_location44_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location44_y - 1) == y_location(?c) ^ swarm_location44_x == x_location(?c)) then tons_of_plants44(?c) else 0.0]/total_neighbors_plants45),
+						@left : if(swarm_location44_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location44_x - 1) == x_location(?c) ^ swarm_location44_y == y_location(?c)) then tons_of_plants44(?c) else 0.0]/total_neighbors_plants45),
+						@right :if(swarm_location44_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location44_x + 1) == x_location(?c) ^ swarm_location44_y == y_location(?c)) then tons_of_plants44(?c) else 0.0]/total_neighbors_plants45)
+					);
+
+swarm_location45_x = switch(swarm_move45)
+{
+case @up: swarm_location44_x,
+case @down: swarm_location44_x,
+case @right: swarm_location44_x + 1,
+case @left: swarm_location44_x - 1
+}; 
+
+swarm_location45_y = switch(swarm_move45)
+{
+case @up: swarm_location44_y + 1,
+case @down: swarm_location44_y - 1,
+case @right: swarm_location44_y,
+case @left: swarm_location44_y
+};
+tons_of_plants45(?c)= if (swarm_location45_y == y_location(?c) ^ swarm_location45_x == x_location(?c)) then tons_of_plants44(?c)*0.5 else tons_of_plants44(?c);
+total_neighbors_plants46 = sum_{?c : cell}[if (((swarm_location45_x+1) == x_location(?c) ^ swarm_location45_y == y_location(?c)) |
+((swarm_location45_x - 1) == x_location(?c) ^ swarm_location45_y == y_location(?c)) | 
+((swarm_location45_y + 1) == y_location(?c) ^ swarm_location45_x == x_location(?c)) |
+((swarm_location45_y -1) == y_location(?c) ^ swarm_location45_x == x_location(?c))) then tons_of_plants45(?c) else 0.0];
+
+swarm_move46 = Discrete(direction, 
+						@up : if(swarm_location45_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location45_y + 1) == y_location(?c) ^ swarm_location45_x == x_location(?c)) then tons_of_plants45(?c) else 0.0])/total_neighbors_plants46,
+						@down : if(swarm_location45_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location45_y - 1) == y_location(?c) ^ swarm_location45_x == x_location(?c)) then tons_of_plants45(?c) else 0.0]/total_neighbors_plants46),
+						@left : if(swarm_location45_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location45_x - 1) == x_location(?c) ^ swarm_location45_y == y_location(?c)) then tons_of_plants45(?c) else 0.0]/total_neighbors_plants46),
+						@right :if(swarm_location45_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location45_x + 1) == x_location(?c) ^ swarm_location45_y == y_location(?c)) then tons_of_plants45(?c) else 0.0]/total_neighbors_plants46)
+					);
+
+swarm_location46_x = switch(swarm_move46)
+{
+case @up: swarm_location45_x,
+case @down: swarm_location45_x,
+case @right: swarm_location45_x + 1,
+case @left: swarm_location45_x - 1
+}; 
+
+swarm_location46_y = switch(swarm_move46)
+{
+case @up: swarm_location45_y + 1,
+case @down: swarm_location45_y - 1,
+case @right: swarm_location45_y,
+case @left: swarm_location45_y
+};
+tons_of_plants46(?c)= if (swarm_location46_y == y_location(?c) ^ swarm_location46_x == x_location(?c)) then tons_of_plants45(?c)*0.5 else tons_of_plants45(?c);
+total_neighbors_plants47 = sum_{?c : cell}[if (((swarm_location46_x+1) == x_location(?c) ^ swarm_location46_y == y_location(?c)) |
+((swarm_location46_x - 1) == x_location(?c) ^ swarm_location46_y == y_location(?c)) | 
+((swarm_location46_y + 1) == y_location(?c) ^ swarm_location46_x == x_location(?c)) |
+((swarm_location46_y -1) == y_location(?c) ^ swarm_location46_x == x_location(?c))) then tons_of_plants46(?c) else 0.0];
+
+swarm_move47 = Discrete(direction, 
+						@up : if(swarm_location46_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location46_y + 1) == y_location(?c) ^ swarm_location46_x == x_location(?c)) then tons_of_plants46(?c) else 0.0])/total_neighbors_plants47,
+						@down : if(swarm_location46_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location46_y - 1) == y_location(?c) ^ swarm_location46_x == x_location(?c)) then tons_of_plants46(?c) else 0.0]/total_neighbors_plants47),
+						@left : if(swarm_location46_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location46_x - 1) == x_location(?c) ^ swarm_location46_y == y_location(?c)) then tons_of_plants46(?c) else 0.0]/total_neighbors_plants47),
+						@right :if(swarm_location46_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location46_x + 1) == x_location(?c) ^ swarm_location46_y == y_location(?c)) then tons_of_plants46(?c) else 0.0]/total_neighbors_plants47)
+					);
+
+swarm_location47_x = switch(swarm_move47)
+{
+case @up: swarm_location46_x,
+case @down: swarm_location46_x,
+case @right: swarm_location46_x + 1,
+case @left: swarm_location46_x - 1
+}; 
+
+swarm_location47_y = switch(swarm_move47)
+{
+case @up: swarm_location46_y + 1,
+case @down: swarm_location46_y - 1,
+case @right: swarm_location46_y,
+case @left: swarm_location46_y
+};
+tons_of_plants47(?c)= if (swarm_location47_y == y_location(?c) ^ swarm_location47_x == x_location(?c)) then tons_of_plants46(?c)*0.5 else tons_of_plants46(?c);
+total_neighbors_plants48 = sum_{?c : cell}[if (((swarm_location47_x+1) == x_location(?c) ^ swarm_location47_y == y_location(?c)) |
+((swarm_location47_x - 1) == x_location(?c) ^ swarm_location47_y == y_location(?c)) | 
+((swarm_location47_y + 1) == y_location(?c) ^ swarm_location47_x == x_location(?c)) |
+((swarm_location47_y -1) == y_location(?c) ^ swarm_location47_x == x_location(?c))) then tons_of_plants47(?c) else 0.0];
+
+swarm_move48 = Discrete(direction, 
+						@up : if(swarm_location47_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location47_y + 1) == y_location(?c) ^ swarm_location47_x == x_location(?c)) then tons_of_plants47(?c) else 0.0])/total_neighbors_plants48,
+						@down : if(swarm_location47_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location47_y - 1) == y_location(?c) ^ swarm_location47_x == x_location(?c)) then tons_of_plants47(?c) else 0.0]/total_neighbors_plants48),
+						@left : if(swarm_location47_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location47_x - 1) == x_location(?c) ^ swarm_location47_y == y_location(?c)) then tons_of_plants47(?c) else 0.0]/total_neighbors_plants48),
+						@right :if(swarm_location47_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location47_x + 1) == x_location(?c) ^ swarm_location47_y == y_location(?c)) then tons_of_plants47(?c) else 0.0]/total_neighbors_plants48)
+					);
+
+swarm_location48_x = switch(swarm_move48)
+{
+case @up: swarm_location47_x,
+case @down: swarm_location47_x,
+case @right: swarm_location47_x + 1,
+case @left: swarm_location47_x - 1
+}; 
+
+swarm_location48_y = switch(swarm_move48)
+{
+case @up: swarm_location47_y + 1,
+case @down: swarm_location47_y - 1,
+case @right: swarm_location47_y,
+case @left: swarm_location47_y
+};
+tons_of_plants48(?c)= if (swarm_location48_y == y_location(?c) ^ swarm_location48_x == x_location(?c)) then tons_of_plants47(?c)*0.5 else tons_of_plants47(?c);
+total_neighbors_plants49 = sum_{?c : cell}[if (((swarm_location48_x+1) == x_location(?c) ^ swarm_location48_y == y_location(?c)) |
+((swarm_location48_x - 1) == x_location(?c) ^ swarm_location48_y == y_location(?c)) | 
+((swarm_location48_y + 1) == y_location(?c) ^ swarm_location48_x == x_location(?c)) |
+((swarm_location48_y -1) == y_location(?c) ^ swarm_location48_x == x_location(?c))) then tons_of_plants48(?c) else 0.0];
+
+swarm_move49 = Discrete(direction, 
+						@up : if(swarm_location48_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location48_y + 1) == y_location(?c) ^ swarm_location48_x == x_location(?c)) then tons_of_plants48(?c) else 0.0])/total_neighbors_plants49,
+						@down : if(swarm_location48_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location48_y - 1) == y_location(?c) ^ swarm_location48_x == x_location(?c)) then tons_of_plants48(?c) else 0.0]/total_neighbors_plants49),
+						@left : if(swarm_location48_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location48_x - 1) == x_location(?c) ^ swarm_location48_y == y_location(?c)) then tons_of_plants48(?c) else 0.0]/total_neighbors_plants49),
+						@right :if(swarm_location48_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location48_x + 1) == x_location(?c) ^ swarm_location48_y == y_location(?c)) then tons_of_plants48(?c) else 0.0]/total_neighbors_plants49)
+					);
+
+swarm_location49_x = switch(swarm_move49)
+{
+case @up: swarm_location48_x,
+case @down: swarm_location48_x,
+case @right: swarm_location48_x + 1,
+case @left: swarm_location48_x - 1
+}; 
+
+swarm_location49_y = switch(swarm_move49)
+{
+case @up: swarm_location48_y + 1,
+case @down: swarm_location48_y - 1,
+case @right: swarm_location48_y,
+case @left: swarm_location48_y
+};
+tons_of_plants49(?c)= if (swarm_location49_y == y_location(?c) ^ swarm_location49_x == x_location(?c)) then tons_of_plants48(?c)*0.5 else tons_of_plants48(?c);
+total_neighbors_plants50 = sum_{?c : cell}[if (((swarm_location49_x+1) == x_location(?c) ^ swarm_location49_y == y_location(?c)) |
+((swarm_location49_x - 1) == x_location(?c) ^ swarm_location49_y == y_location(?c)) | 
+((swarm_location49_y + 1) == y_location(?c) ^ swarm_location49_x == x_location(?c)) |
+((swarm_location49_y -1) == y_location(?c) ^ swarm_location49_x == x_location(?c))) then tons_of_plants49(?c) else 0.0];
+
+swarm_move50 = Discrete(direction, 
+						@up : if(swarm_location49_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location49_y + 1) == y_location(?c) ^ swarm_location49_x == x_location(?c)) then tons_of_plants49(?c) else 0.0])/total_neighbors_plants50,
+						@down : if(swarm_location49_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location49_y - 1) == y_location(?c) ^ swarm_location49_x == x_location(?c)) then tons_of_plants49(?c) else 0.0]/total_neighbors_plants50),
+						@left : if(swarm_location49_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location49_x - 1) == x_location(?c) ^ swarm_location49_y == y_location(?c)) then tons_of_plants49(?c) else 0.0]/total_neighbors_plants50),
+						@right :if(swarm_location49_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location49_x + 1) == x_location(?c) ^ swarm_location49_y == y_location(?c)) then tons_of_plants49(?c) else 0.0]/total_neighbors_plants50)
+					);
+
+swarm_location50_x = switch(swarm_move50)
+{
+case @up: swarm_location49_x,
+case @down: swarm_location49_x,
+case @right: swarm_location49_x + 1,
+case @left: swarm_location49_x - 1
+}; 
+
+swarm_location50_y = switch(swarm_move50)
+{
+case @up: swarm_location49_y + 1,
+case @down: swarm_location49_y - 1,
+case @right: swarm_location49_y,
+case @left: swarm_location49_y
+};
+swarm_location_x'=swarm_location50_x;
+swarm_location_y'=swarm_location50_y;
+tons_of_plants'(?c)=if (swarm_disabled) then tons_of_plants(?c) else (if (swarm_location50_y == y_location(?c) ^ swarm_location50_x == x_location(?c)) then tons_of_plants49(?c)*0.5 else tons_of_plants49(?c));
+
+swarm_disabled' = if (swarm_disabled) then swarm_disabled else exists_{?c : cell} ((disable_swarm_act(?c) == 1)^ x_location(?c) == swarm_location50_x ^ y_location(?c) == swarm_location50_y);
+};
+
+	reward = [sum_{?c : cell}(tons_of_plants'(?c))];
+	
+}
+
+non-fluents swarm_of_locusts50_nf {
+
+	domain = swarm_of_locusts50;
+	objects {
+		cell : {cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9};
+	};
+	non-fluents { 
+x_location(cell1)=1;
+x_location(cell2)=2;
+x_location(cell3)=3;
+x_location(cell4)=1;
+x_location(cell5)=2;
+x_location(cell6)=3;
+x_location(cell7)=1;
+x_location(cell8)=2;
+x_location(cell9)=3;
+
+y_location(cell1)=3;
+y_location(cell2)=3;
+y_location(cell3)=3;
+y_location(cell4)=2;
+y_location(cell5)=2;
+y_location(cell6)=2;
+y_location(cell7)=1;
+y_location(cell8)=1;
+y_location(cell9)=1;
+ 
+};
+}
+
+instance inst_swarm_of_locusts50 {
+
+	domain = swarm_of_locusts50;
+	
+	non-fluents = swarm_of_locusts50_nf;
+  
+	init-state { 
+swarm_location_x=2;
+swarm_location_y=2;
+	};
+  
+	max-nondef-actions = 1;
+  
+	horizon  = 9;
+	discount = 0.9;
+}
+
+

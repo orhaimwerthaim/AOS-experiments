@@ -107,13 +107,13 @@
         {
             "Name": "trashCan1",
             "Type": "tLocation",
-            "DefaultCode": "state.trashCan1.discrete = trashCan1; state.trashCan1.x=-4.09; state.trashCan1.y=-1.75; state.trashCan1.z=0.0;state.trashCan1.Y=2.29;",
+            "DefaultCode": "state.trashCan1.discrete = trashCan1; state.trashCan1.x=-2.4857389007; state.trashCan1.y=-1.34924717067; state.trashCan1.z=0.0;state.trashCan1.Y=0.415;",
             "IsActionParameterValue": true
         },
         {
             "Name": "trashCan2",
             "Type": "tLocation",
-            "DefaultCode": "state.trashCan2.discrete = trashCan2; state.trashCan2.x=1.8283; state.trashCan2.y=-1.95; state.trashCan2.z=0.0;state.trashCan2.Y=-1.33;",
+            "DefaultCode": "state.trashCan2.discrete = trashCan2; state.trashCan2.x=-0.183746419749; state.trashCan2.y=-0.847180237469; state.trashCan2.z=0.0;state.trashCan2.Y=-0.4111;",
             "IsActionParameterValue": true
         },
         {

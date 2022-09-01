@@ -1,0 +1,35 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "detect_init_board_state",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "FromStringLocalVariable": "obsr2"
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "panda_demo.srv",
+                    "Import": [
+                        "*"
+                    ]
+                }
+            ],
+            "ServicePath": "/observe_tic_tac_toe_board_dont_wait_for_change",
+            "ServiceName": "detect_new_state",
+            "ServiceParameters": []
+        }
+    },
+    "LocalVariablesInitialization": [
+        {
+            "LocalVariableName": "obsr2",
+            "FromROSServiceResponse": true,
+            "VariableType": "string",
+            "AssignmentCode": "obsr2 = __input.state"
+        }
+    ]
+}

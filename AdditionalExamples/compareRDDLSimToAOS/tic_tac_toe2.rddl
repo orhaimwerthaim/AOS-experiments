@@ -1,0 +1,128 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+// tic_tac_toe2 Domain by Or Wertheim
+
+domain tic_tac_toe2 {
+types {
+		cell : object;
+		enum_priority : {@p1, @p2, @p3,@p4, @p5, @p6,@p7, @p8, @p9, @Empty};
+	};
+
+pvariables {
+default_act : { action-fluent, int, default = 0};
+ 
+non : {non-fluent, int, default = 0}; 
+ 
+priority(cell) : {state-fluent, enum_priority, default = @Empty};
+gridCells(cell) : {state-fluent, int, default = 0}; 
+
+priorityWeight1:{ interm-fluent, real, level = 1};
+currentCellWeight2:{ interm-fluent, real, level = 2};
+priorityWeight2:{ interm-fluent, real, level = 3};
+currentCellWeight3:{ interm-fluent, real, level = 4};
+priorityWeight3:{ interm-fluent, real, level = 5};
+currentCellWeight4:{ interm-fluent, real, level = 6};
+priorityWeight4:{ interm-fluent, real, level = 7};
+currentCellWeight5:{ interm-fluent, real, level = 8};
+priorityWeight5:{ interm-fluent, real, level = 9};
+currentCellWeight6:{ interm-fluent, real, level = 10};
+priorityWeight6:{ interm-fluent, real, level = 11};
+currentCellWeight7:{ interm-fluent, real, level = 12};
+priorityWeight7:{ interm-fluent, real, level = 13};
+currentCellWeight8:{ interm-fluent, real, level = 14};
+priorityWeight8:{ interm-fluent, real, level = 15};
+currentCellWeight9:{ interm-fluent, real, level = 16};
+priorityWeight9:{ interm-fluent, real, level = 17};
+totalWeight:{ interm-fluent, real, level = 18};
+selected_priority:{ interm-fluent, enum_priority, level = 19};   
+
+};
+cpfs{
+priorityWeight1=if (exists_{?c : cell} priority(?c) == @p1) then 1.0 else 0.0;
+currentCellWeight2 = if (priorityWeight1 > 0.0) then 2.0 else 1.0;
+
+priorityWeight2=if (exists_{?c : cell} priority(?c) == @p2) then currentCellWeight2 else 0.0; 
+currentCellWeight3 = if (priorityWeight2 > 0.0) then currentCellWeight2 * 2.0 else currentCellWeight2;
+
+priorityWeight3=if (exists_{?c : cell} priority(?c) == @p3) then currentCellWeight3 else 0.0; 
+currentCellWeight4 = if (priorityWeight3 > 0.0) then currentCellWeight3 * 2.0 else currentCellWeight3;
+
+
+priorityWeight4=if (exists_{?c : cell} priority(?c) == @p4) then currentCellWeight4 else 0.0; 
+currentCellWeight5 = if (priorityWeight4 > 0.0) then currentCellWeight4 * 2.0 else currentCellWeight4;
+
+priorityWeight5=if (exists_{?c : cell} priority(?c) == @p5) then currentCellWeight5 else 0.0; 
+currentCellWeight6 = if (priorityWeight5 > 0.0) then currentCellWeight5 * 2.0 else currentCellWeight5;
+
+priorityWeight6=if (exists_{?c : cell} priority(?c) == @p6) then currentCellWeight6 else 0.0; 
+currentCellWeight7 = if (priorityWeight6 > 0.0) then currentCellWeight6 * 2.0 else currentCellWeight6;
+
+priorityWeight7=if (exists_{?c : cell} priority(?c) == @p7) then currentCellWeight7 else 0.0; 
+currentCellWeight8 = if (priorityWeight7 > 0.0) then currentCellWeight7 * 2.0 else currentCellWeight7;
+
+priorityWeight8=if (exists_{?c : cell} priority(?c) == @p8) then currentCellWeight8 else 0.0; 
+currentCellWeight9 = if (priorityWeight8 > 0.0) then currentCellWeight8 * 2.0 else currentCellWeight8;
+
+priorityWeight9=if (exists_{?c : cell} priority(?c) == @p9) then currentCellWeight9 else 0.0; 
+
+
+
+totalWeight=priorityWeight1+priorityWeight2+priorityWeight3+priorityWeight4+priorityWeight5+priorityWeight6+priorityWeight7+priorityWeight8+priorityWeight9;
+ 
+
+selected_priority = Discrete(enum_priority, 
+						@p1 : if (totalWeight == 0) then 1.0/9.0 else priorityWeight1/totalWeight,
+						@p2 : if (totalWeight == 0) then 1.0/9.0 else priorityWeight2/totalWeight,
+						@p3 : if (totalWeight == 0) then 1.0/9.0 else priorityWeight3/totalWeight,
+						@p4 : if (totalWeight == 0) then 1.0/9.0 else priorityWeight4/totalWeight,
+						@p5 : if (totalWeight == 0) then 1.0/9.0 else priorityWeight5/totalWeight,
+						@p6 : if (totalWeight == 0) then 1.0/9.0 else priorityWeight6/totalWeight,
+						@p7 : if (totalWeight == 0) then 1.0/9.0 else priorityWeight7/totalWeight,
+						@p8 : if (totalWeight == 0) then 1.0/9.0 else priorityWeight8/totalWeight,
+						@p9 : if (totalWeight == 0) then 1.0/9.0 else priorityWeight9/totalWeight,
+						@Empty : 0.0
+					); 
+
+gridCells'(?c)= if(priority(?c) == selected_priority ) then 1 else gridCells(?c);
+priority'(?c)=if(priority(?c) == selected_priority) then @Empty else priority(?c);
+ 
+
+};
+	reward = 0;
+	
+}
+
+non-fluents tic_tac_toe2_nf {
+
+	domain = tic_tac_toe2;
+	objects { 
+		cell : {cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9};
+	};
+	non-fluents {
+non=9;	
+};
+}
+
+instance inst_tic_tac_toe2 {
+
+	domain = tic_tac_toe2;
+	
+	non-fluents = tic_tac_toe2_nf;
+  
+	init-state {  
+priority(cell5)=@p1;
+priority(cell3)=@p2;
+priority(cell1)=@p3;
+priority(cell7)=@p4;
+priority(cell9)=@p5;
+priority(cell2)=@p6;
+priority(cell4)=@p7;
+priority(cell6)=@p8;
+priority(cell8)=@p9;
+	};
+  
+	max-nondef-actions = 1;
+  
+	horizon  = 10;
+	discount = 0.9;
+}
+
