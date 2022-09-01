@@ -86,3 +86,31 @@ Mean, μ:	127701.4</br>
 Variance, σ^2: 	27520150.84</br>
 Standard Deviation, σ: 5245.9651962246</br>
 
+
+### 4. We tested the 'Swarm of Locusts(X)' Domain:
+In the Locusts Swarm domain, a swarm of locusts has invaded a nature reserve. </br>
+The reserve is divided into nine primary cells that host a variety of endangered plants (10 tons of plants in each cell).</br> 
+The swarm moves from cell to cell 'X' times during the night, eating half the plants of each cell it encounters. </br>
+It rests in the last cell visited at night during the following day. </br>
+The swarm moves stochastically depending on how many plants it smells in neighboring cells.</br> 
+The reserve management has a crop duster that can spray pesticides at a single cell at night. </br>
+These materials fade away after one day and need a whole day to disable the swarm. </br>
+The only chance to stop this catastrophe is to spray, in advance, the cell in which the swarm will rest the following day.</br>
+</br>
+
+
+4.1.A. Swarm of Locusts(2)- running the RDDLSim experimend 10 times: </br>
+28740, 28909, 29303, 29088, 28754, 27988, 29438, 28118, 28470, 28230</br>
+Count, N:	10</br>
+Sum, Σx:	287038</br>
+Mean, μ:	28703.8</br>
+Variance, σ2: 	222631.76</br>
+</br>
+
+4.2.A. Swarm of Locusts(3)- running the RDDLSim experimend 10 times: </br>
+19944, 19586, 19327, 19815, 19592, 18779, 18448, 18911, 18659, 19307</br>
+Count, N:	10</br>
+Sum, Σx:	192368</br>
+Mean, μ:	19236.8</br>
+Variance, σ2: 	236740.36</br>
+
