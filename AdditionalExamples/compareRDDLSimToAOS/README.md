@@ -98,19 +98,68 @@ These materials fade away after one day and need a whole day to disable the swar
 The only chance to stop this catastrophe is to spray, in advance, the cell in which the swarm will rest the following day.</br>
 </br>
 
-
-4.1.A. Swarm of Locusts(2)- running the RDDLSim experimend 10 times: </br>
+## 4.1 Swarm of Locusts(2)
+A. running the RDDLSim experimend 10 times: </br>
 28740, 28909, 29303, 29088, 28754, 27988, 29438, 28118, 28470, 28230</br>
 Count, N:	10</br>
 Sum, Σx:	287038</br>
 Mean, μ:	28703.8</br>
-Variance, σ2: 	222631.76</br>
+Variance, σ^2: 	222631.76</br>
 </br>
 
-4.2.A. Swarm of Locusts(3)- running the RDDLSim experimend 10 times: </br>
+B. We documented the domain and tested the AOS sampling rate:</br>
+The results were:</br>
+337634, 352421, 362121, 351360, 353113, 354503, 352862, 358167, 357711, 363451</br>
+
+Count, N:	10</br>
+Sum, Σx:	3543343</br>
+Mean, μ:	354334.3</br>
+Variance, σ^2: 	46493350.61</br>
+</br>
+
+
+## 4.2 Swarm of Locusts(3)
+A. Swarm of Locusts(3)- running the RDDLSim experimend 10 times: </br>
 19944, 19586, 19327, 19815, 19592, 18779, 18448, 18911, 18659, 19307</br>
+Standard Deviation, σ: 486.5597188424</br>
 Count, N:	10</br>
 Sum, Σx:	192368</br>
 Mean, μ:	19236.8</br>
-Variance, σ2: 	236740.36</br>
+Variance, σ^2: 	236740.36</br>
+
+B. We documented the domain and tested the AOS sampling rate:</br>
+The results were:</br>
+  269432, 275895, 277430, 278666, 261452, 278523, 268846, 276710, 277641, 278171</br>
+  
+  Standard Deviation, σ: 5474.4935875385</br>
+  Count, N:	10</br>
+Sum, Σx:	2742766</br>
+Mean, μ:	274276.6</br>
+Variance, σ2: 	29970080.04</br>
+
+
+## 4.2 Swarm of Locusts(50)
+B. We documented the domain and tested the AOS sampling rate:</br>
+The results were:</br>
+23410, 24517, 24146, 24442, 24885, 24368, 24194, 24684, 24411, 24975</br>
+</br>
+
+Standard Deviation, σ: 418.33641964333</br>
+Count, N:	10</br>
+Sum, Σx:	244032</br>
+Mean, μ:	24403.2</br>
+Variance, σ^2: 	175005.36</br>
+</br>
+
+
+## 4.2 Swarm of Locusts(100)
+
+
+12783, 12315, 12465, 12279, 12398, 12479, 12301, 12379, 12387, 12615</br>
+Standard Deviation, σ: 148.18262381265</br>
+
+Count, N:	10</br>
+Sum, Σx:	124401</br>
+Mean, μ:	12440.1</br>
+Variance, σ2: 	21958.09</br>
 
