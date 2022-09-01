@@ -137,7 +137,7 @@ The results were:</br>
   Count, N:	10</br>
 Sum, Σx:	2742766</br>
 Mean, μ:	274276.6</br>
-Variance, σ2: 	29970080.04</br>
+Variance, σ^2: 	29970080.04</br>
 
 
 ## 4.2 Swarm of Locusts(50)
@@ -149,7 +149,7 @@ Standard Deviation, σ: 60.251473011039</br>
 Count, N:	10</br>
 Sum, Σx:	11456</br>
 Mean, μ:	1145.6</br>
-Variance, σ2: 	3630.24</br>
+Variance, σ^2: 	3630.24</br>
 </br>
 
 B. We documented the domain and tested the AOS sampling rate:</br>
@@ -173,7 +173,7 @@ Standard Deviation, σ: 17.309246084102</br>
 Count, N:	10</br>
 Sum, Σx:	5503</br>
 Mean, μ:	550.3</br>
-Variance, σ2: 	299.61</br>
+Variance, σ^2: 	299.61</br>
 </br>
 
 B. We documented the domain and tested the AOS sampling rate:</br>
@@ -184,5 +184,24 @@ Standard Deviation, σ: 148.18262381265</br>
 Count, N:	10</br>
 Sum, Σx:	124401</br>
 Mean, μ:	12440.1</br>
-Variance, σ2: 	21958.09</br>
+Variance, σ^2: 	21958.09</br>
 </br>
+
+## 4.2 Swarm of Locusts(1000)
+A. Swarm of Locusts(1000)- running the RDDLSim experimend 10 times: </br>
+The results were:</br>
+43, 43, 44, 44, 44, 44, 43, 44, 45, 45</br>
+Standard Deviation, σ: 0.7</br>
+Count, N:	10</br>
+Sum, Σx:	439</br>
+Mean, μ:	43.9</br>
+Variance, σ^2: 	0.49</br>
+
+B. We documented the domain and tested the AOS sampling rate:</br>
+The results were:</br>
+1261, 1248, 1274, 1290, 1271, 1289, 1287, 1275, 1282, 1273</br>
+Standard Deviation, σ: 12.489995996797</br>
+Count, N:	10</br>
+Sum, Σx:	12750</br>
+Mean, μ:	1275</br>
+Variance, σ2: 	156</br>
