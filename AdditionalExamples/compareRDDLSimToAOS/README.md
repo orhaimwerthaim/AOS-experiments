@@ -102,6 +102,7 @@ The only chance to stop this catastrophe is to spray, in advance, the cell in wh
 A. running the RDDLSim experimend 10 times: </br>
 The results were:</br>
 28740, 28909, 29303, 29088, 28754, 27988, 29438, 28118, 28470, 28230</br>
+Standard Deviation, σ: 471.83870125288</br>
 Count, N:	10</br>
 Sum, Σx:	287038</br>
 Mean, μ:	28703.8</br>
@@ -112,6 +113,7 @@ B. We documented the domain and tested the AOS sampling rate:</br>
 The results were:</br>
 337634, 352421, 362121, 351360, 353113, 354503, 352862, 358167, 357711, 363451</br>
 
+Standard Deviation, σ: 6818.6032741317</br>
 Count, N:	10</br>
 Sum, Σx:	3543343</br>
 Mean, μ:	354334.3</br>
