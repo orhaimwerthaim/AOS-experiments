@@ -73,8 +73,12 @@
                         "Log"
                     ]
                 }
-            ],
-            "AssignmentCode": "if goal_reached == True:\n\treturn True\nelse:\n\treturn __input.msg.find('Goal reached') > -1"
+            ], 
+            "AssignmentCode":[ 
+            "if goal_reached == True:",
+            "    return True",
+            "else:",
+            "    return __input.msg.find('Goal reached') > -1"]
         },
         {
             "InputLocalVariable": "nav_to_x",
