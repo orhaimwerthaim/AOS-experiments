@@ -1,0 +1,87 @@
+{
+    "PlpMain": {
+        "Project": "cleanLabRealRobot",
+        "Name": "navigate",
+        "Type": "Glue",
+        "Version": 1.2
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "eSuccess",
+                "ConditionCodeWithLocalVariables": "goal_reached == True",
+                "Comment": ""
+            },
+            {
+                "Response": "eFailed",
+                "ConditionCodeWithLocalVariables": "goal_reached == False"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Point,Pose"
+                    ]
+                },
+                {
+                    "From": "armadillo_demo.srv",
+                    "Import": [
+                        "navigate",
+                        "navigateResponse"
+                    ]
+                }
+            ],
+            "ServicePath": "/navigate_to_point",
+            "ServiceName": "navigate",
+            "ServiceParameters": [
+                {
+                    "ServiceFieldName": "goal",
+                    "AssignServiceFieldCode": "Pose(position=Point(x= nav_to_x, y= nav_to_y, z= nav_to_z))"
+                },
+                {
+                    "ServiceFieldName": "Y",
+                    "AssignServiceFieldCode": "nav_to_Y"
+                }
+            ]
+        }
+    },
+    "LocalVariablesInitialization": [
+        {
+            "LocalVariableName": "goal_reached",
+            "RosTopicPath": "/rosout",
+            "VariableType": "bool",
+            "InitialValue": "False",
+            "TopicMessageType": "Log",
+            "ImportCode": [
+                {
+                    "From": "rosgraph_msgs.msg",
+                    "Import": [
+                        "Log"
+                    ]
+                }
+            ],
+            "AssignmentCode": "if goal_reached == True:\n\treturn True\nelse:\n\treturn __input.msg.find('Goal reached') > -1"
+        },
+        {
+            "InputLocalVariable": "nav_to_x",
+            "FromGlobalVariable": "oDesiredLocation.x"
+        },
+        {
+            "InputLocalVariable": "nav_to_y",
+            "FromGlobalVariable": "oDesiredLocation.y"
+        },
+        {
+            "InputLocalVariable": "nav_to_z",
+            "FromGlobalVariable": "oDesiredLocation.z"
+        },
+        {
+            "InputLocalVariable": "nav_to_Y",
+            "FromGlobalVariable": "oDesiredLocation.Y"
+        }
+    ]
+}

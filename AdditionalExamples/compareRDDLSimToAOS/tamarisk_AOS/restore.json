@@ -1,0 +1,33 @@
+{
+    "PlpMain": {
+        "Project": "tamarisk",
+        "Name": "restore",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "reach",
+            "Type": "int"
+        },
+        {
+            "Name": "y",
+            "Type": "int"
+        }
+    ],
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            
+        ],
+        "ViolatingPreconditionPenalty": -800
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+             
+        ]
+    },
+    "StateGivenObservationModel": {
+        "Assignments": [ 
+        ]
+    }
+}

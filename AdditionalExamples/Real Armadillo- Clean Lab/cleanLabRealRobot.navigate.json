@@ -36,6 +36,10 @@
                 "AssignmentCode": "realCase = AOS.SampleDiscrete(enumRealCase,{0.8, 0});"
             },
             {
+                "AssignmentName": "",
+                "AssignmentCode": "float distance = (sqrt(pow(state.robotL.x-oDesiredLocation.x,2.0)+pow(state.robotL.y-oDesiredLocation.y,2.0)));"
+            },
+            {
                 "AssignmentName": "state.robotGenerallocation_",
                 "AssignmentCode": "if (realCase == action_success) {state__.robotL.discrete = oDesiredLocation.discrete; state__.robotL.x = oDesiredLocation.x; state__.robotL.y = oDesiredLocation.y; state__.robotL.z = oDesiredLocation.z;}"
             },
@@ -44,10 +48,7 @@
                 "AssignmentCode": "if (realCase == action_success) __moduleResponse = eSuccess; else __moduleResponse = eFailed;"
             },
             {
-                "AssignmentCode": "__reward = -(sqrt(pow(state.robotL.x-oDesiredLocation.x,2.0)+pow(state.robotL.y-oDesiredLocation.y,2.0)))*0.1 - 1;"
-            },
-            {
-                "AssignmentCode": "__reward = -1;"
+                "AssignmentCode": "__reward = -distance*0.1 - 1;"
             }
         ]
     }

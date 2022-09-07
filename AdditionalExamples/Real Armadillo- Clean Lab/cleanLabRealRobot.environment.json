@@ -7,7 +7,8 @@
     },
     "EnvironmentGeneral": {
         "Horizon": 13,
-        "Discount": 0.95
+        "Discount": 0.95,
+        "OneStateModel": false
     },
     "GlobalVariableTypes": [
         {
@@ -51,7 +52,7 @@
                     "Name": "z",
                     "Type": "float",
                     "Default": "0.0"
-                }, 
+                },
                 {
                     "Name": "Y",
                     "Type": "float",
@@ -62,9 +63,15 @@
     ],
     "GlobalVariablesDeclaration": [
         {
+            "Name": "observedCupTable",
+            "Type": "bool",
+            "IsArray": true,
+            "DefaultCode": "state.observedCupTable={false,false,false,false,false,false,false,false,false,false,false,false};"
+        },
+        {
             "Name": "workStation1",
             "Type": "tLocation",
-            "DefaultCode": "state.workStation1.discrete = workStation1; state.workStation1.x=-3.42; state.workStation1.y=-0.77; state.workStation1.z=0.0;state.workStation1.Y=1.7;",
+            "DefaultCode": "state.workStation1.discrete = workStation1; state.workStation1.x=-3.42; state.workStation1.y=-0.77; state.workStation1.z=0.0;state.workStation1.Y=1.555;",
             "IsActionParameterValue": true
         },
         {
@@ -88,25 +95,25 @@
         {
             "Name": "workStation5",
             "Type": "tLocation",
-            "DefaultCode": "state.workStation5.discrete = workStation5; state.workStation5.x=1.16; state.workStation5.y=-0.15; state.workStation5.z=0.0;state.workStation5.Y=1.48;",
+            "DefaultCode": "state.workStation5.discrete = workStation5; state.workStation5.x=1.16; state.workStation5.y=-0.15; state.workStation5.z=0.0;state.workStation5.Y=1.555;",
             "IsActionParameterValue": true
         },
         {
             "Name": "workStation6",
             "Type": "tLocation",
-            "DefaultCode": "state.workStation6.discrete = workStation6; state.workStation6.x=-0.58; state.workStation6.y=-0.53; state.workStation6.z=0.0;state.workStation6.Y=2.29;",
+            "DefaultCode": "state.workStation6.discrete = workStation6; state.workStation6.x=-0.58; state.workStation6.y=-0.53; state.workStation6.z=0.0;state.workStation6.Y=1.555;",
             "IsActionParameterValue": true
         },
         {
             "Name": "trashCan1",
             "Type": "tLocation",
-            "DefaultCode": "state.trashCan1.discrete = trashCan1; state.trashCan1.x=-4.09; state.trashCan1.y=-1.75; state.trashCan1.z=0.0;state.trashCan1.Y=2.29;",
+            "DefaultCode": "state.trashCan1.discrete = trashCan1; state.trashCan1.x=-2.4857389007; state.trashCan1.y=-1.34924717067; state.trashCan1.z=0.0;state.trashCan1.Y=0.415;",
             "IsActionParameterValue": true
         },
         {
             "Name": "trashCan2",
             "Type": "tLocation",
-            "DefaultCode": "state.trashCan2.discrete = trashCan2; state.trashCan2.x=1.8283; state.trashCan2.y=-1.95; state.trashCan2.z=0.0;state.trashCan2.Y=-1.33;",
+            "DefaultCode": "state.trashCan2.discrete = trashCan2; state.trashCan2.x=-0.183746419749; state.trashCan2.y=-0.847180237469; state.trashCan2.z=0.0;state.trashCan2.Y=-0.4111;",
             "IsActionParameterValue": true
         },
         {

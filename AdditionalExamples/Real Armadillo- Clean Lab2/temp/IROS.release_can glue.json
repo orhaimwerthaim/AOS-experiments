@@ -1,0 +1,43 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "release_can",
+        "Type": "Glue",
+        "Version": 1.0
+    },
+    "GlueFramework": "ROS",
+    "ModuleResponse": {
+        "ResponseRules": [
+            {
+                "Response": "eSuccess",
+                "ConditionCodeWithLocalVariables": "True",
+                "Comment": ""
+            },
+            {
+                "Response": "eFailed",
+                "ConditionCodeWithLocalVariables": "False"
+            }
+        ]
+    },
+    "ModuleActivation": {
+        "RosService": {
+            "ImportCode": [
+                {
+                    "From": "geometry_msgs.msg",
+                    "Import": [
+                        "Point,Pose,Quaternion"
+                    ]
+                },
+                {
+                    "From": "std_srvs.srv",
+                    "Import": [
+                        "*"
+                    ]
+                }
+            ],
+            "ServicePath": "/release_can",
+            "ServiceName": "Trigger",
+            "ServiceParameters": []
+        }
+    }
+}

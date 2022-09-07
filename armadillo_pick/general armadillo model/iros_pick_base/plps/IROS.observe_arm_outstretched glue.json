@@ -37,6 +37,7 @@
         {
             "LocalVariableName": "is_arm_outstretched",
             "FromROSServiceResponse": true,
+            "VariableType":"bool",
             "AssignmentCode": "is_arm_outstretched = __input.response"
         }
     ]

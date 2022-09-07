@@ -1,0 +1,199 @@
+//////////////////////////////////////////////////////////////////////////////////////////
+// swarm_of_locusts Domain by Or Wertheim
+//
+// In the Locusts Swarm domain, a swarm of locusts has invaded a nature reserve. 
+// The reserve is divided into nine primary cells that host a variety of endangered plants (10 tons of plants in each cell). 
+// The swarm moves from cell to cell twice during the night, eating half the plants of each cell it encounters. 
+// It rests in the last cell visited at night during the following day. 
+// The swarm moves stochastically depending on how many plants it smells in neighboring cells. 
+// The reserve management has a crop duster that can spray pesticides at a single cell at night. 
+// These materials fade away after one day and need a whole day to disable the swarm. 
+// The only chance to stop this catastrophe is to spray, in advance, the cell in which the swarm will rest the following day.
+//  _____________
+//  3|@c1|@c2|@c3|
+//  2|@c4|@c5|@c6|
+//  1|@c7|@c8|@c9|
+//  --------------
+//y/x  1   2   3
+
+domain swarm_of_locusts {
+types {
+		cell : object;
+		direction : {@up, @down, @left,@right};
+	};
+
+pvariables { 
+x_location(cell) : {non-fluent, int, default = -1};
+y_location(cell) : {non-fluent, int, default = -1};
+
+tons_of_plants(cell) : {state-fluent, real, default = 10.0}; 
+
+
+swarm_disabled : {state-fluent, bool, default = false};
+swarm_location_x : {state-fluent, int, default = 1};
+swarm_location_y : {state-fluent, int, default = 1}; 
+total_neighbors_plants1 : {interm-fluent, real, level = 1};
+swarm_move1 : {interm-fluent, direction, level = 2};
+swarm_location1_x : { interm-fluent, real, level = 3};
+swarm_location1_y : { interm-fluent, real, level = 3};
+tons_of_plants1(cell) : { interm-fluent, real, level = 4};
+
+total_neighbors_plants2 : {interm-fluent, real, level = 5};
+swarm_move2 : {interm-fluent, direction, level = 6};
+swarm_location2_x : { interm-fluent, real, level = 7};
+swarm_location2_y : { interm-fluent, real, level = 7};
+tons_of_plants2(cell) : { interm-fluent, real, level = 8};
+total_neighbors_plants3 : {interm-fluent, real, level = 9};
+swarm_move3 : {interm-fluent, direction, level = 10};
+swarm_location3_x : { interm-fluent, real, level = 11};
+swarm_location3_y : { interm-fluent, real, level = 11};
+
+
+disable_swarm_act(cell) : { action-fluent, bool, default = 0};
+};
+cpfs{
+
+total_neighbors_plants1 = sum_{?c : cell}[if (((swarm_location_x+1) == x_location(?c) ^ swarm_location_y == y_location(?c)) |
+((swarm_location_x - 1) == x_location(?c) ^ swarm_location_y == y_location(?c)) | 
+((swarm_location_y + 1) == y_location(?c) ^ swarm_location_x == x_location(?c)) |
+((swarm_location_y -1) == y_location(?c) ^ swarm_location_x == x_location(?c))) then tons_of_plants(?c) else 0.0];
+
+swarm_move1 = Discrete(direction, 
+						@up : if(swarm_location_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location_y + 1) == y_location(?c) ^ swarm_location_x == x_location(?c)) then tons_of_plants(?c) else 0.0])/total_neighbors_plants1,
+						@down : if(swarm_location_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location_y - 1) == y_location(?c) ^ swarm_location_x == x_location(?c)) then tons_of_plants(?c) else 0.0]/total_neighbors_plants1),
+						@left : if(swarm_location_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location_x - 1) == x_location(?c) ^ swarm_location_y == y_location(?c)) then tons_of_plants(?c) else 0.0]/total_neighbors_plants1),
+						@right :if(swarm_location_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location_x + 1) == x_location(?c) ^ swarm_location_y == y_location(?c)) then tons_of_plants(?c) else 0.0]/total_neighbors_plants1)
+					);
+
+swarm_location1_x = switch(swarm_move1)
+{
+case @up: swarm_location_x,
+case @down: swarm_location_x,
+case @right: swarm_location_x + 1,
+case @left: swarm_location_x - 1
+}; 
+
+swarm_location1_y = switch(swarm_move1)
+{
+case @up: swarm_location_y + 1,
+case @down: swarm_location_y - 1,
+case @right: swarm_location_y,
+case @left: swarm_location_y
+};
+tons_of_plants1(?c)= if (swarm_location1_y == y_location(?c) ^ swarm_location1_x == x_location(?c)) then tons_of_plants(?c)*0.5 else tons_of_plants(?c);
+
+total_neighbors_plants2=sum_{?c : cell}[if (((swarm_location1_x+1) == x_location(?c) ^ swarm_location1_y == y_location(?c)) |
+((swarm_location1_x - 1) == x_location(?c) ^ swarm_location1_y == y_location(?c)) | 
+((swarm_location1_y + 1) == y_location(?c) ^ swarm_location1_x == x_location(?c)) |
+((swarm_location1_y -1) == y_location(?c) ^ swarm_location1_x == x_location(?c))) then tons_of_plants1(?c) else 0.0];
+
+swarm_move2 = Discrete(direction, 
+						@up : if(swarm_location1_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location1_y + 1) == y_location(?c) ^ swarm_location1_x == x_location(?c)) then tons_of_plants1(?c) else 0.0])/total_neighbors_plants2,
+						@down : if(swarm_location1_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location1_y - 1) == y_location(?c) ^ swarm_location1_x == x_location(?c)) then tons_of_plants1(?c) else 0.0]/total_neighbors_plants2),
+						@left : if(swarm_location1_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location1_x - 1) == x_location(?c) ^ swarm_location1_y == y_location(?c)) then tons_of_plants1(?c) else 0.0]/total_neighbors_plants2),
+						@right :if(swarm_location1_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location1_x + 1) == x_location(?c) ^ swarm_location1_y == y_location(?c)) then tons_of_plants1(?c) else 0.0]/total_neighbors_plants2)
+					);
+swarm_location2_x= switch(swarm_move2)
+{
+case @up: swarm_location1_x,
+case @down: swarm_location1_x,
+case @right: swarm_location1_x + 1,
+case @left: swarm_location1_x - 1
+}; 
+
+swarm_location2_y= switch(swarm_move2)
+{
+case @up: swarm_location1_y + 1,
+case @down: swarm_location1_y - 1,
+case @right: swarm_location1_y,
+case @left: swarm_location1_y
+};
+
+tons_of_plants2(?c)= if (swarm_location2_y == y_location(?c) ^ swarm_location2_x == x_location(?c)) then tons_of_plants1(?c)*0.5 else tons_of_plants1(?c);
+
+total_neighbors_plants3=sum_{?c : cell}[if (((swarm_location2_x+1) == x_location(?c) ^ swarm_location2_y == y_location(?c)) |
+((swarm_location2_x - 1) == x_location(?c) ^ swarm_location2_y == y_location(?c)) | 
+((swarm_location2_y + 1) == y_location(?c) ^ swarm_location2_x == x_location(?c)) |
+((swarm_location2_y -1) == y_location(?c) ^ swarm_location2_x == x_location(?c))) then tons_of_plants2(?c) else 0.0];
+
+swarm_move3= Discrete(direction, 
+						@up : if(swarm_location2_y == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location2_y + 1) == y_location(?c) ^ swarm_location2_x == x_location(?c)) then tons_of_plants2(?c) else 0.0])/total_neighbors_plants3,
+						@down : if(swarm_location2_y == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location2_y - 1) == y_location(?c) ^ swarm_location2_x == x_location(?c)) then tons_of_plants2(?c) else 0.0]/total_neighbors_plants3),
+						@left : if(swarm_location2_x == 1) then 0.0 else (sum_{?c : cell}[if ((swarm_location2_x - 1) == x_location(?c) ^ swarm_location2_y == y_location(?c)) then tons_of_plants2(?c) else 0.0]/total_neighbors_plants3),
+						@right :if(swarm_location2_x == 3) then 0.0 else (sum_{?c : cell}[if ((swarm_location2_x + 1) == x_location(?c) ^ swarm_location2_y == y_location(?c)) then tons_of_plants2(?c) else 0.0]/total_neighbors_plants3)
+					);
+
+swarm_location3_x=switch(swarm_move3)
+{
+case @up: swarm_location2_x,
+case @down: swarm_location2_x,
+case @right: swarm_location2_x + 1,
+case @left: swarm_location2_x - 1
+};
+
+swarm_location3_y= switch(swarm_move3)
+{
+case @up: swarm_location2_y + 1,
+case @down: swarm_location2_y - 1,
+case @right: swarm_location2_y,
+case @left: swarm_location2_y
+};
+
+swarm_location_x'=swarm_location3_x;
+swarm_location_y'=swarm_location3_y;
+tons_of_plants'(?c)=if (swarm_disabled) then tons_of_plants(?c) else (if (swarm_location3_y == y_location(?c) ^ swarm_location3_x == x_location(?c)) then tons_of_plants2(?c)*0.5 else tons_of_plants2(?c));
+
+swarm_disabled' = if (swarm_disabled) then swarm_disabled else exists_{?c : cell} ((disable_swarm_act(?c) == 1)^ x_location(?c) == swarm_location3_x ^ y_location(?c) == swarm_location3_y);
+};
+	reward = [sum_{?c : cell}(tons_of_plants'(?c))];
+	
+}
+
+non-fluents swarm_of_locusts_nf {
+
+	domain = swarm_of_locusts;
+	objects { 
+		cell : {cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8, cell9};
+	};
+	non-fluents { 
+x_location(cell1)=1;
+x_location(cell2)=2;
+x_location(cell3)=3;
+x_location(cell4)=1;
+x_location(cell5)=2;
+x_location(cell6)=3;
+x_location(cell7)=1;
+x_location(cell8)=2;
+x_location(cell9)=3;
+
+y_location(cell1)=3;
+y_location(cell2)=3;
+y_location(cell3)=3;
+y_location(cell4)=2;
+y_location(cell5)=2;
+y_location(cell6)=2;
+y_location(cell7)=1;
+y_location(cell8)=1;
+y_location(cell9)=1;
+ 
+};
+}
+
+instance inst_swarm_of_locusts {
+
+	domain = swarm_of_locusts;
+	
+	non-fluents = swarm_of_locusts_nf;
+  
+	init-state { 
+swarm_location_x=2;
+swarm_location_y=2;
+	};
+  
+	max-nondef-actions = 1;
+  
+	horizon  = 9;
+	discount = 0.9;
+}
+
+

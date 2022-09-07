@@ -54,5 +54,20 @@
             ]
         }
     },
-    "LocalVariablesInitialization": []
+    "LocalVariablesInitialization": [
+        {
+            "LocalVariableName": "result",
+            "VariableType":"bool",
+            "FromROSServiceResponse": true,
+            "AssignmentCode": "result=__input.result == 'true'",
+            "ImportCode": [
+                {
+                    "From": "std_msgs.msg",
+                    "Import": [
+                        "Bool,String"
+                    ]
+                }
+            ]
+        }
+    ]
 }

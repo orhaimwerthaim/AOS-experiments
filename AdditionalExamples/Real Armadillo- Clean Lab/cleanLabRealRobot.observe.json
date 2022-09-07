@@ -9,8 +9,12 @@
     "DynamicModel": {
         "NextStateAssignments": [ 
             {
+                "AssignmentName": "",
+                "AssignmentCode": "state__.observedCupTable[(int)state.robotL.discrete] = (state.robotL.discrete == state.canLocation1 || state.robotL.discrete == state.canLocation2 || state.robotL.discrete == state.canLocation3 || state.robotL.discrete == state.canLocation4)? eObserveCan : eNotObserveCan;"
+            },
+            {
                 "AssignmentName": "__moduleResponse",
-                "AssignmentCode": "__moduleResponse = (state.robotL.discrete == state.canLocation1 || state.robotL.discrete == state.canLocation2)? eObserveCan : eNotObserveCan;"
+                "AssignmentCode": "__moduleResponse = (state.robotL.discrete == state.canLocation1 || state.robotL.discrete == state.canLocation2 || state.robotL.discrete == state.canLocation3 || state.robotL.discrete == state.canLocation4)? eObserveCan : eNotObserveCan;"
             }, 
             {
                 "AssignmentCode": "__reward = -1;"

@@ -37,6 +37,7 @@
         {
             "LocalVariableName": "served_successfully",
             "FromROSServiceResponse": true,
+            "VariableType":"bool",
             "AssignmentCode": "served_successfully = __input.success"
         }
     ]

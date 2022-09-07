@@ -14,6 +14,10 @@
             {
                 "AssignmentName": "__meetPrecondition",
                 "AssignmentCode": "__meetPrecondition= (state.robotL.discrete == state.canLocation1 || state.robotL.discrete == state.canLocation2 || state.robotL.discrete == state.canLocation3 || state.robotL.discrete == state.canLocation4);"
+            },
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition= state.observedCupTable[(int)state.robotL.discrete];"
             }
         ],
         "ViolatingPreconditionPenalty": -10

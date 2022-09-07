@@ -1,0 +1,24 @@
+{
+    "PlpMain": {
+        "Project": "academic_advising",
+        "Name": "takeCourse",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "courseID",
+            "Type": "int"
+        }
+    ],
+    "Preconditions": { },
+    "DynamicModel": {
+        "NextStateAssignments": [
+             
+        ]
+    },
+    "StateGivenObservationModel": {
+        "Assignments": [ 
+        ]
+    }
+}

@@ -10,7 +10,7 @@
         "ResponseRules": [
             {
                 "Response": "eSuccess",
-                "ConditionCodeWithLocalVariables": "goal_reached == True",
+                "ConditionCodeWithLocalVariables": "True",
                 "Comment": ""
             },
             {
@@ -25,11 +25,11 @@
                 {
                     "From": "geometry_msgs.msg",
                     "Import": [
-                        "Point"
+                        "Point,Pose"
                     ]
                 },
                 {
-                    "From": "simple_navigation_goals.srv",
+                    "From": "armadillo_demo.srv",
                     "Import": [
                         "navigate",
                         "navigateResponse"
@@ -41,7 +41,7 @@
             "ServiceParameters": [
                 {
                     "ServiceFieldName": "goal",
-                    "AssignServiceFieldCode": "Point(x= nav_to_x, y= nav_to_y, z= nav_to_z)"
+                    "AssignServiceFieldCode": "Pose(position=Point(x= nav_to_x, y= nav_to_y, z= nav_to_z))"
                 },
                 {
                     "ServiceFieldName": "Y",

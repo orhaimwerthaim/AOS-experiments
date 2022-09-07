@@ -1,0 +1,28 @@
+{
+    "PlpMain": {
+        "Project": "swarm_of_locusts",
+        "Name": "disable_swarm_act",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "x",
+            "Type": "int"
+        },
+        {
+            "Name": "y",
+            "Type": "int"
+        }
+    ],
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [],
+        "ViolatingPreconditionPenalty": -800
+    },
+    "DynamicModel": {
+        "NextStateAssignments": []
+    },
+    "StateGivenObservationModel": {
+        "Assignments": []
+    }
+}

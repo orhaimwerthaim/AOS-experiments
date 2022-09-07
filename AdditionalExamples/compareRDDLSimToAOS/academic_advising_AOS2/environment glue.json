@@ -1,0 +1,12 @@
+{
+    "PlpMain": {
+        "Project": "academic_advising",
+        "Name": "environment",
+        "Type": "EnvironmentGlue",
+        "Version": 1
+    },
+    "LocalVariableTypes": [ 
+    ],
+    "Constants": [ 
+    ]
+}
