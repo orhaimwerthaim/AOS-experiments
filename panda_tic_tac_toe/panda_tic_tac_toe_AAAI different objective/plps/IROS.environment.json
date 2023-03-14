@@ -1,0 +1,70 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "environment",
+        "Type": "Environment"
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 10,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "tSymbols",
+            "Type": "enum",
+            "EnumValues": ["eEmpty","eO","eX"]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "grid",
+            "Type": "int",
+            "IsArray": true,
+            "DefaultCode": "state.grid={eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty};"
+        },
+        {
+            "Name": "isRobotTurn",
+            "Type": "bool",
+            "DefaultCode": "state.isRobotTurn=true;"
+        } 
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [
+        {"StateFunctionCode":[{"AssignmentCode":[
+            "if(state.grid[8] == state.grid[7]){__stopEvaluatingState = true; __reward = state.grid[8] == eO ? 1 : -1;}"]}]},
+        {"StateFunctionCode":[{"AssignmentCode":[
+            "if(state.grid[8] == state.grid[5]){__stopEvaluatingState = true; __reward = state.grid[8] == eO ? 1 : -1;}"]}]},
+        {"StateFunctionCode":[{"AssignmentCode":[
+            "if(state.grid[6] == state.grid[7]){__stopEvaluatingState = true; __reward = state.grid[6] == eO ? 1 : -1;}"]}]},
+        {"StateFunctionCode":[{"AssignmentCode":[
+            "if(state.grid[6] == state.grid[3]){__stopEvaluatingState = true; __reward = state.grid[6] == eO ? 1 : -1;}"]}]},
+        {"StateFunctionCode":[{"AssignmentCode":[
+            "if(state.grid[2] == state.grid[5]){__stopEvaluatingState = true; __reward = state.grid[2] == eO ? 1 : -1;}"]}]},
+        {"StateFunctionCode":[{"AssignmentCode":[
+            "if(state.grid[2] == state.grid[1]){__stopEvaluatingState = true; __reward = state.grid[2] == eO ? 1 : -1;}"]}]},
+        {"StateFunctionCode":[{"AssignmentCode":[
+            "if(state.grid[0] == state.grid[1]){__stopEvaluatingState = true; __reward = state.grid[0] == eO ? 1 : -1;}"]}]},
+        {"StateFunctionCode":[{"AssignmentCode":[
+            "if(state.grid[0] == state.grid[3]){__stopEvaluatingState = true; __reward = state.grid[0] == eO ? 1 : -1;}"]}]},
+        {"StateFunctionCode":[{"AssignmentCode":[
+            "__isGoalState |= !std::any_of(state.grid.cbegin(), state.grid.cend(), [&](int cell){ return cell == eEmpty; });"]}]}                         
+    ],
+    "ExtrinsicChangesDynamicModel": [
+        { 
+            "AssignmentCode": [
+            "if(!state.isRobotTurn){",
+            "int emptyC = 0;",
+            "for_each(state.grid.begin(),state.grid.end(),[&](int const& cell){emptyC += cell == eEmpty ? 1 : 0;});",
+            "float w = 1.0/emptyC;",
+            "vector<float> weights{};",
+            "for(int i=0;i< 10;i++)",
+            "{",
+            "  weights.push_back(state.grid[i] == eEmpty ? w : 0.0);",
+            "}",
+            "int sampledCell = AOSUtils::SampleDiscrete(weights);",
+            "state_.grid[sampledCell] = eX;",
+            "state_.isRobotTurn = true;}"
+        ]
+        }
+    ]
+}
