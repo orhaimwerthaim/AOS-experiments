@@ -1,0 +1,38 @@
+project: example 
+response: eSuccess
+response_rule: skillSuccess and goal_reached
+response: eFailed
+response_rule: True
+module_activation: ros_service
+imports: from: geometry_msgs.msg import: Point
+imports: from: simple_navigation_goals.srv import: navigateResponse, navigate
+path: /navigate_to_point
+srv: navigate
+parameter: goal
+code:
+Point(x= nav_to_x, y= nav_to_y, z= nav_to_z)
+local_variable: skillSuccess
+imports: from: std_msgs.msg import: Bool
+type: bool
+from_ros_reservice_response: true
+code: 
+skillSuccess=__input.success
+local_variable: goal_reached
+topic: /rosout
+message_type: Log
+imports: from: rosgraph_msgs.msg import: Log
+type: bool 
+initial_value: False
+code:
+if goal_reached == True:
+    return True
+else:
+    return __input.msg.find('Goal reached') > -1
+local_variable: nav_to_x
+action_parameter: oDesiredLocation.x
+local_variable: nav_to_y
+action_parameter: oDesiredLocation.y
+local_variable: nav_to_z
+action_parameter: oDesiredLocation.z
+ 
+	

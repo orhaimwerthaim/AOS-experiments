@@ -1,0 +1,24 @@
+project: example 
+parameter: tLocation oDesiredLocation 
+precondition:
+__meetPrecondition = oDesiredLocation.discrete != state.robotLocation.discrete;
+violate_penalty: -10 
+dynamic_model: 
+state__.robotLocation.discrete = ! __meetPrecondition || AOS.Bernoulli(0.1) ? -1: oDesiredLocation.discrete;
+if(state__.robotLocation.discrete == oDesiredLocation.discrete)
+{ 
+state__.robotLocation.x = oDesiredLocation.x; 
+state__.robotLocation.y = oDesiredLocation.y; 
+state__.robotLocation.z = oDesiredLocation.z;
+}
+for(int i=0; i < state__.tVisitedLocationObjects.size();i++)
+{
+	if(state__.tVisitedLocationObjects[i]->discrete == state__.robotLocation.discrete) 
+	{
+	state__.tVisitedLocationObjects[i]->visited = true;
+	break;
+	}
+}
+__moduleResponse = (state__.robotLocation.discrete == -1 && AOS.Bernoulli(0.8)) ? eFailed : eSuccess;
+__reward = state_.robotLocation.discrete == -1 ? -5 : -(sqrt(pow(state.robotLocation.x-oDesiredLocation.x,2.0)+pow(state.robotLocation.y-oDesiredLocation.y,2.0)))*100;
+if (state__.robotLocation.discrete == -1) __reward =  -10;

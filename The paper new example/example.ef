@@ -1,0 +1,49 @@
+project: example
+horizon: 10
+discount: 0.97 
+define_type: tLocation
+variable: float x 0.0
+variable: float y 0.0
+variable: float z 0.0
+variable: int discrete -1
+define_type: tVisitedLocation
+variable: int discrete 1
+variable: bool visited false
+state_variable: tLocation robotLocation
+code:
+state.robotLocation.discrete = -1
+state_variable: tVisitedLocation v1
+code:
+state.v1.discrete = 1
+state_variable: tVisitedLocation v2
+code:
+state.v2.discrete = 2
+state_variable: tVisitedLocation v3
+code:
+state.v3.discrete = 3
+action_parameter: tLocation l1  
+code:
+state.l1.x = -1.01606154442; state.l1.y = 0.660750925541; state.l1.z =-0.00454711914062; state.l1.discrete = 1
+action_parameter: tLocation l2  
+code:
+state.l2.x = 0.00500533776358; state.l2.y = 0.640727937222; state.l2.z =-0.00143432617188; state.l2.discrete = 2
+action_parameter: tLocation l3  
+code:
+state.l3.x = 0.986030161381; state.l3.y = 0.610693752766; state.l3.z =-0.00143432617188; state.l3.discrete = 3
+initial_belief:
+state.robotLocation.discrete = AOS.Bernoulli(0.5) ? 1 : (AOS.Bernoulli(0.2) ? 2 : 3);
+reward_code:
+if (!state.v1.visited && state.v2.visited)
+{
+__reward=-50;
+__stopEvaluatingState =true;
+}
+reward_code:
+if (state.v1.visited && state.v2.visited && state.v3.visited)
+{
+__reward =7000;
+__isGoalState =true;
+}
+extrinsic_code:
+if (AOS.Bernoulli(0.05)) state_.robotLocation.discrete = -1;
+
