@@ -1,0 +1,64 @@
+project: tic_tac_toe
+horizon: 10
+discount: 0.99 
+
+define_type:  tSymbols
+enum_members: eEmpty,eO,eX
+
+state_variable: int grid []
+code:
+state.grid={eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty};
+
+state_variable: bool isRobotTurn
+code:
+state.isRobotTurn=true;  
+
+reward_code:
+if(state.grid[8] == state.grid[7] && eEmpty != state.grid[8])
+{ __reward = state.grid[8] == eO ? 1 : -1; __stopEvaluatingState = true;}
+
+reward_code:
+if(state.grid[8] == state.grid[5] && eEmpty != state.grid[8])
+{ __reward = state.grid[8] == eO ? 1 : -1; __stopEvaluatingState = true;}
+
+reward_code:
+if(state.grid[6] == state.grid[7] && eEmpty != state.grid[6])
+{ __reward = state.grid[6] == eO ? 1 : -1; __stopEvaluatingState = true;}
+
+reward_code:
+if(state.grid[6] == state.grid[3] && eEmpty != state.grid[6])
+{ __reward = state.grid[6] == eO ? 1 : -1; __stopEvaluatingState = true;}
+
+reward_code:
+if(state.grid[2] == state.grid[1] && eEmpty != state.grid[2])
+{ __reward = state.grid[2] == eO ? 1 : -1; __stopEvaluatingState = true;}
+
+reward_code:
+if(state.grid[2] == state.grid[5] && eEmpty != state.grid[2])
+{ __reward = state.grid[2] == eO ? 1 : -1; __stopEvaluatingState = true;}
+
+reward_code:
+if(state.grid[0] == state.grid[1] && eEmpty != state.grid[0])
+{ __reward = state.grid[0] == eO ? 1 : -1; __stopEvaluatingState = true;}
+
+reward_code:
+if(state.grid[0] == state.grid[3] && eEmpty != state.grid[0])
+{ __reward = state.grid[0] == eO ? 1 : -1; __stopEvaluatingState = true;}
+
+reward_code:
+__isGoalState |= !std::any_of(state.grid.cbegin(), state.grid.cend(), [&](int cell){ return cell == eEmpty; });
+
+extrinsic_code:
+if(!state.isRobotTurn)
+{
+    int emptyC = 0;
+    for_each(state.grid.begin(),state.grid.end(),[&](int const& cell){emptyC += cell == eEmpty ? 1 : 0;});
+    float w = 1.0/emptyC;
+    vector<float> weights{};
+    for(int i=0;i< state.grid.size();i++)
+    {
+      weights.push_back(state.grid[i] == eEmpty ? w : 0.0);
+    }
+    int sampledCell = AOSUtils::SampleDiscrete(weights);
+    state_.grid[sampledCell] = eX;
+}

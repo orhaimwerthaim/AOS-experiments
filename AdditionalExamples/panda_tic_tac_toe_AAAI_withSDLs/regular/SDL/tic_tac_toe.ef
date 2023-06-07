@@ -1,0 +1,45 @@
+project: tic_tac_toe
+horizon: 10
+discount: 0.99 
+
+define_type:  tSymbols
+enum_members: eEmpty,eO,eX
+
+state_variable: int grid []
+code:
+state.grid={eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty,eEmpty};
+
+state_variable: bool isRobotTurn
+code:
+state.isRobotTurn=true;  
+
+reward_code:
+vector<vector<int>> game_end{{8,7,6},{5,4,3},{2,1,0},
+                             {8,5,2},{7,4,1},{6,3,0},
+                             {8,4,0},{6,4,2}};
+for(int i =0; i < game_end.size(); i++)
+{
+	int a = game_end[i][0], b = game_end[i][1], c = game_end[i][2];
+	   if(state.grid[a] != eEmpty && state.grid[a] == state.grid[b] && state.grid[b] == state.grid[c])
+	   {
+		  __reward = state.grid[a] == eO ? 10 : -10;
+		  __isGoalState =true;
+		  break;
+	   }
+}
+__isGoalState |= !std::any_of(state.grid.cbegin(), state.grid.cend(), [&](int cell){ return cell == eEmpty; });
+
+extrinsic_code:
+if(!state.isRobotTurn)
+{
+    int emptyC = 0;
+    for_each(state.grid.begin(),state.grid.end(),[&](int const& cell){emptyC += cell == eEmpty ? 1 : 0;});
+    float w = 1.0/emptyC;
+    vector<float> weights{};
+    for(int i=0;i< state.grid.size();i++)
+    {
+      weights.push_back(state.grid[i] == eEmpty ? w : 0.0);
+    }
+    int sampledCell = AOSUtils::SampleDiscrete(weights);
+    state_.grid[sampledCell] = eX;
+}

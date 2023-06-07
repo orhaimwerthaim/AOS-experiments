@@ -1,0 +1,55 @@
+{
+  "PlpMain": {
+    "Project": "tic_tac_toe",
+    "Name": "draw",
+    "Type": "Glue"
+  },
+  "GlueFramework": "ROS",
+  "ModuleResponse": {
+    "ResponseRules": [
+      {
+        "Response": "res_success",
+        "ConditionCodeWithLocalVariables": " success"
+      },
+      {
+        "Response": "res_failed",
+        "ConditionCodeWithLocalVariables": " not success"
+      }
+    ]
+  },
+  "ModuleActivation": {
+    "RosService": {
+      "ImportCode": [
+        {
+          "From": "panda_demo.srv",
+          "Import": [
+            "*"
+          ]
+        }
+      ],
+      "ServiceName": " mark_cell",
+      "ServicePath": " /mark_tic_tac_toe_cell_service",
+      "ServiceParameters": [
+        {
+          "ServiceFieldName": "cell",
+          "AssignServiceFieldCode": "str(cell_to_mark)"
+        }
+      ]
+    }
+  },
+  "LocalVariablesInitialization": [
+    {
+      "InputLocalVariable": "cell_to_mark",
+      "FromGlobalVariable": "oCellP"
+    },
+    {
+      "FromROSServiceResponse": true,
+      "LocalVariableName": "success",
+      "VariableType": "bool",
+      "AssignmentCode": [
+        "success = __input.response == 'success'"
+      ],
+      "ImportCode": []
+    }
+  ]
+}

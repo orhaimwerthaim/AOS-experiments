@@ -1,0 +1,18 @@
+project: tic_tac_toe 			
+available_parameters_code: 
+for(int i=0;i<9;i++)
+{
+  __possibleParameters.push_back(std::make_tuple(i));
+}
+parameter: int oCellP 
+precondition:
+__meetPrecondition =state.isRobotTurn && state.grid[oCellP] == eEmpty;
+violate_penalty: -10 
+dynamic_model: 
+if(state.isRobotTurn)
+{
+	state__.grid[oCellP] = state__.grid[oCellP] == eEmpty ? eO : state__.grid[oCellP];
+	state__.isRobotTurn=!state.isRobotTurn;
+}
+__moduleResponse = res_success;
+__reward = 0

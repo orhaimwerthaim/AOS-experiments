@@ -1,0 +1,32 @@
+{
+  "PlpMain": {
+    "Project": "tic_tac_toe",
+    "Name": "detect",
+    "Type": "PLP"
+  },
+  "Preconditions": {
+    "GlobalVariablePreconditionAssignments": [
+      {
+        "AssignmentCode": [
+          "__meetPrecondition = !state.isRobotTurn;"
+        ]
+      }
+    ],
+    "ViolatingPreconditionPenalty": -10
+  },
+  "DynamicModel": {
+    "NextStateAssignments": [
+      {
+        "AssignmentCode": [
+          "state__.isRobotTurn=!state.isRobotTurn;",
+          "__moduleResponseStr = \"_________\";",
+          "for(int i=0;i<state.grid.size(); i++)",
+          "{",
+          "   __moduleResponseStr [i] = state__.grid[i] == eX ? 'X' : state__.grid[i] == eO ? 'O' : '?';",
+          "}",
+          "__reward = 0;"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "detect_board_state",
+        "Type": "PLP",
+        "Version": 1
+    },
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition=!state.isRobotTurn;"
+            }
+        ], 
+        "ViolatingPreconditionPenalty": -100
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "change turn",
+                "AssignmentCode": [
+                "if(!state.isRobotTurn){",
+                "while(true){",
+                "   vector<float> weights{0.1111,0.1111,0.1111,0.1111,0.1111,0.1111,0.1111,0.1111,0.1112};",
+                "   int sampledCell = AOSUtils::SampleDiscrete(weights)+1;",
+                "   if(sampledCell==state.Cell1.location && state.Cell1.content==eEmpty){state__.Cell1.content=eX;break;}",
+                "   if(sampledCell==state.Cell2.location && state.Cell2.content==eEmpty){state__.Cell2.content=eX;break;}",
+                "   if(sampledCell==state.Cell3.location && state.Cell3.content==eEmpty){state__.Cell3.content=eX;break;}",
+                "   if(sampledCell==state.Cell4.location && state.Cell4.content==eEmpty){state__.Cell4.content=eX;break;}",
+                "   if(sampledCell==state.Cell5.location && state.Cell5.content==eEmpty){state__.Cell5.content=eX;break;}",
+                "   if(sampledCell==state.Cell6.location && state.Cell6.content==eEmpty){state__.Cell6.content=eX;break;}",
+                "   if(sampledCell==state.Cell7.location && state.Cell7.content==eEmpty){state__.Cell7.content=eX;break;}",
+                "   if(sampledCell==state.Cell8.location && state.Cell8.content==eEmpty){state__.Cell8.content=eX;break;}",
+                "   if(sampledCell==state.Cell9.location && state.Cell9.content==eEmpty){state__.Cell9.content=eX;break;}}}",
+                "state__.isRobotTurn=!state.isRobotTurn"
+            ]
+            },
+            {
+                "AssignmentName": "initialize __moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr = \"_________\";"
+            },
+            {
+                "AssignmentName": "__moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr[0] = state__.Cell1.content== eX ? 'X' : (state__.Cell1.content== eO ? 'O' : '?');"
+            },
+            {
+                "AssignmentName": "__moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr[1] = state__.Cell2.content== eX ? 'X' : (state__.Cell2.content== eO ? 'O' : '?');"
+            },
+            {
+                "AssignmentName": "__moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr[2] = state__.Cell3.content== eX ? 'X' : (state__.Cell3.content== eO ? 'O' : '?');"
+            },
+            {
+                "AssignmentName": "__moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr[3] = state__.Cell4.content== eX ? 'X' : (state__.Cell4.content== eO ? 'O' : '?');"
+            },
+            {
+                "AssignmentName": "__moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr[4] = state__.Cell5.content== eX ? 'X' : (state__.Cell5.content== eO ? 'O' : '?');"
+            },
+            {
+                "AssignmentName": "__moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr[5] = state__.Cell6.content== eX ? 'X' : (state__.Cell6.content== eO ? 'O' : '?');"
+            },
+            {
+                "AssignmentName": "__moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr[6] = state__.Cell7.content== eX ? 'X' : (state__.Cell7.content== eO ? 'O' : '?');"
+            },
+            {
+                "AssignmentName": "__moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr[7] = state__.Cell8.content== eX ? 'X' : (state__.Cell8.content== eO ? 'O' : '?');"
+            },
+            {
+                "AssignmentName": "__moduleResponseStr",
+                "AssignmentCode": "__moduleResponseStr[8] = state__.Cell9.content== eX ? 'X' : (state__.Cell9.content== eO ? 'O' : '?');"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = 0;"
+            }
+        ]
+    }
+}

@@ -1,0 +1,16 @@
+project: tic_tac_toe 			
+  
+precondition:
+__meetPrecondition = !state.isRobotTurn;
+violate_penalty: -10 
+
+dynamic_model: 
+state__.isRobotTurn=!state.isRobotTurn;
+__moduleResponseStr = "_________";
+for(int i=0;i<state.grid.size(); i++)
+{
+   __moduleResponseStr [i] = state__.grid[i] == eX ? 'X' : state__.grid[i] == eO ? 'O' : '?';
+}
+__reward = 0;
+
+ 

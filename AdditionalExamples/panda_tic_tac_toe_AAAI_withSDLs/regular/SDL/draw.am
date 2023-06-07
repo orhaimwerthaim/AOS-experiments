@@ -1,0 +1,16 @@
+project: tic_tac_toe 
+
+local_variable: cell_to_mark
+action_parameter: oCellP
+
+
+module_activation: ros_service
+imports: from: panda_demo.srv import: *
+path: /mark_tic_tac_toe_cell_service
+srv: mark_cell
+parameter: cell
+code:
+str(cell_to_mark)
+
+response: res_success
+response_rule: True

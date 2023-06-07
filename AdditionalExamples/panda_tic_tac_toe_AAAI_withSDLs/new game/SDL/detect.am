@@ -1,0 +1,14 @@
+project: tic_tac_toe 
+
+local_variable: obsr
+type: string
+from_ros_reservice_response: true  
+code: 
+obsr = __input.state
+
+module_activation: ros_service
+imports: from: panda_demo.srv import: *
+path: /observe_tic_tac_toe_board
+srv: detect_new_state 
+
+response_local_variable: obsr

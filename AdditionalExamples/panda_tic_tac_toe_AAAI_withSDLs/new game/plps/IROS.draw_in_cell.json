@@ -1,0 +1,46 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "draw_in_cell",
+        "Type": "PLP"
+    },
+    "PossibleParametersValue":
+    [
+        {
+            "AssignmentCode": [
+                "for(int i=0;i<9;i++)",
+                "{",
+                "  ",
+                "  __possibleParameters.push_back(std::make_tuple(i));",
+                "}"
+        ]              
+        }
+    ],
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oCellP",
+            "Type": "int"
+        }
+    ],  
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentCode": "__meetPrecondition=state.isRobotTurn && state.grid[oCellP] == eEmpty;"              
+            }
+        ], 
+        "ViolatingPreconditionPenalty": -10
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            { 
+                "AssignmentCode": [ 
+                    "bool success = oCellP != 4 || AOSUtils::Bernoulli(0.5);",
+                    "state__.grid[oCellP] = state__.grid[oCellP] == eEmpty && success ? eO : state__.grid[oCellP];",
+                    "state__.isRobotTurn=!state.isRobotTurn;",
+                    "__moduleResponse= success ? res_success : res_failed;",
+                    "__reward = 0;"
+                ]
+            }
+        ]
+    }
+}
