@@ -33,7 +33,7 @@
                 ]
             }
         ], 
-        "ViolatingPreconditionPenalty": -10
+        "ViolatingPreconditionPenalty": -100
     },
     "DynamicModel": {
         "NextStateAssignments": [

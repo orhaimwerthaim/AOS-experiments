@@ -1,0 +1,53 @@
+{
+  "PlpMain": {
+    "Project": "simple_sarsop",
+    "Name": "environment",
+    "Type": "Environment"
+  },
+  "EnvironmentGeneral": {
+    "Horizon": 10,
+    "Discount": 0.97
+  },
+  "GlobalVariablesDeclaration": [
+    {
+      "Name": "s",
+      "Type": "int",
+      "DefaultCode": "state.s = 0",
+      "IsActionParameterValue": false
+    }
+  ],
+  "SpecialStates": [
+    {
+      "StateFunctionCode": [
+        {
+          "AssignmentCode": [
+            "if (state.s==1)",
+            "{",
+            "__reward=-10;",
+            "__stopEvaluatingState =true;",
+            "}"
+          ]
+        }
+      ]
+    },
+    {
+      "StateFunctionCode": [
+        {
+          "AssignmentCode": [
+            "if (state.s>=2)",
+            "{",
+            "__reward =1;",
+            "__isGoalState =true;",
+            "}",
+            "if (state.s<-1)",
+            "{",
+            "__reward =-1;",
+            "__isGoalState =true;",
+            "}",
+            ""
+          ]
+        }
+      ]
+    }
+  ]
+}

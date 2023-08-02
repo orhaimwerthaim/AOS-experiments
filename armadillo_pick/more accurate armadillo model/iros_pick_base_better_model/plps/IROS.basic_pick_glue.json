@@ -50,6 +50,7 @@
     "LocalVariablesInitialization": [
         {
             "LocalVariableName": "pickResponseSuccess",
+            "VariableType": "bool",
             "FromROSServiceResponse": true,
             "AssignmentCode": "pickResponseSuccess = __input.result == 'true'"
         }

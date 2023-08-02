@@ -1,0 +1,15 @@
+project: simple_sarsop  
+dynamic_model: 
+state__.s += AOS.Bernoulli(0.1) ? 0.2: 0;
+__moduleResponse = eSuccess;
+__reward = -1;
+
+
+
+project: simple_sarsop  
+dynamic_model: 
+bool b = AOS.Bernoulli(0.2);
+state__.s += b ? 0.1: 0;
+
+__moduleResponse = b? eSuccess : eFailed;
+__reward = -1;

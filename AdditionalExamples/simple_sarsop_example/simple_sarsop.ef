@@ -1,0 +1,24 @@
+project: simple_sarsop
+horizon: 10
+discount: 0.97 
+
+state_variable: int s
+code:
+state.s = 0
+reward_code:
+if (state.s==1)
+{
+__reward=-10;
+__stopEvaluatingState =true;
+}
+reward_code:
+if (state.s>=2)
+{
+__reward =1;
+__isGoalState =true;
+}
+if (state.s<-1)
+{
+__reward =-1;
+__isGoalState =true;
+}

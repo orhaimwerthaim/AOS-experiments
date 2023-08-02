@@ -1,0 +1,47 @@
+{
+  "PlpMain": {
+    "Project": "simple_sarsop",
+    "Name": "inc_one",
+    "Type": "Glue"
+  },
+  "GlueFramework": "ROS",
+  "ModuleResponse": {
+    "ResponseRules": [
+      {
+        "Response": "eSuccess",
+        "ConditionCodeWithLocalVariables": " True"
+      },
+      {
+        "Response": "eFailed",
+        "ConditionCodeWithLocalVariables": " True"
+      }
+    ]
+  },
+  "ModuleActivation": {
+    "RosService": {
+      "ImportCode": [
+        {
+          "From": "geometry_msgs.msg",
+          "Import": [
+            "Point"
+          ]
+        },
+        {
+          "From": "simple_navigation_goals.srv",
+          "Import": [
+            "navigateResponse",
+            "navigate"
+          ]
+        }
+      ],
+      "ServiceName": " navigate",
+      "ServicePath": " /navigate_to_point",
+      "ServiceParameters": [
+        {
+          "ServiceFieldName": "goal",
+          "AssignServiceFieldCode": "Point(x= nav_to_x, y= nav_to_y, z= nav_to_z)"
+        }
+      ]
+    }
+  }
+}

@@ -12,7 +12,7 @@
                 "AssignmentCode": "__meetPrecondition=!state.isRobotTurn;"
             }
         ], 
-        "ViolatingPreconditionPenalty": -10
+        "ViolatingPreconditionPenalty": -100
     },
     "DynamicModel": {
         "NextStateAssignments": [

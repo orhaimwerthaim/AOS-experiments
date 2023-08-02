@@ -1,0 +1,20 @@
+{
+  "PlpMain": {
+    "Project": "simple_sarsop",
+    "Name": "inc_one",
+    "Type": "PLP"
+  },
+  "DynamicModel": {
+    "NextStateAssignments": [
+      {
+        "AssignmentCode": [
+          "bool b = AOS.Bernoulli(0.7);",
+          "state__.s += state__.s >= 0 ? (b ? 4: -1) : -1;",
+          "",
+          "__moduleResponse = b? eSuccess : eFailed;",
+          "__reward = -1;"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+project: simple_sarsop  
+dynamic_model: 
+bool b = AOS.Bernoulli(0.7);
+state__.s += state__.s >= 0 ? (b ? 4: -1) : -1;
+
+__moduleResponse = b? eSuccess : eFailed;
+__reward = -1;

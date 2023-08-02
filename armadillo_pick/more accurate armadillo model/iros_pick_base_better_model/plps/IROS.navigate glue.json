@@ -10,7 +10,7 @@
         "ResponseRules": [
             {
                 "Response": "eSuccess",
-                "ConditionCodeWithLocalVariables": "navigateSuccess == True",
+                "ConditionCodeWithLocalVariables": "navigateSuccess == True"
             },
             {
                 "Response": "eFailed",
@@ -51,6 +51,7 @@
     "LocalVariablesInitialization": [
         {
             "LocalVariableName": "navigateSuccess",
+            "VariableType": "bool",
             "FromROSServiceResponse": true,
             "AssignmentCode": "navigateSuccess = __input.success"
         },

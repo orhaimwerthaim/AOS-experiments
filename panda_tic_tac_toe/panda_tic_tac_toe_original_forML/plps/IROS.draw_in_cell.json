@@ -1,0 +1,65 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "draw_in_cell",
+        "Type": "PLP",
+        "Version": 1.0
+    },
+    "GlobalVariableModuleParameters": [
+        {
+            "Name": "oCellP",
+            "Type": "int"
+        },
+        {
+            "Name": "symbol",
+            "Type": "tCellContent"
+        }
+    ],  
+    "Preconditions": {
+        "GlobalVariablePreconditionAssignments": [
+            {
+                "AssignmentName": "__meetPrecondition",
+                "AssignmentCode": "__meetPrecondition=state.isRobotTurn;"
+            },
+            {
+                "AssignmentName": "check if cell is empty",
+                "IteratePreviousStateVars": [
+                    {
+                        "Type": "tGridCell",
+                        "ItemName": "cell",
+                        "ConditionCode": "cell.location== oCellP && cell.content != eEmpty",
+                        "WhenConditionTrueCode": "__meetPrecondition= false;"
+                    }
+                ]
+            }
+        ], 
+        "ViolatingPreconditionPenalty": -100
+    },
+    "DynamicModel": {
+        "NextStateAssignments": [
+            {
+                "AssignmentName": "update location visited",
+                "IterateNextStateVars": [
+                    {
+                        "Type": "tGridCell",
+                        "ItemName": "cell",
+                        "ConditionCode": "cell.location== oCellP && cell.content == eEmpty",
+                        "WhenConditionTrueCode": "if(state__.isRobotTurn){cell.content=symbol;break;}"
+                    }
+                ]
+            },
+            {
+                "AssignmentName": "change turn",
+                "AssignmentCode": "state__.isRobotTurn=!state.isRobotTurn"
+            },
+            {
+                "AssignmentName": "initialize __moduleResponse",
+                "AssignmentCode": "__moduleResponse= res_success;"
+            },
+            {
+                "AssignmentName": "__reward",
+                "AssignmentCode": "__reward = 0;"
+            }
+        ]
+    }
+}

@@ -1,0 +1,192 @@
+{
+    "PlpMain": {
+        "Project": "iros",
+        "Name": "environment",
+        "Type": "Environment",
+        "Version": 1
+    },
+    "EnvironmentGeneral": {
+        "Horizon": 10,
+        "Discount": 0.99
+    },
+    "GlobalVariableTypes": [
+        {
+            "TypeName": "tCellContent",
+            "Type": "enum",
+            "EnumValues": [
+                "eX",
+                "eO",
+                "eEmpty"
+            ]
+        },
+        {
+            "TypeName": "tGridCell",
+            "Type": "compound",
+            "Variables": [
+                {
+                    "Name": "location",
+                    "Type": "int",
+                    "Default": "-1"
+                },
+                {
+                    "Name": "content",
+                    "Type": "tCellContent",
+                    "Default": "eEmpty"
+                }
+            ]
+        }
+    ],
+    "GlobalVariablesDeclaration": [
+        {
+            "Name": "robotSymbol",
+            "Type": "tCellContent",
+            "DefaultCode": "state.robotSymbol=eO;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "humanSymbol",
+            "Type": "tCellContent",
+            "DefaultCode": "state.humanSymbol=eX;",
+            "IsActionParameterValue": false
+        },
+        {
+            "Name": "CellLocation1",
+            "Type": "int",
+            "DefaultCode": "state.CellLocation1=1;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CellLocation2",
+            "Type": "int",
+            "DefaultCode": "state.CellLocation2=2;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CellLocation3",
+            "Type": "int",
+            "DefaultCode": "state.CellLocation3=3;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CellLocation4",
+            "Type": "int",
+            "DefaultCode": "state.CellLocation4=4;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CellLocation5",
+            "Type": "int",
+            "DefaultCode": "state.CellLocation5=5;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CellLocation6",
+            "Type": "int",
+            "DefaultCode": "state.CellLocation6=6;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CellLocation7",
+            "Type": "int",
+            "DefaultCode": "state.CellLocation7=7;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CellLocation8",
+            "Type": "int",
+            "DefaultCode": "state.CellLocation8=8;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "CellLocation9",
+            "Type": "int",
+            "DefaultCode": "state.CellLocation9=9;",
+            "IsActionParameterValue": true
+        },
+        {
+            "Name": "Cell1",
+            "Type": "tGridCell",
+            "DefaultCode": "state.Cell1.content=eEmpty;state.Cell1.location=1;"
+        },
+        {
+            "Name": "Cell2",
+            "Type": "tGridCell",
+            "DefaultCode": "state.Cell2.content=eEmpty;state.Cell2.location=2;"
+        },
+        {
+            "Name": "Cell3",
+            "Type": "tGridCell",
+            "DefaultCode": "state.Cell3.content=eEmpty;state.Cell3.location=3;"
+        },
+        {
+            "Name": "Cell4",
+            "Type": "tGridCell",
+            "DefaultCode": "state.Cell4.content=eEmpty;state.Cell4.location=4;"
+        },
+        {
+            "Name": "Cell5",
+            "Type": "tGridCell",
+            "DefaultCode": "state.Cell5.content=eEmpty;state.Cell5.location=5;"
+        },
+        {
+            "Name": "Cell6",
+            "Type": "tGridCell",
+            "DefaultCode": "state.Cell6.content=eEmpty;state.Cell6.location=6;"
+        },
+        {
+            "Name": "Cell7",
+            "Type": "tGridCell",
+            "DefaultCode": "state.Cell7.content=eEmpty;state.Cell7.location=7;"
+        },
+        {
+            "Name": "Cell8",
+            "Type": "tGridCell",
+            "DefaultCode": "state.Cell8.content=eEmpty;state.Cell8.location=8;"
+        },
+        {
+            "Name": "Cell9",
+            "Type": "tGridCell",
+            "DefaultCode": "state.Cell9.content=eEmpty;state.Cell9.location=9;"
+        },
+        {
+            "Name": "isRobotTurn",
+            "Type": "bool",
+            "DefaultCode": "state.isRobotTurn=false;"
+        }
+    ],
+    "InitialBeliefStateAssignments": [],
+    "SpecialStates": [
+        {
+            "StateConditionCode": "(state.robotSymbol == state.Cell9.content && state.Cell9.content == state.Cell8.content && state.Cell8.content == state.Cell7.content) || (state.robotSymbol == state.Cell3.content && state.Cell3.content == state.Cell2.content && state.Cell2.content == state.Cell1.content) || (state.robotSymbol == state.Cell6.content && state.Cell6.content == state.Cell5.content && state.Cell5.content == state.Cell4.content) || (state.robotSymbol == state.Cell7.content && state.Cell7.content == state.Cell4.content && state.Cell4.content == state.Cell1.content) || (state.robotSymbol == state.Cell8.content && state.Cell8.content == state.Cell5.content && state.Cell5.content == state.Cell2.content)|| (state.robotSymbol == state.Cell9.content && state.Cell9.content == state.Cell6.content && state.Cell6.content == state.Cell3.content) || (state.robotSymbol == state.Cell9.content && state.Cell9.content == state.Cell5.content && state.Cell5.content == state.Cell1.content) || (state.robotSymbol == state.Cell7.content && state.Cell7.content == state.Cell5.content && state.Cell5.content == state.Cell3.content)",
+            "Reward": 20.0,
+            "IsGoalState": true
+        },
+        {
+            "StateConditionCode": "(state.humanSymbol == state.Cell9.content && state.Cell9.content == state.Cell8.content && state.Cell8.content == state.Cell7.content) || (state.humanSymbol == state.Cell3.content && state.Cell3.content == state.Cell2.content && state.Cell2.content == state.Cell1.content) || (state.humanSymbol == state.Cell6.content && state.Cell6.content == state.Cell5.content && state.Cell5.content == state.Cell4.content) || (state.humanSymbol == state.Cell7.content && state.Cell7.content == state.Cell4.content && state.Cell4.content == state.Cell1.content) || (state.humanSymbol == state.Cell8.content && state.Cell8.content == state.Cell5.content && state.Cell5.content == state.Cell2.content)|| (state.humanSymbol == state.Cell9.content && state.Cell9.content == state.Cell6.content && state.Cell6.content == state.Cell3.content) || (state.humanSymbol == state.Cell9.content && state.Cell9.content == state.Cell5.content && state.Cell5.content == state.Cell1.content) || (state.humanSymbol == state.Cell7.content && state.Cell7.content == state.Cell5.content && state.Cell5.content == state.Cell3.content)",
+            "Reward": -10.0,
+            "IsGoalState": true
+        },
+        {
+            "StateConditionCode": "state.Cell1.content != eEmpty && state.Cell2.content != eEmpty && state.Cell3.content != eEmpty && state.Cell4.content != eEmpty && state.Cell5.content != eEmpty && state.Cell6.content != eEmpty && state.Cell7.content != eEmpty && state.Cell8.content != eEmpty && state.Cell9.content != eEmpty",
+            "Reward": 0.0,
+            "IsGoalState": true
+        }
+    ],
+    "PrintStateFunc":[
+        {
+            "AssignmentCode":[
+                "ss << \"state.isRobotTurn:\";",
+                "ss << state.isRobotTurn << endl;",
+                "ss << \"|state.humanSymbol:\";",
+                "ss << (int)state.humanSymbol << endl;",
+        "ss << state.Cell1.content << \"|\" << state.Cell2.content << \"|\" << state.Cell3.content << endl;",
+        "ss << state.Cell4.content << \"|\" << state.Cell5.content << \"|\" << state.Cell6.content << endl;",
+        "ss << state.Cell7.content << \"|\" << state.Cell8.content << \"|\" << state.Cell9.content << endl;"
+            ]
+        }
+    ],
+    "ExtrinsicChangesDynamicModel": [
+        
+    ]
+    
+}

@@ -1,0 +1,18 @@
+project: simple_sarsop 
+response: eSuccess
+response_rule: True
+response: eFailed
+response_rule: True
+module_activation: ros_service
+imports: from: geometry_msgs.msg import: Point
+imports: from: simple_navigation_goals.srv import: navigateResponse, navigate
+path: /navigate_to_point
+srv: navigate
+parameter: goal
+code:
+Point(x= nav_to_x, y= nav_to_y, z= nav_to_z)
+
+ 
+
+ 
+	

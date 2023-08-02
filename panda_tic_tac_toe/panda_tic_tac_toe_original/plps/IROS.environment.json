@@ -158,7 +158,7 @@
     "SpecialStates": [
         {
             "StateConditionCode": "(state.robotSymbol == state.Cell9.content && state.Cell9.content == state.Cell8.content && state.Cell8.content == state.Cell7.content) || (state.robotSymbol == state.Cell3.content && state.Cell3.content == state.Cell2.content && state.Cell2.content == state.Cell1.content) || (state.robotSymbol == state.Cell6.content && state.Cell6.content == state.Cell5.content && state.Cell5.content == state.Cell4.content) || (state.robotSymbol == state.Cell7.content && state.Cell7.content == state.Cell4.content && state.Cell4.content == state.Cell1.content) || (state.robotSymbol == state.Cell8.content && state.Cell8.content == state.Cell5.content && state.Cell5.content == state.Cell2.content)|| (state.robotSymbol == state.Cell9.content && state.Cell9.content == state.Cell6.content && state.Cell6.content == state.Cell3.content) || (state.robotSymbol == state.Cell9.content && state.Cell9.content == state.Cell5.content && state.Cell5.content == state.Cell1.content) || (state.robotSymbol == state.Cell7.content && state.Cell7.content == state.Cell5.content && state.Cell5.content == state.Cell3.content)",
-            "Reward": 10.0,
+            "Reward": 20.0,
             "IsGoalState": true
         },
         {
@@ -170,6 +170,19 @@
             "StateConditionCode": "state.Cell1.content != eEmpty && state.Cell2.content != eEmpty && state.Cell3.content != eEmpty && state.Cell4.content != eEmpty && state.Cell5.content != eEmpty && state.Cell6.content != eEmpty && state.Cell7.content != eEmpty && state.Cell8.content != eEmpty && state.Cell9.content != eEmpty",
             "Reward": 0.0,
             "IsGoalState": true
+        }
+    ],
+    "PrintStateFunc":[
+        {
+            "AssignmentCode":[
+                "ss << \"state.isRobotTurn:\";",
+                "ss << state.isRobotTurn << endl;",
+                "ss << \"|state.humanSymbol:\";",
+                "ss << (int)state.humanSymbol << endl;",
+        "ss << state.Cell1.content << \"|\" << state.Cell2.content << \"|\" << state.Cell3.content << endl;",
+        "ss << state.Cell4.content << \"|\" << state.Cell5.content << \"|\" << state.Cell6.content << endl;",
+        "ss << state.Cell7.content << \"|\" << state.Cell8.content << \"|\" << state.Cell9.content << endl;"
+            ]
         }
     ],
     "ExtrinsicChangesDynamicModel": [
@@ -201,7 +214,7 @@
             "AssignmentCode": ["while(!state.isRobotTurn)",
             "{",
             "   vector<float> weights{0.1111,0.1111,0.1111,0.1111,0.1111,0.1111,0.1111,0.1111,0.1112};",
-            "   sampledCell = cells + SampleDiscrete(weights);",
+            "   sampledCell = cells + AOSUtils::SampleDiscrete(weights);",
             "   //sampledCell = AOS.SampleDiscrete(cells,{1,1,1,1,1,1,1,1,1});",
             "   if(sampledCell==c1 && state.Cell1.content==eEmpty){state_.Cell1.content=eX;break;}",
             "   if(sampledCell==c2 && state.Cell2.content==eEmpty){state_.Cell2.content=eX;break;}",
@@ -215,4 +228,5 @@
             "}"]
         }
     ]
+    
 }

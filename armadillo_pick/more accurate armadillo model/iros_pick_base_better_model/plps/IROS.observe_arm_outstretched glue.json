@@ -36,6 +36,7 @@
     "LocalVariablesInitialization": [
         {
             "LocalVariableName": "is_arm_outstretched",
+            "VariableType": "bool",
             "FromROSServiceResponse": true,
             "AssignmentCode": "is_arm_outstretched = __input.response"
         }
