@@ -1,15 +1,23 @@
 project: example 
-parameter: tLocation oDesiredLocation 
+parameter: int discreteDestination
+parameter: float x
+parameter: float y
+parameter: float z 
+available_parameters_code: 
+__possibleParameters.push_back(std::make_tuple(1,-1.01606154442,0.660750925541,-0.00454711914062));
+__possibleParameters.push_back(std::make_tuple(2,0.00500533776358,0.640727937222,-0.00143432617188)); 
+__possibleParameters.push_back(std::make_tuple(3,0.986030161381,0.610693752766,-0.00143432617188));
+
 precondition:
-__meetPrecondition = oDesiredLocation.discrete != state.robotLocation.discrete;
+__meetPrecondition = discreteDestination != state.robotLocation.discrete;
 violate_penalty: -10 
 dynamic_model: 
-state__.robotLocation.discrete = ! __meetPrecondition || AOS.Bernoulli(0.1) ? -1: oDesiredLocation.discrete;
-if(state__.robotLocation.discrete == oDesiredLocation.discrete)
+state__.robotLocation.discrete = ! __meetPrecondition || AOS.Bernoulli(0.1) ? -1: discreteDestination;
+if(state__.robotLocation.discrete == discreteDestination)
 { 
-state__.robotLocation.x = oDesiredLocation.x; 
-state__.robotLocation.y = oDesiredLocation.y; 
-state__.robotLocation.z = oDesiredLocation.z;
+state__.robotLocation.x = x; 
+state__.robotLocation.y = y; 
+state__.robotLocation.z = z;
 }
 for(int i=0; i < state__.tVisitedLocationObjects.size();i++)
 {
@@ -20,5 +28,5 @@ for(int i=0; i < state__.tVisitedLocationObjects.size();i++)
 	}
 }
 __moduleResponse = (state__.robotLocation.discrete == -1 && AOS.Bernoulli(0.8)) ? eFailed : eSuccess;
-__reward = state_.robotLocation.discrete == -1 ? -5 : -(sqrt(pow(state.robotLocation.x-oDesiredLocation.x,2.0)+pow(state.robotLocation.y-oDesiredLocation.y,2.0)))*100;
+__reward = state_.robotLocation.discrete == -1 ? -5 : -(sqrt(pow(state.robotLocation.x-x,2.0)+pow(state.robotLocation.y-y,2.0)))*100;
 if (state__.robotLocation.discrete == -1) __reward =  -10;
