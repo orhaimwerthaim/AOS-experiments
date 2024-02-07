@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "a6e6cb11-0537-4e85-ab56-ec0dab3f9722",
+		"name": "AOS Tutorial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "initialize Project: test installtion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/AOS/AOS-experiments-main/Tutorial/The paper example SDL\",\n    \"RunWithoutRebuild\":false,\n    \"OnlyGenerateCode\":false,\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/simple_navigation_goals/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"simple_navigation_goals\"],\n        \"TargetProjectInitializationTimeInSeconds\":15\n    },\n    \"SolverConfiguration\":{ \n        \"NumOfParticles\":20000,\n        \"ActionsToSimulate\":[],\n        \"IsInternalSimulation\":false,\n        \"ManualControl\":false,\n        \"PlanningTimePerMoveInSeconds\":2,\n        \"NumOfBeliefStateParticlesToSaveInDB\":20, \n        \"Verbosity\":1,\n        \"UseML\":false,\n        \"RolloutsCount\":70,\n        \"SimulateByMdpRate\":0.0\n        },\n    \"MiddlewareConfiguration\":{\n        \"DebugOn\":true\n         \n    }\n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/InitializeProject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"InitializeProject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send Action Manually",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"ActionID\":9\n    \n}\n\n\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/ManualAction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ManualAction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stop Robot",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/solver",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"solver"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Manual Actions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/ICAPS_Toy\",\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/ManualAction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ManualAction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Solver Actions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/ICAPS_Toy\",\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/SolverAction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"SolverAction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Logs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/ICAPS_Toy\",\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/LogMessage",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"LogMessage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Simulated states",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"PLPsDirectoryPath\":\"/home/or/Dropbox/AOS/PLP examples/ICAPS_Toy\",\n    \"RosTarget\":\n    {\n        \"WorkspaceDirectortyPath\":\"/home/or/catkin_ws\",\n        \"TargetProjectLaunchFile\":\"/home/or/catkin_ws/src/aos_ros_target_project/launch/servers.launch\",\n        \"RosTargetProjectPackages\":[\"aos_ros_target_project\"],\n        \"TargetProjectInitializationTimeInSeconds\":10\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/SimulatedState",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"SimulatedState"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Execution Outcome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ExecutionOutcome?belief_size=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ExecutionOutcome"
+					],
+					"query": [
+						{
+							"key": "belief_size",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
