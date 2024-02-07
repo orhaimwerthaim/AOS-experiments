@@ -21,15 +21,6 @@ state.v2.discrete = 2
 state_variable: tVisitedLocation v3
 code:
 state.v3.discrete = 3
-action_parameter: tLocation l1  
-code:
-state.l1.x = -1.01606154442; state.l1.y = 0.660750925541; state.l1.z =-0.00454711914062; state.l1.discrete = 1
-action_parameter: tLocation l2  
-code:
-state.l2.x = 0.00500533776358; state.l2.y = 0.640727937222; state.l2.z =-0.00143432617188; state.l2.discrete = 2
-action_parameter: tLocation l3  
-code:
-state.l3.x = 0.986030161381; state.l3.y = 0.610693752766; state.l3.z =-0.00143432617188; state.l3.discrete = 3
 initial_belief:
 state.robotLocation.discrete = AOS.Bernoulli(0.5) ? 1 : (AOS.Bernoulli(0.2) ? 2 : 3);
 reward_code:
