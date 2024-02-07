@@ -29,10 +29,10 @@ if goal_reached == True:
 else:
     return __input.msg.find('Goal reached') > -1
 local_variable: nav_to_x
-action_parameter: oDesiredLocation.x
+action_parameter: x
 local_variable: nav_to_y
-action_parameter: oDesiredLocation.y
+action_parameter: y
 local_variable: nav_to_z
-action_parameter: oDesiredLocation.z
+action_parameter: z
  
 	
