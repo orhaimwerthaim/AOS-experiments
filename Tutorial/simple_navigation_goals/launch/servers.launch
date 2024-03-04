@@ -2,11 +2,11 @@
 
 <launch>
 
-
+<arg name="map_file" value="$(find simple_navigation_goals)/map.yaml"/>
 <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch"/>
 <include file="$(find turtlebot3_navigation)/launch/turtlebot3_navigation.launch">
 <!-- <arg name="map_file" value="$HOME/map.yaml"/> -->
-<arg name="map_file" value="$(env HOME)/map.yaml"/>
+<!-- <arg name="map_file" value="$(env HOME)/map.yaml"/> -->
 
 </include>
  
